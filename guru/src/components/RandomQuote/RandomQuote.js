@@ -6,7 +6,7 @@ import { Button } from '../Button/Button';
 export class RandomQuote extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { quote: 'Want a quote? Click below.' };
+    this.state = { quote: this.props.start };
     this.handleClick = this.handleClick.bind(this);
   };
 
@@ -28,7 +28,7 @@ export class RandomQuote extends React.Component {
     return (
       <div className='box'>
       <p>{this.state.quote}</p>
-      <Button onClick={this.handleClick}/>
+      <Button onClick={this.handleClick} name={this.props.name}/>
       </div>
     )
   }

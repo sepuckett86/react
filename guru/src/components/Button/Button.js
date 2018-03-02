@@ -4,7 +4,7 @@ import './Button.css'
 export class Button extends React.Component {
   render() {
     return (
-      <button onClick={this.props.onClick}>Next random quote</button>
+      <button onClick={this.props.onClick}>{this.props.name}</button>
     )
   }
 }
