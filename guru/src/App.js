@@ -11,10 +11,28 @@ const quotes = [
   'I take great solace in that most people do not care about what I do with my life.',
   'Do not underestimate the soothing power of a warm bath. '];
 
+const layouts = [
+  <div>
+  <h1>Baby Sloth</h1>
+  <div className="container">
+    <img width="100%" src="https://www.rd.com/wp-content/uploads/2016/04/sloths-slide1SamTrull.jpg" alt="sloth baby"/>
+  </div>
+  <p>Love it!</p>
+
+</div>
+, <div>
+<h2>Manatees!</h2>
+<img width="100%" src="https://s.hswstatic.com/gif/manatees-see-underwater-98181305.jpg" alt="manatees"/>
+</div>,
+<div>
+  <p>Can we play MadLibs?</p>
+  <p>My dog ate a _noun_ today</p>
+</div>];
+
 class App extends Component {
   constructor(props) {
      super(props);
-     this.state = { quoteArray: quotes };
+     this.state = { quoteArray: layouts };
    }
   render() {
     return (
@@ -26,7 +44,9 @@ class App extends Component {
         <p className="App-intro">
           In need of a guru? Look no further. Susan guru here.
         </p>
-        <RandomQuote quoteArray={this.state.quoteArray}/>
+
+        <RandomQuote start="Guru Susan" name='Random Quote' quoteArray={quotes} />
+        <RandomQuote start="More Fun" name='Click Me' quoteArray={this.state.quoteArray}/>
 
       </div>
     );
