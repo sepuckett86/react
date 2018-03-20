@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 import Compare from '../Compare/Compare';
@@ -13,34 +12,62 @@ class App extends Component {
           id: '1',
           items: ['A', 'B', 'C'],
           active: 'A',
-          key: 'unique1'
+          key: 'menu1'
         },
         {
           id: '2',
           items: ['A', 'B', 'C'],
           active: 'A',
-          key: 'unique2'
+          key: 'menu2'
         }
       ],
       showResult: false,
+      sites: ['Apples', 'Oranges', 'Bananas'],
       results: [
         {
           site: 'Bananas',
-          item1: 'A',
-          item2: 'A',
-          result: 'AA Bananas'
-        },
-        {
-          site: 'Bananas',
-          item1: 'A',
-          item2: 'B',
+          items: ['A', 'B'],
           result: 'AB Bananas'
         },
         {
           site: 'Bananas',
-          item1: 'A',
-          item2: 'C',
+          items: ['A', 'C'],
           result: 'AC Bananas'
+        },
+        {
+          site: 'Bananas',
+          items: ['B', 'C'],
+          result: 'BC Bananas'
+        },
+        {
+          site: 'Oranges',
+          items: ['A', 'B'],
+          result: 'AB Oranges'
+        },
+        {
+          site: 'Oranges',
+          items: ['A', 'C'],
+          result: 'AC Oranges'
+        },
+        {
+          site: 'Oranges',
+          items: ['B', 'C'],
+          result: 'BC Oranges'
+        },
+        {
+          site: 'Apples',
+          items: ['A', 'B'],
+          result: 'AB Apples'
+        },
+        {
+          site: 'Apples',
+          items: ['A', 'C'],
+          result: 'AC Apples'
+        },
+        {
+          site: 'Apples',
+          items: ['B', 'C'],
+          result: 'BC Apples'
         },
       ]
     }
@@ -54,8 +81,6 @@ class App extends Component {
     for (let i=0; i<this.state.menus.length; i++) {
       if (this.state.menus[i].id === id) {
         menus[i].active = active;
-        console.log(active);
-        console.log(menus);
         this.setState({
           menus: menus
         })
@@ -68,14 +93,14 @@ class App extends Component {
       this.setState({
         showResult: true
       })
-    } 
+    }
   }
 
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+          <br /><br />
           <h1 className="App-title">Welcome to CCompare</h1>
         </header>
         <p className="App-intro">
@@ -87,7 +112,9 @@ class App extends Component {
             updateMenu={this.updateActive}
             menus={this.state.menus}
             showResult={this.state.showResult}
-            updateResult={this.updateResult} />
+            updateResult={this.updateResult}
+            sites={this.state.sites}
+            results={this.state.results} />
         </div>
 
       </div>

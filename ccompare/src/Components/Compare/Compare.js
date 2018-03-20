@@ -15,13 +15,12 @@ class Compare extends React.Component {
               {
                 this.props.menus.map(menu => {
                 return (
-                  <div className="col">
+                  <div key={menu.key} className="col">
                       <Menu
                           menuID={menu.id}
                           items={menu.items}
                           updateMenu={this.props.updateMenu}
                           active={menu.active}
-                          key={menu.key}
                       />
                   </div>
                 )
@@ -33,7 +32,9 @@ class Compare extends React.Component {
                 updateResult={this.props.updateResult}/>
         </div>
         <Result menus={this.props.menus}
-                showResult={this.props.showResult}/>
+                showResult={this.props.showResult}
+                sites={this.props.sites}
+                results={this.props.results}/>
       </div>
     )
   }

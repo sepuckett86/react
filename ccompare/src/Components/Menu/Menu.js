@@ -14,8 +14,8 @@ class Menu extends React.Component {
   handleClick(event) {
     this.setState({
       activeName: event.target.name
-    })
-    this.props.updateMenu(this.props.menuID, this.state.activeName)
+    });
+    this.props.updateMenu(this.props.menuID, event.target.name);
 
   }
 
