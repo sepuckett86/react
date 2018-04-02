@@ -1,18 +1,39 @@
 import React from 'react';
 import './Box.css';
-import Prompt from '../Prompt/Prompt'
 
-import Button from '../Button/Button'
+import Prompt from '../Prompt/Prompt';
+import Quote from '../Quote/Quote';
+import Custom from '../Custom/Custom';
+import Button from '../Button/Button';
 
 class Box extends React.Component {
+  chooseDisplay() {
+    let gminder = this.props.display;
+    if(gminder.category === 'prompt') {
+      return <Prompt
+        gminder={gminder}
+        />
+    }
+    if(gminder.category === 'quote') {
+      return <Quote
+        gminder={gminder}
+        />
+    }
+    if(gminder.category === 'custom') {
+      return <Custom
+        gminder={gminder}
+        />
+    } else {
+      return <p>Category Error</p>
+    }
+  }
   render() {
     return(
       <div>
       <div className="box">
-  			<Prompt
-          gminders={this.props.gminders}
-          />
+  			{this.chooseDisplay()}
       </div>
+      <br />
       <div className="row">
         <div className="col">
           <Button
@@ -21,7 +42,7 @@ class Box extends React.Component {
             />
           <br />
         </div>
-
+<br />
         <div className="col">
           <Button
             name="Add"
@@ -29,7 +50,7 @@ class Box extends React.Component {
             />
           <br />
         </div>
-
+<br />
         <div className="col">
           <Button
             name="More"

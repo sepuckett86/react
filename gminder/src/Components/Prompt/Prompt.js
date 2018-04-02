@@ -5,12 +5,10 @@ class Prompt extends React.Component {
   render() {
     return(
       <div id="prompt">
-      <p>Added <a href="#">Month Day, Year</a> from <a href="#">Prompt Collection Media</a></p>
+      <p className="alignR">Added {this.props.gminder.date} from Prompt Collection: {this.props.gminder.collection}</p>
 
        <div className="media prompt">
-
        <div className="media-body">
-
        <p className="lato">What is a song that made you smile in the past month?</p>
       </div>
       </div>
