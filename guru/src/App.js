@@ -43,6 +43,7 @@ class App extends Component {
         </header>
         <p className="App-intro">
           In need of a guru? Look no further. Susan guru here.
+          
         </p>
 
         <RandomQuote start="Guru Susan" name='Random Quote' quoteArray={quotes} />
