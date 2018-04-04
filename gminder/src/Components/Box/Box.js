@@ -42,7 +42,7 @@ class Box extends React.Component {
             />
           <br />
         </div>
-<br />
+        <br />
         <div className="col">
           <Button
             name="Add"
@@ -50,7 +50,7 @@ class Box extends React.Component {
             />
           <br />
         </div>
-<br />
+        <br />
         <div className="col">
           <Button
             name="More"
