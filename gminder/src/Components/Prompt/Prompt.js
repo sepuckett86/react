@@ -1,11 +1,19 @@
 import React from 'react';
 import './Prompt.css';
+import Stars from '../Stars/Stars';
 
 class Prompt extends React.Component {
   render() {
     return(
       <div id="prompt">
-      <p className="alignR">Added {this.props.gminder.date} from Prompt Collection: {this.props.gminder.collection}</p>
+        <div className="row">
+          <div className="col">
+            <Stars />
+          </div>
+          <div className="col alignR">
+            <p>Added {this.props.gminder.date} from Prompt Collection: {this.props.gminder.collection}</p>
+          </div>
+        </div>
 
        <div className="media prompt">
        <div className="media-body">
