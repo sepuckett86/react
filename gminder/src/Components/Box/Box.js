@@ -27,6 +27,8 @@ class Box extends React.Component {
       return <p>Category Error</p>
     }
   }
+
+
   render() {
     return(
       <div>

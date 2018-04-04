@@ -5,6 +5,7 @@ import Box from '../Box/Box';
 import Add from '../Add/Add';
 import More from '../More/More';
 
+
 let gminders = [
   {
     id: '1',
@@ -180,6 +181,7 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">Welcome to gminder</h1>
         </header>
+        
         <p className="App-intro">
 
         </p>
