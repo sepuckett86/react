@@ -7,15 +7,14 @@ class Stars extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      starNumber: 2
+      stars : Number(this.props.gminder.stars)
     }
-
     this.handleClick = this.handleClick.bind(this);
   }
 
 /* const stars must be updated to reflect database value */
   makeStarArray() {
-    const stars = this.state.starNumber;
+    const stars = this.state.stars;
     const myArray = [];
     for(let i = stars; i > 0; i--) {
       myArray.push('fas fa-star');
@@ -28,12 +27,11 @@ class Stars extends React.Component {
   }
 
   handleClick(event) {
-    if(Number(event.currentTarget.id) === this.state.starNumber - 1) {
-      this.setState({
-        starNumber: 0
-      })
-    }
-  }
+    let stars = Number(event.currentTarget.id) + 1;
+    this.props.starFun(stars, this.props.gminder.id);
+    this.setState({
+      stars: stars
+    })}
 
   generateKey(index) {
     return `${ index }_${ new Date().getTime() }`;

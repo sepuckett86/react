@@ -111,10 +111,34 @@ class App extends Component {
       add: false,
       more: false
     }
+    this.random = this.state.gminders[Math.floor(Math.random() * gminders.length)];
 
+    this.pickGminder = this.pickGminder.bind(this);
     this.nextClick = this.nextClick.bind(this);
     this.addClick = this.addClick.bind(this);
     this.moreClick = this.moreClick.bind(this);
+    this.setStars = this.setStars.bind(this);
+  }
+
+// Upon load of display, this function picks a new random gminder
+  pickGminder() {
+    let gminder = gminders[Math.floor(Math.random() * gminders.length)];
+    this.setState({
+      display: gminder
+    })
+  }
+
+// This function changes the stars for one gminder in the gminders array
+  setStars(starNum, id) {
+    let gmindersArr = this.state.gminders;
+    gmindersArr.forEach(gminder => {
+      if (gminder.id === id) {
+        gminder.stars = starNum;
+      }
+    })
+    this.setState({
+      gminders: gmindersArr
+    })
   }
 
   nextClick() {
@@ -156,6 +180,8 @@ class App extends Component {
         addClick={this.addClick}
         moreClick={this.moreClick}
         display={this.state.display}
+        starFun={this.setStars}
+        gms={this.state.gminders}
         />
     }
 
@@ -165,7 +191,6 @@ class App extends Component {
             />
     }
     if(this.state.add === false && this.state.more === true) {
-      console.log(this.state.gminders)
       return <More
               moreClick={this.moreClick}
               gms={this.state.gminders}
@@ -181,12 +206,13 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">Welcome to gminder</h1>
         </header>
-        
+
         <p className="App-intro">
 
         </p>
         <div className="container">
-        {this.renderWhat()}
+          {this.renderWhat()}
+
       </div>
       </div>
     );
