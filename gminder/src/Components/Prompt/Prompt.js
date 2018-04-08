@@ -8,7 +8,11 @@ class Prompt extends React.Component {
       <div id="prompt">
         <div className="row">
           <div className="col">
-            <Stars />
+            <Stars
+              starFun={this.props.starFun}
+              gminder={this.props.gminder}
+              gminders={this.props.gms}
+              />
           </div>
           <div className="col alignR">
             <p>Added {this.props.gminder.date} from Prompt Collection: {this.props.gminder.collection}</p>

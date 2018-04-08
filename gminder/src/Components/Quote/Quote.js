@@ -9,7 +9,7 @@ class Quote extends React.Component {
           <p className="alignR">Added {this.props.gminder.date} from Quote Collection: {this.props.gminder.collection}</p>
 
   			<div className="media answer">
-  			<i className="fas fa-quote-left"></i>
+
   			<div className="media-body">
 
   			<br />
@@ -19,12 +19,12 @@ class Quote extends React.Component {
   				<br />
   			</div>
 
-  			<i className="fas fa-quote-right"></i>
+
   			</div>
   			<br />
 
   			<div className="media reason">
-  			<i className="fas fa-lightbulb"></i>
+  			
 
   			<div className="media-body lato" id="quote-reason">
   		Will and I were reading Tolkien out loud and this was the best line in the entire book.
