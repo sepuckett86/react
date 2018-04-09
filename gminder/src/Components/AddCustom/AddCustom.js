@@ -42,7 +42,7 @@ class AddCustom extends React.Component {
                   <textarea className="form-control" id="customText" rows="3"></textarea>
                   <br />
                   <div className="form-group">
-                      <label>Custom Category</label>
+                      <label>Collection</label>
                       <input type="text" className="form-control" id="custom-category" placeholder="Example: Affirmations"/>
                   </div>
               </div>

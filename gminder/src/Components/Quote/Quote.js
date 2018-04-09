@@ -25,7 +25,7 @@ class Quote extends React.Component {
   			<br />
 
   			<h4 className="lato" id="quote-random_0">
-  				May your beer be laid under an enchantment of surpassing excellence for seven years!</h4><p className="lato" id="quote-who-source-author">-- Gandalf, from <i>The Fellowship of the Ring</i> by J.R.R. Tolkien</p>
+  				{this.props.gminder.answer}</h4><p className="lato" id="quote-who-source-author">--{this.props.gminder.author}</p>
   				<br />
   			</div>
 
@@ -37,7 +37,7 @@ class Quote extends React.Component {
 
 
   			<div className="media-body lato" id="quote-reason">
-  		Will and I were reading Tolkien out loud and this was the best line in the entire book.
+  		{this.props.gminder.reason}
   			</div>
   				</div>
 

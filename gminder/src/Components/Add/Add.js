@@ -18,18 +18,19 @@ class Add extends React.Component {
     if(this.state.type === 'prompt') {
       return(<AddPrompt
               changeType={this.changeType}
-              newFun={this.props.newFun}
-              prompts={this.props.prompts} />)
+              newGminder={this.props.newGminder}
+              prompts={this.props.prompts}
+              boxClick={this.props.boxClick} />)
     }
     if(this.state.type === 'quote') {
       return(<AddQuote
               changeType={this.changeType}
-              newFun={this.props.newFun} />)
+              newGminder={this.props.newGminder} />)
     }
     if(this.state.type === 'custom') {
       return(<AddCustom
               changeType={this.changeType}
-              newFun={this.props.newFun}  />)
+              newGminder={this.props.newGminder}  />)
     }
   }
 
