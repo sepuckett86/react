@@ -17,15 +17,19 @@ class Add extends React.Component {
   chooseType() {
     if(this.state.type === 'prompt') {
       return(<AddPrompt
-              changeType={this.changeType} />)
+              changeType={this.changeType}
+              newFun={this.props.newFun}
+              prompts={this.props.prompts} />)
     }
     if(this.state.type === 'quote') {
       return(<AddQuote
-              changeType={this.changeType} />)
+              changeType={this.changeType}
+              newFun={this.props.newFun} />)
     }
     if(this.state.type === 'custom') {
       return(<AddCustom
-              changeType={this.changeType} />)
+              changeType={this.changeType}
+              newFun={this.props.newFun}  />)
     }
   }
 
@@ -62,7 +66,7 @@ class Add extends React.Component {
          <div className="col">
       <Button
         name="Back"
-        onClick={this.props.addClick}
+        onClick={this.props.boxClick}
         />
       <br />
     </div>

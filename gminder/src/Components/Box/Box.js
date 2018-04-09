@@ -13,21 +13,18 @@ class Box extends React.Component {
       return <Prompt
         gminder={gminder}
         starFun={this.props.starFun}
-        gminders={this.props.gms}
         />
     }
     if(gminder.category === 'quote') {
       return <Quote
         gminder={gminder}
         starFun={this.props.starFun}
-        gminders={this.props.gms}
         />
     }
     if(gminder.category === 'custom') {
       return <Custom
         gminder={gminder}
         starFun={this.props.starFun}
-        gminders={this.props.gms}
         />
     } else {
       return <p>Category Error</p>
@@ -48,6 +45,7 @@ class Box extends React.Component {
             name="Next"
             onClick={this.props.nextClick}
             />
+          <br />
           <br />
         </div>
         <br />

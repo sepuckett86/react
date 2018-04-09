@@ -2,10 +2,8 @@ import React from 'react';
 import './More.css';
 import Button from '../Button/Button';
 
-import {CSVLink, CSVDownload} from 'react-csv';
-
-
-
+//Add CSVDownload to import if want to use it
+import {CSVLink} from 'react-csv';
 
 class More extends React.Component {
   constructor(props) {
@@ -120,13 +118,13 @@ class More extends React.Component {
         <br />
         <Button
         name="Table of All Prompts"
-        onClick={this.props.moreClick}
+        onClick={this.props.boxClick}
         />
         <br />
         <br />
         <Button
         name="Back"
-        onClick={this.props.moreClick}
+        onClick={this.props.boxClick}
         />
       </div>)
   }

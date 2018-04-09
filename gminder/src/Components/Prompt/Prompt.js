@@ -11,7 +11,6 @@ class Prompt extends React.Component {
             <Stars
               starFun={this.props.starFun}
               gminder={this.props.gminder}
-              gminders={this.props.gms}
               />
           </div>
           <div className="col alignR">

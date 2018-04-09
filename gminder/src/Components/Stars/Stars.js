@@ -22,7 +22,6 @@ class Stars extends React.Component {
     for(let j = 5-stars; j > 0; j--) {
       myArray.push('far fa-star');
     }
-    console.log(myArray);
     return myArray;
   }
 

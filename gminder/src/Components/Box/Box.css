@@ -25,26 +25,7 @@ header{
   background-color: rgba(255, 255, 255, 0.3);
 }
 
-footer{
-	color: black;
-	font-family: 'Comfortaa', cursive;
-  background-color: rgba(255, 255, 255, 0.8);
-	font-size: 14px;
-  width: 100%;
-	text-align: center;
-  height: 50px;
-  line-height: 50px;
-  border-top: 2px solid #46B3B3;
 
-}
-/* adjust footer content by screen size */
-.short-text { display: none; }
-
-/* When resolution <= 1200px, hide short text and show full text*/
-@media (max-width: 768px) {
-    .short-text { display: inline; }
-    .full-text { display: none; }
-}
 
 .box {
     background-color: rgba(255, 255, 255, 0.8);
