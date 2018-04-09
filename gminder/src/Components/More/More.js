@@ -120,13 +120,13 @@ class More extends React.Component {
         <br />
         <Button
         name="Table of All Prompts"
-        onClick={this.props.moreClick}
+        onClick={this.props.boxClick}
         />
         <br />
         <br />
         <Button
         name="Back"
-        onClick={this.props.moreClick}
+        onClick={this.props.boxClick}
         />
       </div>)
   }

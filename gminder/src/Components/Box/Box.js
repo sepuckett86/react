@@ -49,6 +49,7 @@ class Box extends React.Component {
             onClick={this.props.nextClick}
             />
           <br />
+          <br />
         </div>
         <br />
         <div className="col">

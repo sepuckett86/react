@@ -62,7 +62,7 @@ class Add extends React.Component {
          <div className="col">
       <Button
         name="Back"
-        onClick={this.props.addClick}
+        onClick={this.props.boxClick}
         />
       <br />
     </div>
