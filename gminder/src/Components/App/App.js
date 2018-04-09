@@ -46,16 +46,38 @@ class App extends Component {
         }
 
       ],
-      prompts: {
-        'Happy':
-          ['Share a fun moment',
-           'Explain why you are smiling'],
-        'Happenings':
-          ['Share a time when you were proud of yourself'],
-        'Favorites':
-          ['What is a song that made you smile in the past month?',
-           'Who is your favorite person? Why?']
-         },
+      prompts: [
+        {
+          id: 'prompt1',
+          collection: 'Happy',
+          prompt: 'Share a fun moment',
+
+        },
+        {
+          id: 'prompt2',
+          collection: 'Happy',
+          prompt: 'Explain why you are smiling',
+
+        },
+        {
+          id: 'prompt3',
+          collection: 'Happenings',
+          prompt: 'Share a time when you were proud of yourself',
+
+        },
+        {
+          id: 'prompt4',
+          collection: 'Favorites',
+          prompt: 'What is a song that made you smile in the past month?',
+
+        },
+        {
+          id: 'prompt5',
+          collection: 'Favorites',
+          prompt: 'Who is your favorite person? Why?',
+
+        }
+      ],
       display: 'box',
       oneGminder: 'empty'
     }
@@ -90,10 +112,10 @@ class App extends Component {
   }
 
   newGminder() {
-    var today = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth()+1; //January is 0!
-    var yyyy = today.getFullYear();
+    let today = new Date();
+    let dd = today.getDate();
+    let mm = today.getMonth()+1; //January is 0!
+    let yyyy = today.getFullYear();
 
     if(dd<10) {
     dd = '0' + dd;
@@ -182,6 +204,7 @@ class App extends Component {
       return <Add
               boxClick={this.boxClick}
               newFun={this.newGminder}
+              prompts={this.state.prompts}
             />
     }
     if(this.state.display === 'more') {

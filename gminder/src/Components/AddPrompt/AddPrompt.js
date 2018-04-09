@@ -4,7 +4,37 @@ class AddPrompt extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      prompt: 'empty',
+      value: ''
+    }
+
     this.handleClick = this.handleClick.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSumbit = this.handleSubmit.bind(this);
+    this.changePrompt = this.changePrompt.bind(this);
+    this.changePromptSame = this.changePromptSame.bind(this);
+  }
+
+  componentWillMount() {
+    let random = this.props.prompts[Math.floor(Math.random() * this.props.prompts.length)];
+    this.setState({ prompt: random });
+  }
+
+  changePrompt() {
+    let random = this.props.prompts[Math.floor(Math.random() * this.props.prompts.length)];
+    this.setState({ prompt: random });
+  }
+
+  changePromptSame() {
+    let collectionArray = [];
+    this.props.prompts.forEach(prompt => {
+      if (prompt.collection === this.state.prompt.collection) {
+        collectionArray.push(prompt);
+      }
+    })
+    let random = collectionArray[Math.floor(Math.random() * collectionArray.length)];
+    this.setState({ prompt: random });
   }
 
   handleClick(event) {
@@ -17,11 +47,20 @@ class AddPrompt extends React.Component {
     if (event.target.id === "custom-tab") {
       this.props.changeType('custom');
     }
-
+    if (event.target.id === "next-prompt-all") {
+      this.changePrompt();
+    }
+    if (event.target.id === "next-prompt-same") {
+      this.changePromptSame();
+    }
   }
 
-  handleSubmit() {
-    this.props.newFun();
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
+
+  handleSubmit(event) {
+    console.log("submitted");
   }
 
   render() {
@@ -40,16 +79,19 @@ class AddPrompt extends React.Component {
       </ul>
       <br />
 
-          <form onSubmit={this.handleSubmit}>
-              <div className="form-group">
-                  <p className="paragraph-prompt" id="promptId_4">From Prompt Collection: Happy</p>
-                  <h4 className="lato">Who is your favorite celebrity?</h4>
+
+                  <p className="paragraph-prompt" id={this.state.prompt.id}>From Prompt Collection: {this.state.prompt.collection}</p>
+                  <h4 className="lato">{this.state.prompt.prompt}</h4>
                   <br />
                   <p>Next prompt from:
-                   Same collection|
-                  All collections</p>
+                   <button id="next-prompt-same" onClick={this.handleClick}>Same collection</button>|
+                   <button id="next-prompt-all" onClick={this.handleClick}>All collections</button>|
+                  </p>
+
+          <form onSubmit={this.handleSubmit}>
+                <div className="form-group">
                   <label>Answer</label>
-                  <textarea className="form-control" id="prompt-answer" rows="3"></textarea>
+                  <textarea className="form-control" value={this.state.value} onChange={this.handleChange} id="prompt-answer" rows="3"></textarea>
                   <br />
                   <label>Reason</label>
                   <textarea className="form-control" id="prompt-reason" rows="3"></textarea>

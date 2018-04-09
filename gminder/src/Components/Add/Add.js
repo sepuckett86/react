@@ -18,7 +18,8 @@ class Add extends React.Component {
     if(this.state.type === 'prompt') {
       return(<AddPrompt
               changeType={this.changeType}
-              newFun={this.props.newFun} />)
+              newFun={this.props.newFun}
+              prompts={this.props.prompts} />)
     }
     if(this.state.type === 'quote') {
       return(<AddQuote
