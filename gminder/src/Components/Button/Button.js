@@ -13,9 +13,19 @@ class Button extends React.Component {
   }
 
   render() {
-    return <button className="button-standard btn" id={this.props.id} onClick={this.handleClick}>
+    return (
+      <div>
+      <div className="d-sm-none">
+        <button className="button-span btn" id={this.props.id} onClick={this.handleClick}>
       {this.props.name}
-    </button>
+    </button></div>
+      <div className="d-none d-sm-block">
+        <button className="button-standard btn" id={this.props.id} onClick={this.handleClick}>
+      {this.props.name}
+    </button></div>
+</div>
+
+      )
   }
 }
 

@@ -6,17 +6,24 @@ class Prompt extends React.Component {
   render() {
     return(
       <div id="prompt">
-        <div className="row">
-          <div className="col">
-            <Stars
-              starFun={this.props.starFun}
-              gminder={this.props.gminder}
-              />
+
+
+
+          <div className="d-none d-sm-block">
+            <div className="row">
+              <div className="col">
+                <Stars
+                  starFun={this.props.starFun}
+                  gminder={this.props.gminder}
+                  />
+              </div>
+            <div className="col alignR">
+              <p>Added {this.props.gminder.date} from Prompt Collection: {this.props.gminder.collection}</p>
+            </div>
+            </div>
           </div>
-          <div className="col alignR">
-            <p>Added {this.props.gminder.date} from Prompt Collection: {this.props.gminder.collection}</p>
-          </div>
-        </div>
+
+
 
        <div className="media prompt">
        <div className="media-body">
@@ -43,6 +50,17 @@ class Prompt extends React.Component {
       <div className="media-body lato">
         {this.props.gminder.reason}
       </div>
+        </div>
+
+        <div className="d-sm-none">
+          <br />
+          <Stars
+            starFun={this.props.starFun}
+            gminder={this.props.gminder}
+            />
+          <br />
+            <p>Added {this.props.gminder.date} from Prompt Collection: {this.props.gminder.collection}</p>
+
         </div>
     </div>
   )

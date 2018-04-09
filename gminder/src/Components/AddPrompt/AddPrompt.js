@@ -75,7 +75,7 @@ class AddPrompt extends React.Component {
     let d = new Date();
     let year = d.getFullYear();
     let month = d.getMonth() + 1;
-    let day = d.getDay();
+    let day = d.getDate();
     const fullDate = `${month}/${day}/${year}`;
     return fullDate;
   }

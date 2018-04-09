@@ -206,7 +206,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">Welcome to gminder</h1>
-          
+
         </header>
 
         <p className="App-intro">
