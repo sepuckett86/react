@@ -43,16 +43,6 @@ class AddQuote extends React.Component {
                   <textarea className="form-control" rows="3" placeholder="Example: May your beer be laid under an enchantment of surpassing excellence for seven years!"></textarea>
                   <br />
                   <div className="form-group">
-                      <label>Who said it (optional)</label>
-                      <input type="text" className="form-control" id="quote-who" placeholder="Example: Gandalf"/>
-                  </div>
-                  <br />
-                  <div className="form-group">
-                      <label>Source (optional)</label>
-                      <input type="text" className="form-control" id="quote-source" placeholder="Example: The Fellowship of the Ring"/>
-                  </div>
-                  <br />
-                  <div className="form-group">
                       <label >Author</label>
                       <input type="text" className="form-control" id="quote-author" placeholder="Example: J. R. R. Tolkien"/>
                   </div>
@@ -61,7 +51,7 @@ class AddQuote extends React.Component {
                   <textarea className="form-control" id="quote-reason" rows="3" placeholder="Example: When I was reading this out loud with my husband, we laughed like hyenas"></textarea>
                   <br />
                   <div className="form-group">
-                      <label>Collection (optional)</label>
+                      <label>Collection</label>
                       <input type="text" className="form-control" id="quote-category" placeholder="Example: Funny"/>
                   </div>
               </div>

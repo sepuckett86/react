@@ -10,12 +10,7 @@ class More extends React.Component {
     super(props);
     this.state = {
       display: 'none',
-      csvData: [
-        ['ID', 'Stars', 'Category', 'Goodminder'] ,
-        ['Ahmed', 'Tomi' , 'ah@smthing.co.com'] ,
-        ['Raed', 'Labes' , 'rl@smthing.co.com'] ,
-        ['Yezzi','Min l3b', 'ymin@cocococo.com']
-      ]
+      csvData: []
     };
 
     this.changeDisplay = this.changeDisplay.bind(this);
@@ -37,7 +32,7 @@ class More extends React.Component {
   makeCSVArray() {
     let myArray = [['ID', 'Category', 'Collection', 'Date', 'Prompt', 'Answer', 'Reason', 'Author', 'Stars']];
     this.props.gms.forEach(gminder => {
-      let innerArray = [gminder.id, gminder.category, gminder.collection, gminder.date, gminder.propmpt, gminder.answer, gminder.reason, gminder.author, gminder.stars];
+      let innerArray = [gminder.id, gminder.category, gminder.collection, gminder.date, gminder.prompt, gminder.answer, gminder.reason, gminder.author, gminder.stars];
       myArray.push(innerArray);
     })
     return myArray;
@@ -126,6 +121,8 @@ class More extends React.Component {
         name="Back"
         onClick={this.props.boxClick}
         />
+        <br />
+        <br />
       </div>)
   }
 }

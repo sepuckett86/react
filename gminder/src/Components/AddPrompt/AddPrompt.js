@@ -6,14 +6,16 @@ class AddPrompt extends React.Component {
 
     this.state = {
       prompt: 'empty',
-      value: ''
+      inputAnswer: '',
+      inputReason: ''
     }
 
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.handleSumbit = this.handleSubmit.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.changePrompt = this.changePrompt.bind(this);
     this.changePromptSame = this.changePromptSame.bind(this);
+    this.newGm = this.newGm.bind(this);
   }
 
   componentWillMount() {
@@ -53,14 +55,69 @@ class AddPrompt extends React.Component {
     if (event.target.id === "next-prompt-same") {
       this.changePromptSame();
     }
+    if (event.target.id === "temp-submit") {
+      this.newGm();
+      this.props.boxClick();
+    }
   }
 
   handleChange(event) {
-    this.setState({value: event.target.value});
+    if (event.target.id === "prompt-answer") {
+      this.setState({inputAnswer: event.target.value});
+    }
+    if (event.target.id === "prompt-reason") {
+      this.setState({inputReason: event.target.value});
+    }
+
+  }
+
+  getDate() {
+    let d = new Date();
+    let year = d.getFullYear();
+    let month = d.getMonth() + 1;
+    let day = d.getDate();
+    const fullDate = `${month}/${day}/${year}`;
+    return fullDate;
+  }
+
+  generateId() {
+    return `${ new Date().getTime() }`;
+  }
+
+
+  newGm() {
+    const date = this.getDate();
+    const id = this.generateId();
+    const newG = {
+      id: id,
+      category: 'prompt',
+      collection: 'Favorites',
+      date: date,
+      prompt: this.state.prompt.prompt,
+      answer: this.state.inputAnswer,
+      reason: this.state.inputReason,
+      author: null,
+      stars: '0'
+    }
+    this.props.newGminder(newG);
   }
 
   handleSubmit(event) {
-    console.log("submitted");
+    const newGminder = {
+      id: '7',
+      category: 'prompt',
+      collection: 'Favorites',
+      date: "1-2-3",
+      prompt: this.state.prompt.prompt,
+      answer: this.state.inputAnswer,
+      reason: this.state.inputReason,
+      author: null,
+      stars: '4'
+    }
+    this.props.newGminder(newGminder);
+    alert(JSON.stringify(newGminder));
+    alert(this.state.inputAnswer);
+    console.log();
   }
 
   render() {
@@ -78,8 +135,6 @@ class AddPrompt extends React.Component {
         </li>
       </ul>
       <br />
-
-
                   <p className="paragraph-prompt" id={this.state.prompt.id}>From Prompt Collection: {this.state.prompt.collection}</p>
                   <h4 className="lato">{this.state.prompt.prompt}</h4>
                   <br />
@@ -91,13 +146,16 @@ class AddPrompt extends React.Component {
           <form onSubmit={this.handleSubmit}>
                 <div className="form-group">
                   <label>Answer</label>
-                  <textarea className="form-control" value={this.state.value} onChange={this.handleChange} id="prompt-answer" rows="3"></textarea>
+                  <textarea className="form-control" value={this.state.inputAnswer} onChange={this.handleChange} id="prompt-answer" rows="3"></textarea>
                   <br />
                   <label>Reason</label>
-                  <textarea className="form-control" id="prompt-reason" rows="3"></textarea>
+                  <textarea className="form-control" value={this.state.inputReason} onChange={this.handleChange} id="prompt-reason" rows="3"></textarea>
+                  <br />
+
               </div>
-              <button id="btn-prompt-submit" type="submit" className="btn btn-primary">Submit</button>
+
           </form>
+          <button id="temp-submit" onClick={this.handleClick}>Add to gminders</button>
       </div>
     )
   }

@@ -4,6 +4,7 @@ p {
 
 .App {
   text-align: center;
+  width: 100%;
 }
 
 .App-logo {
@@ -47,6 +48,73 @@ footer{
     .short-text { display: inline; }
     .full-text { display: none; }
 }
+
+/* As in bootstrap css */
+.container {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+/* Import from Bootstrap website
+
+// Extra small devices (portrait phones, less than 576px)
+// No media query since this is the default in Bootstrap*/
+
+
+@media (max-width: 576px) {
+  .container {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0px;
+
+  }
+  .App {
+    background-color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    width: 100%;
+  }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+  .container {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    padding-right: 0px;
+    padding-left: 0px;
+
+  }
+  .App {background-color: transparent}
+}
+
+/* // Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  .container {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+
+  }
+  .App {background-color: transparent}
+ }
+
+/* // Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .container {
+
+  }
+ }
+
+/* // Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+
+ }
+
+/* // End */
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }

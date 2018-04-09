@@ -27,10 +27,17 @@ class Stars extends React.Component {
 
   handleClick(event) {
     let stars = Number(event.currentTarget.id) + 1;
+    if (stars === this.state.stars) {
+      this.props.starFun(0, this.props.gminder.id);
+      this.setState({
+        stars: 0
+      })
+    } else {
     this.props.starFun(stars, this.props.gminder.id);
     this.setState({
       stars: stars
     })}
+  }
 
   generateKey(index) {
     return `${ index }_${ new Date().getTime() }`;

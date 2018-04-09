@@ -6,21 +6,28 @@ class Prompt extends React.Component {
   render() {
     return(
       <div id="prompt">
-        <div className="row">
-          <div className="col">
-            <Stars
-              starFun={this.props.starFun}
-              gminder={this.props.gminder}
-              />
+
+
+
+          <div className="d-none d-sm-block">
+            <div className="row">
+              <div className="col">
+                <Stars
+                  starFun={this.props.starFun}
+                  gminder={this.props.gminder}
+                  />
+              </div>
+            <div className="col alignR">
+              <p>Added {this.props.gminder.date} from Prompt Collection: {this.props.gminder.collection}</p>
+            </div>
+            </div>
           </div>
-          <div className="col alignR">
-            <p>Added {this.props.gminder.date} from Prompt Collection: {this.props.gminder.collection}</p>
-          </div>
-        </div>
+
+
 
        <div className="media prompt">
        <div className="media-body">
-       <p className="lato">What is a song that made you smile in the past month?</p>
+       <p className="lato">{this.props.gminder.prompt}</p>
       </div>
       </div>
       <br />
@@ -29,7 +36,7 @@ class Prompt extends React.Component {
       <div className="media-body">
 
       <br />
-      <h4 className="lato">Legend of Kyrandia Emerald Room Song by Frank Klepacki</h4><br />
+      <h4 className="lato">{this.props.gminder.answer}</h4><br />
 
         </div>
 
@@ -41,12 +48,19 @@ class Prompt extends React.Component {
 
 
       <div className="media-body lato">
-
-    After wandering through endless caves in the game with repetitive
-    music, the music changes for only one scene to a complex, long,
-    cool song. It reminds me of all that is great about old school
-    adventure games.
+        {this.props.gminder.reason}
       </div>
+        </div>
+
+        <div className="d-sm-none">
+          <br />
+          <Stars
+            starFun={this.props.starFun}
+            gminder={this.props.gminder}
+            />
+          <br />
+            <p>Added {this.props.gminder.date} from Prompt Collection: {this.props.gminder.collection}</p>
+
         </div>
     </div>
   )

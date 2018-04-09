@@ -35,37 +35,52 @@ class Box extends React.Component {
   render() {
     return(
       <div>
-      <div className="box">
-  			{this.chooseDisplay()}
-      </div>
+
+        <div className="d-sm-none">
+          <div className="backfill">
+          {this.chooseDisplay()}
+          <br />
+          <hr />
+          </div>
+        </div>
+        <div className="d-none d-sm-block">
+          <div className="box">
+      			{this.chooseDisplay()}
+          </div>
+          </div>
+
+
+
       <br />
       <div className="row">
-        <div className="col">
+        <div className="col col-12 col-sm-4">
           <Button
             name="Next"
             onClick={this.props.nextClick}
             />
           <br />
-          <br />
+
         </div>
         <br />
-        <div className="col">
+        <div className="col col-12 col-sm-4">
           <Button
             name="Add"
             onClick={this.props.addClick}
             />
           <br />
+
         </div>
         <br />
-        <div className="col">
+        <div className="col col-12 col-sm-4">
           <Button
             name="More"
             onClick={this.props.moreClick}
             />
         </div>
+        <br />
       </div>
 
-
+      <br />
       </div>
     );
   }

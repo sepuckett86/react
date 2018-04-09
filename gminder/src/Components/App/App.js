@@ -29,7 +29,7 @@ class App extends Component {
           date: '3-7-18',
           prompt: null,
           answer: 'May your beer be laid under an enchantment of surpassing excellence for seven years!',
-          reason: '',
+          reason: 'One of the best read-out-loud moments in the book',
           author: 'Gandalf, from The Fellowship of the Ring by J.R.R. Tolkien',
           stars: '5'
         },
@@ -43,6 +43,21 @@ class App extends Component {
           reason: null,
           author: null,
           stars: '2'
+        },
+        {
+          id: '4',
+          category: 'quote',
+          collection: 'Happy',
+          date: '3-6-18',
+          prompt: null,
+          answer: `This is the story: It was Spring. The warm sunshine and soft breezes were trying to lure students away from their classes.\
+ Santayana was seated at his desk reading to his students. His listeners were sitting, or reclining, in various attitudes of inattention.\
+ Santayana’s voice trailed off, his eyes traveled over his students, and fixed themselves on a tree which grew outside the window.\
+ Its leaves were small and tender, and of the green green of new leaves. Santayana closed the book. A short silence elapsed.\
+ He rose, and said: "Gentlemen, it is Spring!" He took his hat and never returned.`,
+          reason: "A nice story",
+          author: "A letter in a book by Will Durant, On the Meaning of Life",
+          stars: '4'
         }
 
       ],
@@ -87,6 +102,7 @@ class App extends Component {
     this.moreClick = this.moreClick.bind(this);
     this.boxClick = this.boxClick.bind(this);
     this.setStars = this.setStars.bind(this);
+    this.newGminder = this.newGminder.bind(this);
   }
 
 
@@ -111,37 +127,13 @@ class App extends Component {
     })
   }
 
-  newGminder() {
-    let today = new Date();
-    let dd = today.getDate();
-    let mm = today.getMonth()+1; //January is 0!
-    let yyyy = today.getFullYear();
-
-    if(dd<10) {
-    dd = '0' + dd;
-    }
-
-    if(mm<10) {
-    mm = '0' + mm;
-    }
-
-    today = mm + '/' + dd + '/' + yyyy;
-
-      const newGminder = {
-        id: '1',
-        category: 'prompt',
-        collection: 'Favorites',
-        date: today,
-        prompt: 'What is a song that made you smile in the past month?',
-        answer: 'Legend of Kyrandia Emerald Room Song by Frank Klepacki',
-        reason: 'After wandering through endless caves in the game with repetitive music, the music changes for only one scene to a complex, long, cool song. It reminds me of all that is great about old school adventure games.',
-        author: null,
-        stars: '4'
-      }
-    console.log(newGminder);
-    alert(newGminder);
+  newGminder(gminder) {
+    let gminders = this.state.gminders;
+    gminders.push(gminder);
+    this.setState({
+      gminders: gminders
+    })
   }
-
 
 // Button methods
 
@@ -151,6 +143,7 @@ class App extends Component {
     this.setState({
       oneGminder: random
     })
+    console.log(this.state.oneGminder)
   }
 
   addClick() {
@@ -179,15 +172,6 @@ class App extends Component {
 
   renderWhat() {
     if(this.state.display === 'box') {
-
-      // On first page load, this will be true. Trigger a setting of state from a
-      // random gminder from this.state.gminders, while not relying on state
-      // to load page contents (display={random})
-      if (this.state.oneGminder === 'empty') {
-      return <p>Error</p>
-      }
-      // Accounting for re-rendering when stars are changed. Don't want gminder to change, too.
-      // (display={this.state.oneGminder})
       if (this.state.oneGminder !== 'empty') {
       return <Box
         nextClick={this.nextClick}
@@ -203,7 +187,7 @@ class App extends Component {
     if(this.state.display === 'add') {
       return <Add
               boxClick={this.boxClick}
-              newFun={this.newGminder}
+              newGminder={this.newGminder}
               prompts={this.state.prompts}
             />
     }
@@ -222,6 +206,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">Welcome to gminder</h1>
+
         </header>
 
         <p className="App-intro">
