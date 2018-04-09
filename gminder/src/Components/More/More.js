@@ -2,10 +2,8 @@ import React from 'react';
 import './More.css';
 import Button from '../Button/Button';
 
-import {CSVLink, CSVDownload} from 'react-csv';
-
-
-
+//Add CSVDownload to import if want to use it
+import {CSVLink} from 'react-csv';
 
 class More extends React.Component {
   constructor(props) {

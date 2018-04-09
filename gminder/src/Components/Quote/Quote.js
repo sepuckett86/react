@@ -1,13 +1,23 @@
 import React from 'react';
 import './Quote.css';
+import Stars from '../Stars/Stars';
 
 class Quote extends React.Component {
   render() {
     return(
       <div>
         <div id="quote">
-          <p className="alignR">Added {this.props.gminder.date} from Quote Collection: {this.props.gminder.collection}</p>
-
+          <div className="row">
+            <div className="col">
+              <Stars
+                starFun={this.props.starFun}
+                gminder={this.props.gminder}
+                />
+            </div>
+            <div className="col alignR">
+              <p>Added {this.props.gminder.date} from Quote Collection: {this.props.gminder.collection}</p>
+            </div>
+          </div>
   			<div className="media answer">
 
   			<div className="media-body">
@@ -24,7 +34,7 @@ class Quote extends React.Component {
   			<br />
 
   			<div className="media reason">
-  			
+
 
   			<div className="media-body lato" id="quote-reason">
   		Will and I were reading Tolkien out loud and this was the best line in the entire book.

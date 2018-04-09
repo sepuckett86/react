@@ -20,6 +20,10 @@ class AddPrompt extends React.Component {
 
   }
 
+  handleSubmit() {
+    this.props.newFun();
+  }
+
   render() {
     return(
       <div>
@@ -36,7 +40,7 @@ class AddPrompt extends React.Component {
       </ul>
       <br />
 
-          <form>
+          <form onSubmit={this.handleSubmit}>
               <div className="form-group">
                   <p className="paragraph-prompt" id="promptId_4">From Prompt Collection: Happy</p>
                   <h4 className="lato">Who is your favorite celebrity?</h4>

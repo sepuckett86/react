@@ -17,15 +17,18 @@ class Add extends React.Component {
   chooseType() {
     if(this.state.type === 'prompt') {
       return(<AddPrompt
-              changeType={this.changeType} />)
+              changeType={this.changeType}
+              newFun={this.props.newFun} />)
     }
     if(this.state.type === 'quote') {
       return(<AddQuote
-              changeType={this.changeType} />)
+              changeType={this.changeType}
+              newFun={this.props.newFun} />)
     }
     if(this.state.type === 'custom') {
       return(<AddCustom
-              changeType={this.changeType} />)
+              changeType={this.changeType}
+              newFun={this.props.newFun}  />)
     }
   }
 

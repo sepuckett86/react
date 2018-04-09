@@ -59,7 +59,7 @@ class App extends Component {
       display: 'box',
       oneGminder: 'empty'
     }
-
+    this.componentWillMount = this.componentWillMount.bind(this);
     this.nextClick = this.nextClick.bind(this);
     this.addClick = this.addClick.bind(this);
     this.moreClick = this.moreClick.bind(this);
@@ -68,7 +68,15 @@ class App extends Component {
   }
 
 
-// This function changes the stars for one gminder in the gminders array
+  // Critical function to know--this completes upon first page load before render
+  componentWillMount() {
+    let random = this.state.gminders[Math.floor(Math.random() * this.state.gminders.length)];
+    this.setState({ oneGminder: random });
+    }
+
+// These methods update database information
+
+  // Changes the stars for one gminder in this.state.gminders
   setStars(starNum, id) {
     let gmindersArr = this.state.gminders;
     gmindersArr.forEach(gminder => {
@@ -81,10 +89,41 @@ class App extends Component {
     })
   }
 
+  newGminder() {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+    var yyyy = today.getFullYear();
 
-// Button functions
+    if(dd<10) {
+    dd = '0' + dd;
+    }
 
-  // Trigger a re-render by setting state
+    if(mm<10) {
+    mm = '0' + mm;
+    }
+
+    today = mm + '/' + dd + '/' + yyyy;
+
+      const newGminder = {
+        id: '1',
+        category: 'prompt',
+        collection: 'Favorites',
+        date: today,
+        prompt: 'What is a song that made you smile in the past month?',
+        answer: 'Legend of Kyrandia Emerald Room Song by Frank Klepacki',
+        reason: 'After wandering through endless caves in the game with repetitive music, the music changes for only one scene to a complex, long, cool song. It reminds me of all that is great about old school adventure games.',
+        author: null,
+        stars: '4'
+      }
+    console.log(newGminder);
+    alert(newGminder);
+  }
+
+
+// Button methods
+
+  // Sets a new random gminder as state
   nextClick() {
     let random = this.state.gminders[Math.floor(Math.random() * this.state.gminders.length)];
     this.setState({
@@ -93,7 +132,7 @@ class App extends Component {
   }
 
   addClick() {
-    if(this.state.display != 'add') {
+    if(this.state.display !== 'add') {
       this.setState({
       display: 'add'
       })
@@ -101,7 +140,7 @@ class App extends Component {
   }
 
   moreClick() {
-    if(this.state.display != 'more') {
+    if(this.state.display !== 'more') {
       this.setState({
       display: 'more'
       })
@@ -109,7 +148,7 @@ class App extends Component {
   }
 
   boxClick() {
-    if(this.state.display != 'box') {
+    if(this.state.display !== 'box') {
       this.setState({
       display: 'box'
       })
@@ -120,23 +159,14 @@ class App extends Component {
     if(this.state.display === 'box') {
 
       // On first page load, this will be true. Trigger a setting of state from a
-      // random gminder from this.state.gminders
+      // random gminder from this.state.gminders, while not relying on state
+      // to load page contents (display={random})
       if (this.state.oneGminder === 'empty') {
-      let random = this.state.gminders[Math.floor(Math.random() * this.state.gminders.length)];
-      this.setState({
-        oneGminder : random
-      })
-      return <Box
-        nextClick={this.nextClick}
-        addClick={this.addClick}
-        moreClick={this.moreClick}
-        display={random}
-        starFun={this.setStars}
-        gms={this.state.gminders}
-        />
+      return <p>Error</p>
       }
       // Accounting for re-rendering when stars are changed. Don't want gminder to change, too.
-      if (this.state.oneGminder != 'empty') {
+      // (display={this.state.oneGminder})
+      if (this.state.oneGminder !== 'empty') {
       return <Box
         nextClick={this.nextClick}
         addClick={this.addClick}
@@ -151,6 +181,7 @@ class App extends Component {
     if(this.state.display === 'add') {
       return <Add
               boxClick={this.boxClick}
+              newFun={this.newGminder}
             />
     }
     if(this.state.display === 'more') {
@@ -176,7 +207,8 @@ class App extends Component {
         <div className="container">
           {this.renderWhat()}
 
-      </div>
+        </div>
+
       </div>
     );
   }
