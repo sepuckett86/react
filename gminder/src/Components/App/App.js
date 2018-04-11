@@ -164,41 +164,70 @@ class App extends Component {
     if (this.state.back === 0) {
       // Check that there are gminders in database
       if (this.state.gminders.length !== 0){
-        // Pick random gminder and save it
-        let random = this.state.gminders[Math.floor(Math.random() * this.state.gminders.length)];
-        let previous = this.state.previous;
-        previous.push(random);
-        this.setState({
-          current: random,
-          previous: previous
-        })
-        console.log(this.state.previous);
-      }
-      // If no gminders in database
-      if (this.state.gminders.length === 0) {
-      console.log('There are no gminders');
+        // If we've gone through everything, clear history.
+        if (this.state.previous.length === this.state.gminders.length) {
+          alert("You've gone through all of your gminders. Reload to reset.")
+        }
 
-      }
-    }
-    // If we have gone back and are going forward again
-    if (this.state.back !== 0) {
-      let next = this.state.previous[this.state.previous.length - this.state.back];
-      let back = this.state.back - 1;
-      this.setState({
-        back: back,
-        current: next,
-      })
+        else {
+        let a = true;
+        let brake = 20;
+        while (a === true && brake > 0) {
+          let unique = true;
+          let previous = this.state.previous;
+        // Pick random gminder and save it
+          let random = this.state.gminders[Math.floor(Math.random() * this.state.gminders.length)];
+
+        // Make sure we haven't already seen this one
+
+          for (let i = 0; i < previous.length; i++)
+            if (previous[i] === random) {
+              unique = false;
+              console.log(false);
+            } else {
+              console.log('Hi');
+            }
+
+          if (unique === true) {
+            let previous = this.state.previous;
+            previous.push(random);
+            this.setState({
+              current: random,
+              previous: previous
+            })
+            console.log(this.state.previous);
+            a = false;
+          }
+          brake--
+        } // End while loop
+          }
+        }
+        }
+        // If no gminders in database
+        if (this.state.gminders.length === 0) {
+        console.log('There are no gminders');
+
+        }
+
+      // If we have gone back and are going forward again
+      if (this.state.back !== 0) {
+        let next = this.state.previous[this.state.previous.length - this.state.back];
+        let back = this.state.back - 1;
+        this.setState({
+          back: back,
+          current: next,
+        })
     }
   }
 
   backClick() {
     // If nothing to go back to
     if (this.state.previous.length === 1) {
-      // Do nothing
+      alert("Nothing there. Go forward :)");
     }
     // If at beginning of previous array
     if (this.state.previous.length === this.state.back + 1) {
-      // Do nothing
+      alert("Nothing there. Go forward :)");
     }
     // If not at beginning and have something to go back to
     else if (this.state.previous.length > 1) {
@@ -303,6 +332,7 @@ class App extends Component {
         </header>
 
         <div className="container gminder">
+
           {this.renderWhat()}
 
         </div>
