@@ -96,10 +96,13 @@ class App extends Component {
         }
       ],
       display: 'box',
-      oneGminder: 'empty'
+      current: 'empty',
+      previous: [],
+      back: 0,
     }
     this.componentWillMount = this.componentWillMount.bind(this);
     this.nextClick = this.nextClick.bind(this);
+    this.backClick = this.backClick.bind(this);
     this.addClick = this.addClick.bind(this);
     this.moreClick = this.moreClick.bind(this);
     this.boxClick = this.boxClick.bind(this);
@@ -110,14 +113,21 @@ class App extends Component {
 
   // Critical function to know--this completes upon first page load before render
   componentWillMount() {
+    // Check if there is data in gminders
     if (this.state.gminders.length !== 0){
-    let random = this.state.gminders[Math.floor(Math.random() * this.state.gminders.length)];
-    this.setState({ oneGminder: random });
+      let random = this.state.gminders[Math.floor(Math.random() * this.state.gminders.length)];
+      let previous = this.state.previous;
+      // Add new gminder to previous array
+      previous.push(random);
+    this.setState({
+      current: random,
+      previous: previous,
+      back: 0 });
+      console.log(this.state.previous)
   }
     // In case that gminders is empty
     else if (this.state.gminders.length === 0) {
-
-
+      // Do nothing
     } else {
       console.log('Error, gminders not correct object')
     }
@@ -148,19 +158,58 @@ class App extends Component {
 
 // Button methods
 
-  // Sets a new random gminder as state
+  // Sets a new random gminder as state and accounts for back/forward ability
   nextClick() {
-    if (this.state.gminders.length !== 0){
-    let random = this.state.gminders[Math.floor(Math.random() * this.state.gminders.length)];
-    this.setState({
-      oneGminder: random
-    })
-    console.log(this.state.oneGminder)
-  }
-  if (this.state.gminders.length === 0) {
-    console.log('There are no gminders');
+    // Check that there we haven't gone back yet
+    if (this.state.back === 0) {
+      // Check that there are gminders in database
+      if (this.state.gminders.length !== 0){
+        // Pick random gminder and save it
+        let random = this.state.gminders[Math.floor(Math.random() * this.state.gminders.length)];
+        let previous = this.state.previous;
+        previous.push(random);
+        this.setState({
+          current: random,
+          previous: previous
+        })
+        console.log(this.state.previous);
+      }
+      // If no gminders in database
+      if (this.state.gminders.length === 0) {
+      console.log('There are no gminders');
 
+      }
+    }
+    // If we have gone back and are going forward again
+    if (this.state.back !== 0) {
+      let next = this.state.previous[this.state.previous.length - this.state.back];
+      let back = this.state.back - 1;
+      this.setState({
+        back: back,
+        current: next,
+      })
+    }
   }
+
+  backClick() {
+    // If nothing to go back to
+    if (this.state.previous.length === 1) {
+      // Do nothing
+    }
+    // If at beginning of previous array
+    if (this.state.previous.length === this.state.back + 1) {
+      // Do nothing
+    }
+    // If not at beginning and have something to go back to
+    else if (this.state.previous.length > 1) {
+      let current = this.state.previous[this.state.previous.length - 2 - this.state.back];
+      let back = this.state.back + 1;
+      this.setState({
+        current: current,
+        back: back
+      })
+    }
+    console.log(this.state.back)
   }
 
   addClick() {
@@ -190,12 +239,13 @@ class App extends Component {
 
   renderWhat() {
     if(this.state.display === 'box') {
-      if (this.state.oneGminder !== 'empty') {
+      if (this.state.current !== 'empty') {
       return <Box
         nextClick={this.nextClick}
+        backClick={this.backClick}
         addClick={this.addClick}
         moreClick={this.moreClick}
-        display={this.state.oneGminder}
+        display={this.state.current}
         starFun={this.setStars}
         gms={this.state.gminders}
         />
@@ -203,6 +253,7 @@ class App extends Component {
       else if(this.state.gminders.length !== 0) {
         return <Box
           nextClick={this.nextClick}
+          backClick={this.backClick}
           addClick={this.addClick}
           moreClick={this.moreClick}
           display={this.state.gminders[0]}
@@ -231,7 +282,7 @@ class App extends Component {
     if (this.state.gminders.length === 0) {
       return (<div>
         <div className="box">
-        <p>Looks like you don't have any goodminders yet! Click below to add content.
+        <p>Looks like you don't have any gminders yet! Click below to add content.
             </p>
 
           </div>
@@ -248,7 +299,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title"><img src={logo} className="App-logo" alt="logo" />Goodminder</h1>
+          <h1 className="App-title"><img src={logo} className="App-logo" alt="logo" />Gminder</h1>
         </header>
 
         <div className="container gminder">

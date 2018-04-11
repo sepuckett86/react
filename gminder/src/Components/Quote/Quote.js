@@ -15,7 +15,7 @@ class Quote extends React.Component {
                 />
             </div>
             <div className="col alignR">
-              <p>Added {this.props.gminder.date} from Quote Collection: {this.props.gminder.collection}</p>
+              <p>{this.props.gminder.date} | {this.props.gminder.collection}</p>
             </div>
           </div>
   			<div className="media answer">
