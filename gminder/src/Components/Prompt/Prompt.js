@@ -49,17 +49,16 @@ class Prompt extends React.Component {
 
        {/* For small screen */}
         <div className="d-sm-none">
-          <button onClick={this.props.backClick}>Back</button> 
-          <button onClick={this.props.nextClick}>Next</button>
 
-          <div className="media prompt">
+
+          <div className="media prompt media-small">
             <div className="media-body">
               <p className="lato">{this.props.gminder.prompt}</p>
             </div>
           </div>
           <br />
 
-          <div className="media answer">
+          <div className="media answer media-small">
           <div className="media-body">
           <br />
           <h4 className="lato">{this.props.gminder.answer}</h4><br />
@@ -67,7 +66,7 @@ class Prompt extends React.Component {
           </div>
           <br />
 
-          <div className="media reason">
+          <div className="media reason media-small">
           <div className="media-body lato">
           {this.props.gminder.reason}
           </div>

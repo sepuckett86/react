@@ -45,10 +45,32 @@ class Box extends React.Component {
         */}
         <div className="d-sm-none">
           <div className="backfill">
-            <button onClick={this.props.backClick}>Back</button>
-            <button onClick={this.props.nextClick}>Next</button>
+            <div>
+            <span className="">
+              <button className="clear-button" onClick={this.props.backClick}><i className="fas fa-arrow-left"></i> </button>
+            </span>
+            <span className="">
+            <button className="clear-button" onClick={this.props.nextClick}> <i className="fas fa-arrow-right"></i></button>
+            </span>
+          </div>
+
+        {/* crappy arrow buttons
+            <div className="row">
+              <div className="col col-6">
+                <Button
+                  onClick={this.props.backClick}
+                  name={<i className="fas fa-chevron-left"></i>}/>
+              </div>
+              <div className="col col-6">
+                <Button
+                  onClick={this.props.nextClick}
+                  name={<i className="fas fa-chevron-right"></i>}/>
+              </div>
+            </div>
+        */}
+
           {this.chooseDisplay()}
-          <br />
+
           <hr />
           </div>
         <br />
@@ -57,12 +79,7 @@ class Box extends React.Component {
           { this.props.gms.length > 1 ?
             <div>
               <div className="row">
-          <div className="col col-12 col-sm-4">
-            <Button
-              name="Next"
-              onClick={this.props.nextClick}
-              />
-          </div>
+
           <div className="col col-12 col-sm-4">
             <Button
               name="Add"
@@ -163,8 +180,6 @@ class Box extends React.Component {
 
         <br />
 
-
-      <br />
       </div>
     );
   }

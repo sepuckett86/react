@@ -1,16 +1,22 @@
+.media-small {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+
+
 .alignR {
 	text-align: right;
 }
 
-.button-clear {
-    border: none;
-    color: #5777C0;
-    text-align: center;
-	font-family: 'Comfortaa', cursive;
-    text-decoration: none;
-    display: inline-block;
-		padding: 5px;
+.floatR {
+	float: right;
+}
 
+.alignL {
+	text-align: left;
+}
+.floatL {
+	float: left;
 }
 
 body{
@@ -43,7 +49,6 @@ header{
 
 .backfill {
 	font-size: 16px;
-	text-align: left;
 	color: #5777C0;
 }
 .box {
@@ -240,8 +245,32 @@ h5 {
 	font-family: 'Comfortaa', cursive;
     text-decoration: none;
     display: inline-block;
+		padding: 5px;
 
 }
+
+.clear-button:hover {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Remove button border */
+.clear-button {
+	font-size: 24px;
+	font-family: 'Comfortaa', cursive;
+	color: #5777C0;
+  border: 0px;
+	padding: 2px;
+	margin-left: 5px;
+	margin-right: 5px;
+  outline: none;
+  text-decoration: none;
+	cursor:pointer;
+  /* For Firefox */
+  background: transparent;
+}
+
+/* Remove button border */
+button:focus {outline:0;}
 
 
 .button-white {

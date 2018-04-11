@@ -90,8 +90,12 @@
 	font-family: 'Comfortaa', cursive;
   text-decoration: none;
   font-size: 24px;
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.6);
 
+}
+
+.button-span:hover {
+    background-color: rgba(255, 255, 255, 1);
 }
 
 .button-clear {
