@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
+import logo from './logo.png';
 
 import Box from '../Box/Box';
 import Add from '../Add/Add';
 import More from '../More/More';
+import Button from '../Button/Button';
 
 class App extends Component {
   constructor(props) {
@@ -51,10 +53,10 @@ class App extends Component {
           date: '3-6-18',
           prompt: null,
           answer: `This is the story: It was Spring. The warm sunshine and soft breezes were trying to lure students away from their classes.\
- Santayana was seated at his desk reading to his students. His listeners were sitting, or reclining, in various attitudes of inattention.\
- Santayana’s voice trailed off, his eyes traveled over his students, and fixed themselves on a tree which grew outside the window.\
- Its leaves were small and tender, and of the green green of new leaves. Santayana closed the book. A short silence elapsed.\
- He rose, and said: "Gentlemen, it is Spring!" He took his hat and never returned.`,
+        Santayana was seated at his desk reading to his students. His listeners were sitting, or reclining, in various attitudes of inattention.\
+        Santayana’s voice trailed off, his eyes traveled over his students, and fixed themselves on a tree which grew outside the window.\
+        Its leaves were small and tender, and of the green green of new leaves. Santayana closed the book. A short silence elapsed.\
+        He rose, and said: "Gentlemen, it is Spring!" He took his hat and never returned.`,
           reason: "A nice story",
           author: "A letter in a book by Will Durant, On the Meaning of Life",
           stars: '4'
@@ -108,8 +110,17 @@ class App extends Component {
 
   // Critical function to know--this completes upon first page load before render
   componentWillMount() {
+    if (this.state.gminders.length !== 0){
     let random = this.state.gminders[Math.floor(Math.random() * this.state.gminders.length)];
     this.setState({ oneGminder: random });
+  }
+    // In case that gminders is empty
+    else if (this.state.gminders.length === 0) {
+
+
+    } else {
+      console.log('Error, gminders not correct object')
+    }
     }
 
 // These methods update database information
@@ -139,11 +150,17 @@ class App extends Component {
 
   // Sets a new random gminder as state
   nextClick() {
+    if (this.state.gminders.length !== 0){
     let random = this.state.gminders[Math.floor(Math.random() * this.state.gminders.length)];
     this.setState({
       oneGminder: random
     })
     console.log(this.state.oneGminder)
+  }
+  if (this.state.gminders.length === 0) {
+    console.log('There are no gminders');
+
+  }
   }
 
   addClick() {
@@ -167,6 +184,7 @@ class App extends Component {
       this.setState({
       display: 'box'
       })
+
     }
   }
 
@@ -181,6 +199,16 @@ class App extends Component {
         starFun={this.setStars}
         gms={this.state.gminders}
         />
+      }
+      else if(this.state.gminders.length !== 0) {
+        return <Box
+          nextClick={this.nextClick}
+          addClick={this.addClick}
+          moreClick={this.moreClick}
+          display={this.state.gminders[0]}
+          starFun={this.setStars}
+          gms={this.state.gminders}
+          />
       }
     }
 
@@ -199,20 +227,31 @@ class App extends Component {
 
             />
     }
+
+    if (this.state.gminders.length === 0) {
+      return (<div>
+        <div className="box">
+        <p>Looks like you don't have any goodminders yet! Click below to add content.
+            </p>
+
+          </div>
+          <br />
+          <Button
+          name="Get Started"
+          onClick={this.addClick}
+          />
+        </div>)
   }
+}
 
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">Welcome to gminder</h1>
-
+          <h1 className="App-title"><img src={logo} className="App-logo" alt="logo" />Goodminder</h1>
         </header>
 
-        <p className="App-intro">
-
-        </p>
-        <div className="container">
+        <div className="container gminder">
           {this.renderWhat()}
 
         </div>

@@ -13,17 +13,17 @@ class More extends React.Component {
       csvData: []
     };
 
-    this.changeDisplay = this.changeDisplay.bind(this);
+    this.handleClick = this.handleClick.bind(this);
 
   }
 
-  changeDisplay(input) {
-
+  handleClick(id) {
     this.setState({
-      display: input
+      display: id
     })
-    console.log(this.state.display)
   }
+
+
 
   generateKey(index) {
     return `${ index }_${ new Date().getTime() }`;
@@ -33,6 +33,15 @@ class More extends React.Component {
     let myArray = [['ID', 'Category', 'Collection', 'Date', 'Prompt', 'Answer', 'Reason', 'Author', 'Stars']];
     this.props.gms.forEach(gminder => {
       let innerArray = [gminder.id, gminder.category, gminder.collection, gminder.date, gminder.prompt, gminder.answer, gminder.reason, gminder.author, gminder.stars];
+      myArray.push(innerArray);
+    })
+    return myArray;
+  }
+
+  makeCSVArrayPrompts() {
+    let myArray = [['ID', 'Collection', 'Prompt']];
+    this.props.prompts.forEach(prompt => {
+      let innerArray = [prompt.id, prompt.collection, prompt.prompt];
       myArray.push(innerArray);
     })
     return myArray;
@@ -57,7 +66,8 @@ class More extends React.Component {
 
   render() {
     return(
-      <div>  { this.state.display === 'gminderTable' ?
+      <div>
+        { this.state.display === 'gminderTable' ?
       (<div className="box">
         <div id="gminders">
           <table className="table table-striped">
@@ -91,21 +101,54 @@ class More extends React.Component {
             })
           }
 
-
-
         </tbody>
-
         </table>
         <CSVLink data={this.makeCSVArray()} >Download CSV of all data</CSVLink>
       </div>
     </div>)
         : null }
 
+        { this.state.display === 'promptTable' ?
+        (<div className="box">
+        <div id="prompts">
+          <table className="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Collection</th>
+                <th scope="col">Prompt</th>
+
+              </tr>
+            </thead>
+            <tbody>
+          {
+            this.props.prompts.map((prompt, i) => {
+              return (
+                  <tr key={this.generateKey(i)}>
+                    <th scope="row">{prompt.id}</th>
+                    <td>{prompt.collection}</td>
+                    <td>{prompt.prompt}</td>
+                    <td>
+                    <Button
+                      name="Edit" />
+                    </td>
+                  </tr>
+              )
+            })
+          }
+        </tbody>
+        </table>
+        <CSVLink data={this.makeCSVArrayPrompts()} >Download CSV of all data</CSVLink>
+        </div>
+        </div>)
+        : null }
+
+
         <br />
 
         <Button
         name="Table of All Gminders"
-        onClick={this.changeDisplay}
+        onClick={this.handleClick}
         id="gminderTable"
         gms={this.props.gms}
         />
@@ -113,7 +156,8 @@ class More extends React.Component {
         <br />
         <Button
         name="Table of All Prompts"
-        onClick={this.props.boxClick}
+        id="promptTable"
+        onClick={this.handleClick}
         />
         <br />
         <br />

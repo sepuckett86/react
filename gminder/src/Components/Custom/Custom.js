@@ -21,17 +21,12 @@ class Custom extends React.Component {
 
       <div className="media answer">
       <div className="media-body">
-
       <br />
-
       <h4 className="lato" id="quote-random_0">
         Breathe! Drink water. Smile at your thoughts.</h4>
         <br />
       </div>
-
       </div>
-      <br />
-
       </div>
 
     )

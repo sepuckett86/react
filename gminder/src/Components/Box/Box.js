@@ -44,33 +44,34 @@ class Box extends React.Component {
           </div>
         </div>
         <div className="d-none d-sm-block">
+
           <div className="box">
       			{this.chooseDisplay()}
+            <div className="alignR">
+              <br />
+            <a href="edit.php" className="button-clear"><i className="fas fa-edit"></i></a>
+            <a href="print.php" className="button-clear"><i className="fas fa-print"></i></a>
           </div>
           </div>
-
-
+          </div>
 
       <br />
       <div className="row">
+        { this.props.gms.length > 1 ?
         <div className="col col-12 col-sm-4">
           <Button
             name="Next"
             onClick={this.props.nextClick}
             />
-          <br />
-
         </div>
-        <br />
+        : null
+      }
         <div className="col col-12 col-sm-4">
           <Button
             name="Add"
             onClick={this.props.addClick}
             />
-          <br />
-
         </div>
-        <br />
         <div className="col col-12 col-sm-4">
           <Button
             name="More"

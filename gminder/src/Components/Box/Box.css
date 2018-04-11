@@ -1,3 +1,18 @@
+.alignR {
+	text-align: right;
+}
+
+.button-clear {
+    border: none;
+    color: #5777C0;
+    text-align: center;
+	font-family: 'Comfortaa', cursive;
+    text-decoration: none;
+    display: inline-block;
+		padding: 5px;
+
+}
+
 body{
 	background-repeat: no-repeat;
   background-image: url(http://res.cloudinary.com/sepuckett86/image/upload/v1515668911/texel_beach_ll16fl.jpg);
