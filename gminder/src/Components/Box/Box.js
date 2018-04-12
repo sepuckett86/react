@@ -47,12 +47,13 @@ class Box extends React.Component {
           <div className="backfill">
             <div>
             <span className="">
-              <button className="clear-button" onClick={this.props.backClick}><i className="fas fa-arrow-left"></i> </button>
+              <button className="button-span-2" onClick={this.props.backClick}><i className="fas fa-arrow-left"></i> </button>
             </span>
+            {'\u00A0'}
             <span className="">
-            <button className="clear-button" onClick={this.props.nextClick}> <i className="fas fa-arrow-right"></i></button>
+            <button className="button-span-2" onClick={this.props.nextClick}> <i className="fas fa-arrow-right"></i></button>
             </span>
-          </div>
+            </div>
 
         {/* crappy arrow buttons
             <div className="row">
@@ -120,7 +121,19 @@ class Box extends React.Component {
 
         {/* For large screen */}
         <div className="d-none d-sm-block">
+          <div>
+          <span>
+            <button className="btn button-span-3" onClick={this.props.backClick}><i className="fas fa-arrow-left"></i> </button>
+          </span>
+          {/* Spaces */}
+          {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
+          <span>
+          <button className="btn button-span-3" onClick={this.props.nextClick}> <i className="fas fa-arrow-right"></i></button>
+          </span>
+          </div>
+          <br />
           <div className="box">
+
       			{this.chooseDisplay()}
             <div className="alignR">
               <br />

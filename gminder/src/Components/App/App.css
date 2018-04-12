@@ -1,4 +1,14 @@
 
+body{
+  width:100%;
+  background-repeat: no-repeat;
+  background-image: url('./texel_beach.jpg');
+  background-size:cover;
+  background-attachment: fixed;
+  height: 100%;
+}
+
+
 
 p {
   font-family: 'Comfortaa', cursive;
@@ -7,6 +17,7 @@ p {
 .App {
   text-align: center;
   width: 100%;
+
 }
 
 .App-logo {
@@ -71,18 +82,16 @@ footer{
 // No media query since this is the default in Bootstrap*/
 
 
-@media (max-width: 576px) {
+@media (min-width: 0px) {
   .container {
     position: relative;
     margin-left: auto;
     margin-right: auto;
-    padding: 0px;
 
   }
   .App {
     background-color: rgba(255, 255, 255, 0.7);
     text-align: center;
-    width: 100%;
   }
 }
 
@@ -92,9 +101,6 @@ footer{
     position: relative;
     margin-left: auto;
     margin-right: auto;
-    padding-right: 0px;
-    padding-left: 0px;
-
   }
   .App {background-color: transparent}
 }
