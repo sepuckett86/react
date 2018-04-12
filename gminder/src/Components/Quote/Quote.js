@@ -31,11 +31,14 @@ class Quote extends React.Component {
       			</div>
       			</div>
       			<br />
-      			<div className="media reason">
-      			<div className="media-body lato" id="quote-reason">
-      		    {this.props.gminder.reason}
-      			</div>
-      				</div>
+            {/* Determine if there is reason content */}
+            { this.props.gminder.reason !== null ?
+              (<div className="media reason media-small">
+              <div className="media-body lato" id="quote-reason">
+                {this.props.gminder.reason}
+              </div>
+            </div>)
+              : null }
           </div>
 
           {/* For small screen */}
@@ -51,11 +54,15 @@ class Quote extends React.Component {
               </div>
               </div>
               <br />
-              <div className="media reason media-small">
-              <div className="media-body lato" id="quote-reason">
-                {this.props.gminder.reason}
-              </div>
+              {/* Determine if there is reason content */}
+              { this.props.gminder.reason !== null ?
+                (<div className="media reason media-small">
+                <div className="media-body lato" id="quote-reason">
+                  {this.props.gminder.reason}
                 </div>
+              </div>)
+                : null }
+
                 <br />
                 <Stars
                   starFun={this.props.starFun}

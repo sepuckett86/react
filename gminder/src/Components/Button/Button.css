@@ -83,20 +83,22 @@
   border-color: #46B3B3;
   border-width: 2px;
   color: black;
-  padding: 15px 32px;
+  padding: 15px 15px;
   margin: 0px;
   width: 100%;
   text-align: center;
 	font-family: 'Comfortaa', cursive;
   text-decoration: none;
-  font-size: 24px;
-  background-color: rgba(255, 255, 255, 0.6);
+  font-size: 20px;
+  background-color: rgba(255, 255, 255, 0.3);
 
 }
 
 .button-span:hover {
-    background-color: rgba(255, 255, 255, 1);
+    background-color: white;
 }
+
+
 
 .button-clear {
     border: none;

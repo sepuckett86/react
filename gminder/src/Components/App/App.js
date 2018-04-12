@@ -60,7 +60,139 @@ class App extends Component {
           reason: "A nice story",
           author: "A letter in a book by Will Durant, On the Meaning of Life",
           stars: '4'
-        }
+        },
+        {
+          id: '5',
+          category: 'quote',
+          collection: 'Food for a Hungry Brain',
+          date: '4/12/2018',
+          prompt: null,
+          answer: 'Everything that one has ever created achieves reality.',
+          reason: null,
+          author: 'Halldor Laxness, from Independent People',
+          stars: '3'
+
+        },
+        {
+          id: '6',
+          category: 'quote',
+          collection: 'Food for a Hungry Brain',
+          date: '4/12/2018',
+          prompt: '',
+          answer: '...a man should fight for the victims, but if he ceases caring for anything outside that, what’s the use of his fighting?',
+          reason: null,
+          author: 'Albert Camus, from The Plague',
+          stars: '5'
+
+        },
+        {
+          id: '7',
+          category: 'quote',
+          collection: 'Food for a Hungry Brain',
+          date: '4/12/2018',
+          prompt: '',
+          answer: 'I realized then that when people are happy they become kind.',
+          reason: null,
+          author: 'Jung Chang, from Wild Swans: Three Daughters of China',
+          stars: '5'
+
+        },
+        {
+          id: '8',
+          category: 'quote',
+          collection: '',
+          date: '4/12/2018',
+          prompt: '',
+          answer: 'Almost everybody feels at peace with nature: listening to the ocean waves against the shore, by a still lake, in a field of grass, on a windblown heath. One day, when we have learned the timeless way again, we shall feel the same about our towns, and we shall feel as much at peace in them, as we do today walking by the ocean, or stretched out in the long grass of a meadow.',
+          reason: null,
+          author: 'Christopher Alexander, The Timeless Way of Building',
+          stars: '0'
+
+        },
+        {
+          id: '9',
+          category: 'quote',
+          collection: 'Amusing',
+          date: '4/12/2018',
+          prompt: '',
+          answer: 'Very sleek and fat did the cats appear, and sonorous with purring content.',
+          reason: null,
+          author: 'H. P. Lovecraft',
+          stars: '3'
+
+        },
+        {
+          id: '10',
+          category: 'quote',
+          collection: 'Amusing',
+          date: '4/12/2018',
+          prompt: '',
+          answer: 'The battlements of Sarn Torel stood still and silent, unimpressed, as they would stand when both men were long in their graves. It takes a lot to impress a castle wall.',
+          reason: null,
+          author: 'Ed Greenwood, Elminster: Making of a Mage',
+          stars: '4'
+
+        },
+        {
+          id: '11',
+          category: 'quote',
+          collection: 'Amusing',
+          date: '4/12/2018',
+          prompt: '',
+          answer: 'When Lydia Charingford was around, though, he felt like a smiling dark little raincloud.',
+          reason: null,
+          author: 'Courtney Milan, The Brothers Sinister',
+          stars: '0'
+
+        },
+        {
+          id: '12',
+          category: 'quote',
+          collection: 'Amusing',
+          date: '4/12/2018',
+          prompt: '',
+          answer: 'Did you know that six-toed cats have seventeen percent more claw?',
+          reason: null,
+          author: 'Courtney Milan, character Sebastian from The Duchess War',
+          stars: '3'
+
+        },
+        {
+          id: '13',
+          category: 'quote',
+          collection: 'Food for a Hungry Brain',
+          date: '4/12/2018',
+          prompt: '',
+          answer: '...it was worth the tedium of visitors to experience the pleasure of their going.',
+          reason: null,
+          author: 'Daphne du Maurier, My Cousin Rachel',
+          stars: '5'
+
+        },
+        {
+          id: '14',
+          category: 'quote',
+          collection: 'Word Salad',
+          date: '4/12/2018',
+          prompt: '',
+          answer: 'The brave Norwegian drove his vessel head on against the pursuing jelly which rose above the unclean froth like the stern of a daemon galleon. The awful squid-head with writhing feelers came nearly up to the bowsprit of the sturdy yacht, but Johansen drove on relentlessly. There was a bursting as of an exploding bladder, a slushy nastiness as of a cloven sunfish, a stench as of a thousand opened graves, and a sound that the chronicler would not put on paper. For an instant the ship was befouled by an acrid and blinding green cloud, and then there was only a venomous seething astern; where—God in heaven!—the scattered plasticity of that nameless sky-spawn was nebulously recombining in its hateful original form, whilst its distance widened every second as the Alert gained impetus from its mounting steam.',
+          reason: null,
+          author: 'H. P. Lovecraft, The Call of Cthulhu',
+          stars: '1'
+
+        },
+        {
+          id: '15',
+          category: 'quote',
+          collection: 'Food for a Hungry Brain',
+          date: '4/12/2018',
+          prompt: '',
+          answer: 'Failure to make a decision was in itself a decision...',
+          reason: null,
+          author: 'Frank Herbert, Children of Dune',
+          stars: '2'
+
+        },
 
       ],
       prompts: [
