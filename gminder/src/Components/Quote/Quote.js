@@ -62,6 +62,7 @@ class Quote extends React.Component {
                 </div>
               </div>)
                 : null }
+
                 <br />
                 <Stars
                   starFun={this.props.starFun}

@@ -14,8 +14,6 @@ class Box extends React.Component {
       return <Prompt
         gminder={gminder}
         starFun={this.props.starFun}
-        nextClick={this.props.nextClick}
-        backClick={this.props.backClick}
         />
     }
     if(gminder.category === 'quote') {
@@ -36,6 +34,7 @@ class Box extends React.Component {
 
 
   render() {
+    console.log(this.props.display.stars);
     return(
       <div>
 

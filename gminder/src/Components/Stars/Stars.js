@@ -14,8 +14,8 @@ class Stars extends React.Component {
 
 /* const stars must be updated to reflect database value */
   makeStarArray() {
-    const stars = this.state.stars;
-    const myArray = [];
+    let stars = this.props.gminder.stars;
+    let myArray = [];
     for(let i = stars; i > 0; i--) {
       myArray.push('fas fa-star');
     }
