@@ -131,7 +131,7 @@ class Box extends React.Component {
           <button className="btn button-span-3" onClick={this.props.nextClick}> <i className="fas fa-arrow-right"></i></button>
           </span>
           </div>
-          <br />
+
           <div className="box">
 
       			{this.chooseDisplay()}
@@ -143,42 +143,16 @@ class Box extends React.Component {
           </div>
           <br />
 
-          {/* Check whether there is more than one gminder stored */}
-          { this.props.gms.length > 1 ?
-            <div>
-              <div className="row">
-          <div className="col col-12 col-sm-4">
-            <Button
-              name="Next"
-              onClick={this.props.nextClick}
-              />
-          </div>
-          <div className="col col-12 col-sm-4">
-            <Button
-              name="Add"
-              onClick={this.props.addClick}
-              />
-          </div>
-          <div className="col col-12 col-sm-4">
-            <Button
-              name="More"
-              onClick={this.props.moreClick}
-              />
-          </div>
-        </div>
-        </div>
-          : null
-        }
-        { this.props.gms.length === 1 ?
+        { this.props.gms ?
           <div>
           <div className="row">
-          <div className="col col-12 col-sm-4">
+          <div className="col col-sm-6">
             <Button
               name="Add"
               onClick={this.props.addClick}
               />
           </div>
-          <div className="col col-12 col-sm-4">
+          <div className="col col-sm-6">
             <Button
               name="More"
               onClick={this.props.moreClick}
