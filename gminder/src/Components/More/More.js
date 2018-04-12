@@ -1,6 +1,7 @@
 import React from 'react';
 import './More.css';
 import Button from '../Button/Button';
+import Table from '../Table/Table'
 
 //Add CSVDownload to import if want to use it
 import {CSVLink} from 'react-csv';
@@ -165,8 +166,12 @@ class More extends React.Component {
         name="Back"
         onClick={this.props.boxClick}
         />
+        <div className="box">
+        <Table />
+        </div>
         <br />
         <br />
+
       </div>)
   }
 }
