@@ -25,7 +25,7 @@ class Quote extends React.Component {
       			<div className="media-body">
       			<br />
       			<h4 className="lato" id="quote-random_0">
-      				{this.props.gminder.answer}</h4>
+      				"{this.props.gminder.answer}"</h4>
               <p className="lato" id="quote-who-source-author">--{this.props.gminder.author}</p>
       				<br />
       			</div>
@@ -33,7 +33,7 @@ class Quote extends React.Component {
       			<br />
             {/* Determine if there is reason content */}
             { this.props.gminder.reason !== null ?
-              (<div className="media reason media-small">
+              (<div className="media reason">
               <div className="media-body lato" id="quote-reason">
                 {this.props.gminder.reason}
               </div>
@@ -48,7 +48,7 @@ class Quote extends React.Component {
               <div className="media-body">
               <br />
               <h4 className="lato" id="quote-random_0">
-                {this.props.gminder.answer}</h4>
+                "{this.props.gminder.answer}"</h4>
                  <p className="lato" id="quote-who-source-author">--{this.props.gminder.author}</p>
                 <br />
               </div>

@@ -23,17 +23,6 @@ class AddCustom extends React.Component {
   render() {
     return(
       <div>
-        <ul className="nav nav-tabs" id="myTab" role="tablist">
-        <li className="nav-item">
-          <a className="nav-link" id="prompt-tab" onClick={this.handleClick} href="#prompt" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">Prompt</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" id="quote-tab" onClick={this.handleClick}  href="#quote" data-toggle="tab" role="tab" aria-controls="quote" aria-selected="false">Quote</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link active" id="custom-tab" onClick={this.handleClick} href="#custom" data-toggle="tab" role="tab" aria-controls="custom" aria-selected="false">Custom</a>
-        </li>
-      </ul>
 
           <form>
               <div className="form-group">

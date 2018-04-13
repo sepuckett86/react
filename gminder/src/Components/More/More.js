@@ -1,7 +1,7 @@
 import React from 'react';
 import './More.css';
 import Button from '../Button/Button';
-import Table from '../Table/Table'
+
 
 //Add CSVDownload to import if want to use it
 import {CSVLink} from 'react-csv';
@@ -75,9 +75,11 @@ class More extends React.Component {
             <thead>
               <tr>
                 <th scope="col">ID</th>
-                <th scope="col">Stars</th>
+
                 <th scope="col">Category</th>
-                <th scope="col">Goodminder</th>
+                <th scope="col">Stars</th>
+                <th scope="col">Gminder</th>
+                <th scope="col">Edit</th>
 
               </tr>
             </thead>
@@ -87,15 +89,15 @@ class More extends React.Component {
               return (
                   <tr key={this.generateKey(i)}>
                     <th scope="row">{gminder.id}</th>
-                    <td>{gminder.stars}</td>
+
                     <td>{gminder.category}</td>
+                    <td>{gminder.stars}</td>
                     <td>
                       {this.shortenGminder(gminder.answer)}
                       {this.displayAuthor(gminder)}
                     </td>
                     <td>
-                    <Button
-                      name="Edit" />
+                  Edit
                     </td>
                   </tr>
               )
@@ -118,6 +120,7 @@ class More extends React.Component {
                 <th scope="col">ID</th>
                 <th scope="col">Collection</th>
                 <th scope="col">Prompt</th>
+                <th scope="col">Respond</th>
 
               </tr>
             </thead>
@@ -130,8 +133,7 @@ class More extends React.Component {
                     <td>{prompt.collection}</td>
                     <td>{prompt.prompt}</td>
                     <td>
-                    <Button
-                      name="Edit" />
+                    Respond
                     </td>
                   </tr>
               )
@@ -166,9 +168,7 @@ class More extends React.Component {
         name="Back"
         onClick={this.props.boxClick}
         />
-        <div className="box">
-        <Table />
-        </div>
+
         <br />
         <br />
 

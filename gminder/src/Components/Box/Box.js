@@ -34,7 +34,6 @@ class Box extends React.Component {
 
 
   render() {
-    console.log(this.props.display.stars);
     return(
       <div>
 
