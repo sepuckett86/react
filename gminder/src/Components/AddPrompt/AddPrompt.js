@@ -105,8 +105,8 @@ class AddPrompt extends React.Component {
             <br />
             <p className="paragraph-prompt" id={this.state.prompt.id}>From Prompt Collection: {this.state.prompt.collection}</p>
             <p>Next prompt from:
-             <button id="next-prompt-same" onClick={this.handleClick}>Same collection</button>
-             <button id="next-prompt-all" onClick={this.handleClick}>All collections</button>
+             <button id="next-prompt-same" className="btn btn-add" onClick={this.handleClick}>Same collection</button>
+             <button id="next-prompt-all" className="btn btn-add" onClick={this.handleClick}>All collections</button>
             </p>
               <br />
 

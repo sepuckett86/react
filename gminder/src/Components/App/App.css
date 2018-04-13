@@ -104,6 +104,20 @@ footer{
   }
   .App {background-color: transparent}
 }
+/* Override container resizing to fit more of screen */
+@media (max-width: 768px) {
+  .container {
+    width: 630px;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 992px) {
+  .container {
+    width: 900px;
+    max-width: 100%;
+  }
+}
 
 /* // Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
