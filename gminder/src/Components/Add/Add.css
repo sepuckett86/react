@@ -1,0 +1,44 @@
+.media {
+  padding: 10px;
+  border-radius: 10px;
+  position: relative;
+  border: solid;
+  border-color: #46B3B3;
+}
+
+.btn-add-active {
+  color: #fff;
+  background-color: black;
+  background-image: none;
+  border-color: #01549b;
+  margin-left: 2px;
+  margin-right: 2px;
+  font-family: 'Comfortaa', cursive;
+}
+
+.btn-add {
+  color: #fff;
+  background-color: #46B3B3;
+  background-image: none;
+  margin-left: 2px;
+  margin-right: 2px;
+  font-family: 'Comfortaa', cursive;
+}
+
+.btn-add:hover{
+  color: #fff;
+  background-color: #399393;
+  border-color: #46B3B3;
+}
+
+.btn-add-active:hover {
+  color: #fff;
+  background-color: #399393;
+  background-image: none;
+  border-color: #01549b;
+
+}
+
+.alignL {
+  text-align: left;
+}

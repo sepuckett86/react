@@ -255,7 +255,6 @@ class App extends Component {
       current: random,
       previous: previous,
       back: 0 });
-      console.log(this.state.previous)
   }
     // In case that gminders is empty
     else if (this.state.gminders.length === 0) {
@@ -315,9 +314,9 @@ class App extends Component {
           for (let i = 0; i < previous.length; i++)
             if (previous[i] === random) {
               unique = false;
-              console.log(false);
+
             } else {
-              console.log('Hi');
+              // Do nothing
             }
 
           if (unique === true) {
@@ -327,7 +326,6 @@ class App extends Component {
               current: random,
               previous: previous
             })
-            console.log(this.state.previous);
             a = false;
           }
           brake--
@@ -370,7 +368,6 @@ class App extends Component {
         back: back
       })
     }
-    console.log(this.state.back)
   }
 
   addClick() {

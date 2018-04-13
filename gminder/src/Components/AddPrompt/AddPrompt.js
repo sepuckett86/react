@@ -12,7 +12,6 @@ class AddPrompt extends React.Component {
 
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.changePrompt = this.changePrompt.bind(this);
     this.changePromptSame = this.changePromptSame.bind(this);
     this.newGm = this.newGm.bind(this);
@@ -40,15 +39,6 @@ class AddPrompt extends React.Component {
   }
 
   handleClick(event) {
-    if (event.target.id === "prompt-tab") {
-      this.props.changeType('prompt');
-    }
-    if (event.target.id === "quote-tab") {
-      this.props.changeType('quote');
-    }
-    if (event.target.id === "custom-tab") {
-      this.props.changeType('custom');
-    }
     if (event.target.id === "next-prompt-all") {
       this.changePrompt();
     }
@@ -102,48 +92,26 @@ class AddPrompt extends React.Component {
     this.props.newGminder(newG);
   }
 
-  handleSubmit(event) {
-    const newGminder = {
-      id: '7',
-      category: 'prompt',
-      collection: 'Favorites',
-      date: "1-2-3",
-      prompt: this.state.prompt.prompt,
-      answer: this.state.inputAnswer,
-      reason: this.state.inputReason,
-      author: null,
-      stars: '4'
-    }
-    this.props.newGminder(newGminder);
-    alert(JSON.stringify(newGminder));
-    alert(this.state.inputAnswer);
-    console.log();
-  }
-
   render() {
     return(
       <div>
-        <ul className="nav nav-tabs" id="myTab" role="tablist">
-        <li className="nav-item">
-          <a className="nav-link active" id="prompt-tab" onClick={this.handleClick} href="#prompt" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">Prompt</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" id="quote-tab" onClick={this.handleClick} href="#quote" data-toggle="tab" role="tab" aria-controls="quote" aria-selected="false">Quote</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" id="custom-tab" onClick={this.handleClick} href="#custom" data-toggle="tab" role="tab" aria-controls="custom" aria-selected="false">Custom</a>
-        </li>
-      </ul>
-      <br />
-                  <p className="paragraph-prompt" id={this.state.prompt.id}>From Prompt Collection: {this.state.prompt.collection}</p>
-                  <h4 className="lato">{this.state.prompt.prompt}</h4>
-                  <br />
-                  <p>Next prompt from:
-                   <button id="next-prompt-same" onClick={this.handleClick}>Same collection</button>|
-                   <button id="next-prompt-all" onClick={this.handleClick}>All collections</button>|
-                  </p>
+          <br />
+          <div className="media answer media-small">
+            <div className="media-body">
+              <h4 className="lato">{this.state.prompt.prompt}</h4>
+            </div>
 
-          <form onSubmit={this.handleSubmit}>
+            </div>
+            <br />
+            <p className="paragraph-prompt" id={this.state.prompt.id}>From Prompt Collection: {this.state.prompt.collection}</p>
+            <p>Next prompt from:
+             <button id="next-prompt-same" onClick={this.handleClick}>Same collection</button>
+             <button id="next-prompt-all" onClick={this.handleClick}>All collections</button>
+            </p>
+              <br />
+
+
+          <form>
                 <div className="form-group">
                   <label>Answer</label>
                   <textarea className="form-control" value={this.state.inputAnswer} onChange={this.handleChange} id="prompt-answer" rows="3"></textarea>
@@ -155,7 +123,8 @@ class AddPrompt extends React.Component {
               </div>
 
           </form>
-          <button id="temp-submit" onClick={this.handleClick}>Add to gminders</button>
+          <button className="btn btn-add" id="temp-submit" onClick={this.handleClick}>Save</button>
+
       </div>
     )
   }
