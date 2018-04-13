@@ -17,6 +17,8 @@ p {
 .App {
   text-align: center;
   width: 100%;
+  /* Sets app to full screen */
+  height:100vh;
 
 }
 
@@ -91,6 +93,8 @@ footer{
   }
   .App {
     background-color: rgba(255, 255, 255, 0.7);
+    background-size:cover;
+    background-attachment: fixed;
     text-align: center;
   }
 }
@@ -102,7 +106,8 @@ footer{
     margin-left: auto;
     margin-right: auto;
   }
-  .App {background-color: transparent}
+  .App {background-color: transparent;
+        }
 }
 /* Override container resizing to fit more of screen */
 @media (max-width: 768px) {
