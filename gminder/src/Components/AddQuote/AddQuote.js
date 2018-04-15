@@ -77,7 +77,7 @@ class AddQuote extends React.Component {
                   <textarea id="quote-answer" value={this.state.inputAnswer} onChange={this.handleChange} className="form-control" rows="3" placeholder="Example: May your beer be laid under an enchantment of surpassing excellence for seven years!"></textarea>
                   <br />
                   <div className="form-group">
-                      <label >Author</label>
+                      <label>Author</label>
                       <input type="text" value={this.state.inputAuthor} onChange={this.handleChange} className="form-control" id="quote-author" placeholder="Example: Gandalf, from LOTR by J. R. R. Tolkien"/>
                   </div>
                   <br />
