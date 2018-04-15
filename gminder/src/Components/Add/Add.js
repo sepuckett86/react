@@ -16,6 +16,8 @@ class Add extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
+
+
   handleClick(event) {
     if (event.target.id === "prompt-tab") {
       this.changeType('prompt');
@@ -60,7 +62,8 @@ class Add extends React.Component {
               changeType={this.changeType}
               newGminder={this.props.newGminder}
               prompts={this.props.prompts}
-              boxClick={this.props.boxClick} />
+              boxClick={this.props.boxClick}
+              random="yes" />
             </div>)
     }
     if(this.state.type === 'quote') {

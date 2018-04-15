@@ -237,6 +237,7 @@ class App extends Component {
     this.backClick = this.backClick.bind(this);
     this.addClick = this.addClick.bind(this);
     this.moreClick = this.moreClick.bind(this);
+    this.noneClick = this.noneClick.bind(this);
     this.boxClick = this.boxClick.bind(this);
     this.setStars = this.setStars.bind(this);
     this.newGminder = this.newGminder.bind(this);
@@ -395,6 +396,14 @@ class App extends Component {
     }
   }
 
+  noneClick() {
+    if(this.state.display !== 'none') {
+      this.setState({
+      display: 'none'
+      })
+    }
+  }
+
   renderWhat() {
     if(this.state.display === 'box') {
       if (this.state.current !== 'empty') {
@@ -432,10 +441,14 @@ class App extends Component {
       return <More
               boxClick={this.boxClick}
               gms={this.state.gminders}
+              newGminder={this.newGminder}
               prompts={this.state.prompts}
-              addClick={this.addClick}
-
+              noneClick={this.noneClick}
             />
+    }
+
+    if(this.state.display === 'none') {
+      return <div></div>
     }
 
     if (this.state.gminders.length === 0) {

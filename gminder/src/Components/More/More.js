@@ -1,6 +1,7 @@
 import React from 'react';
 import './More.css';
 import Button from '../Button/Button';
+import AddPrompt from '../AddPrompt/AddPrompt';
 
 
 //Add CSVDownload to import if want to use it
@@ -11,20 +12,30 @@ class More extends React.Component {
     super(props);
     this.state = {
       display: 'none',
-      csvData: []
+      csvData: [],
+      prompt: {}
     };
 
     this.handleClick = this.handleClick.bind(this);
+    this.changeDisplay = this.changeDisplay.bind(this);
 
   }
 
-  handleClick(id) {
+  handleClick(event) {
+  if(event.target.getAttribute('value') === 'respond') {
+    let prompt = event.target.getAttribute('prompt');
+    this.setState({
+      display: 'add',
+      prompt: prompt
+    })
+  }
+  }
+
+  changeDisplay(id) {
     this.setState({
       display: id
     })
   }
-
-
 
   generateKey(index) {
     return `${ index }_${ new Date().getTime() }`;
@@ -68,6 +79,18 @@ class More extends React.Component {
   render() {
     return(
       <div>
+        { this.state.display === 'add' ?
+      ( <div className="box">
+        <AddPrompt
+        changeType={this.changeType}
+        newGminder={this.props.newGminder}
+        prompts={this.props.prompts}
+        boxClick={this.props.boxClick}
+        random="no"
+        prompt={this.state.prompt}/>
+      </div>)
+         : null}
+
         { this.state.display === 'gminderTable' ?
       (<div className="box">
         <div id="gminders">
@@ -133,7 +156,7 @@ class More extends React.Component {
                     <td>{prompt.collection}</td>
                     <td>{prompt.prompt}</td>
                     <td>
-                    Respond
+                    <button onClick={this.handleClick} prompt={prompt} value="respond">Respond</button>
                     </td>
                   </tr>
               )
@@ -151,7 +174,7 @@ class More extends React.Component {
 
         <Button
         name="Table of All Gminders"
-        onClick={this.handleClick}
+        onClick={this.changeDisplay}
         id="gminderTable"
         gms={this.props.gms}
         />
@@ -160,7 +183,7 @@ class More extends React.Component {
         <Button
         name="Table of All Prompts"
         id="promptTable"
-        onClick={this.handleClick}
+        onClick={this.changeDisplay}
         />
         <br />
         <br />

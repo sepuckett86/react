@@ -53,21 +53,6 @@ class Box extends React.Component {
             </span>
             </div>
 
-        {/* crappy arrow buttons
-            <div className="row">
-              <div className="col col-6">
-                <Button
-                  onClick={this.props.backClick}
-                  name={<i className="fas fa-chevron-left"></i>}/>
-              </div>
-              <div className="col col-6">
-                <Button
-                  onClick={this.props.nextClick}
-                  name={<i className="fas fa-chevron-right"></i>}/>
-              </div>
-            </div>
-        */}
-
           {this.chooseDisplay()}
 
           <hr />
