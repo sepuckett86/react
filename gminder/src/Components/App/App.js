@@ -433,6 +433,7 @@ class App extends Component {
               boxClick={this.boxClick}
               gms={this.state.gminders}
               prompts={this.state.prompts}
+              addClick={this.addClick}
 
             />
     }
