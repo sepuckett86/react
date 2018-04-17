@@ -18,9 +18,14 @@ class AddPrompt extends React.Component {
   }
 
   componentWillMount() {
+    if (this.props.random === "yes") {
     let random = this.props.prompts[Math.floor(Math.random() * this.props.prompts.length)];
     this.setState({ prompt: random });
+  } else if (this.props.random === "no") {
+    this.setState({ prompt: this.props.prompt})
   }
+  }
+
 
   changePrompt() {
     let random = this.props.prompts[Math.floor(Math.random() * this.props.prompts.length)];
