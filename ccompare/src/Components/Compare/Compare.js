@@ -6,7 +6,15 @@ import Result from '../Result/Result';
 import Button from '../Button/Button';
 
 class Compare extends React.Component {
-
+  displayName: 'Compare';
+  propTypes: {
+    updateMenu: PropTypes.func,
+    menus: PropTypes.array,
+    results: PropTypes.array,
+    sites: PropTypes.array,
+    updateResult: PropTypes.func,
+    showResult: PropTypes.bool
+  }
   render() {
     return(
       <div>
@@ -28,13 +36,15 @@ class Compare extends React.Component {
               }
          </div>
 
-        <Button showResult={this.props.showResult}
-                updateResult={this.props.updateResult}/>
+        <Button
+          showResult={this.props.showResult}
+          updateResult={this.props.updateResult}/>
         </div>
-        <Result menus={this.props.menus}
-                showResult={this.props.showResult}
-                sites={this.props.sites}
-                results={this.props.results}/>
+        <Result
+          menus={this.props.menus}
+          showResult={this.props.showResult}
+          sites={this.props.sites}
+          results={this.props.results}/>
       </div>
     )
   }
