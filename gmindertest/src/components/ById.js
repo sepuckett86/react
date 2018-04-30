@@ -6,6 +6,7 @@ class ById extends Component {
     const gminder = this.props.gminder;
     return (
         <div className="container">
+          <p>{gminder.gminderID}</p>
         <p>{gminder.mainResponse}</p>
         <p>{gminder.author}</p>
         <p>{gminder.reason}</p>
