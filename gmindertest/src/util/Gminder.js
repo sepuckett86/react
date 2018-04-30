@@ -1,5 +1,3 @@
-import 'whatwg-fetch';
-
 // Replace the baseUrl with your personal baseUrl
 const baseUrl = 'http://192.168.33.10/';
 const Gminder = {};
@@ -17,6 +15,16 @@ Gminder.getGminders = () => {
   });
 };
 
-
+Gminder.getGminder = (id) => {
+  const url = `${baseUrl}/html/api/gminder/ReadOne.php?gminderID=${id}`;
+  return fetch(url).then(response => {
+    if (!response.ok) {
+      return new Promise(resolve => resolve([]));
+    }
+    return response.json().then(jsonResponse => {
+      return jsonResponse
+    });
+  });
+};
 
 export default Gminder;
