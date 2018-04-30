@@ -14,7 +14,8 @@ class App extends Component {
       results: false,
       gminder: {},
       id: '',
-      byId: false
+      byId: false,
+      create: ''
     }
 
     this.setGminders = this.setGminders.bind(this);
@@ -22,6 +23,8 @@ class App extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.showById = this.showById.bind(this);
     this.loadById = this.loadById.bind(this);
+    this.handleCreateChange = this.handleCreateChange.bind(this);
+    this.handleCreateClick = this.handleCreateClick.bind(this);
   }
 
   componentWillMount(){
@@ -61,6 +64,15 @@ class App extends Component {
       alert('Enter a number')
     }
   }
+
+  handleCreateChange(event) {
+    this.setState({ create: event.target.value })
+  }
+
+  handleCreateClick() {
+    Gminder.createGminder(this.state.create);
+  }
+
   showResults() {
     this.setState({
       results: true,
@@ -82,13 +94,21 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">gmindertest</h1>
         </header>
+
         <p className="App-intro">
           The purpose of this app is to test hook up with backend API.
         </p>
-        <button onClick={this.showResults}>Load Gminder List</button>
+
+        <button onClick={this.showResults}>Load Gminder List</button> YES
         <br /><br />
+
         <input onChange={this.handleChange}/>
-        <button onClick={this.loadById}>Load by ID</button>
+        <button onClick={this.loadById}>Load by ID</button> YES
+        <br /> <br />
+
+        <input onChange={this.handleCreateChange}/>
+        <button onClick={this.handleCreateClick}>Create</button> NO
+
         {this.state.results ? <Results
           gminders={this.state.gminders}
           /> : null}
