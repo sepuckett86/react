@@ -56,11 +56,27 @@ Gminder.createGminder = text => {
 };
 
 Gminder.deleteGminder = id => {
-  const url = `${baseUrl}/html/api/gminder/Delete.php/${id}`;
+  const url = `${baseUrl}/html/api/gminder/Delete.php?gminderID=${id}`;
   const fetchOptions = {
     method: 'DELETE'
   };
   return fetch(url, fetchOptions);
+};
+
+Gminder.updateGminder = (id, gminder) => {
+  const url = `${baseUrl}/html/api/gminder/Update.php?gminderID=${id}`;
+  const fetchOptions = {
+    method: 'PUT',
+    body: JSON.stringify({gminder: {id, gminder}})
+  };
+  return fetch(url, fetchOptions).then(response => {
+    if (!response.ok) {
+      return new Promise(resolve => resolve(null));
+    }
+    return response.json().then(jsonResponse => {
+      return jsonResponse.article;
+    });
+  });
 };
 
 export default Gminder;
