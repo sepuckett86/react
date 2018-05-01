@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Gminder from './util/Gminder';
 import Results from './components/Results';
@@ -15,7 +14,8 @@ class App extends Component {
       gminder: {},
       id: '',
       byId: false,
-      create: ''
+      create: '',
+      idToDelete: null
     }
 
     this.setGminders = this.setGminders.bind(this);
@@ -25,6 +25,8 @@ class App extends Component {
     this.loadById = this.loadById.bind(this);
     this.handleCreateChange = this.handleCreateChange.bind(this);
     this.handleCreateClick = this.handleCreateClick.bind(this);
+    this.handleDeleteClick = this.handleDeleteClick.bind(this);
+    this.handleDeleteChange = this.handleDeleteChange.bind(this);
   }
 
   componentWillMount(){
@@ -70,7 +72,23 @@ class App extends Component {
   }
 
   handleCreateClick() {
+    console.log(this.state.create);
     Gminder.createGminder(this.state.create);
+  }
+
+  handleDeleteChange(event) {
+    this.setState({
+      idToDelete: event.target.value
+    })
+  }
+
+  handleDeleteClick() {
+    if (this.state.idToDelete) {
+      Gminder.deleteGminder(this.state.idToDelete);
+
+    } else {
+      alert("Enter ID of gminder to delete");
+    }
   }
 
   showResults() {
@@ -91,7 +109,6 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">gmindertest</h1>
         </header>
 
@@ -108,6 +125,11 @@ class App extends Component {
 
         <input onChange={this.handleCreateChange}/>
         <button onClick={this.handleCreateClick}>Create</button> NO
+        <br /> <br />
+
+        <input onChange={this.handleDeleteChange}/>
+        <button onClick={this.handleDeleteClick}>Delete</button> NO
+        <br /> <br />
 
         {this.state.results ? <Results
           gminders={this.state.gminders}

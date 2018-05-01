@@ -8,8 +8,10 @@
 }
 
 .App-header {
-  background-color: #222;
-  height: 150px;
+  background: #222;
+  /* For browsers that do not support gradients */
+  background: linear-gradient(to bottom left, #088DA5, #3B5998);
+  /* Standard syntax (must be last) */
   padding: 20px;
   color: white;
 }
