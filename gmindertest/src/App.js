@@ -3,6 +3,7 @@ import './App.css';
 import Gminder from './util/Gminder';
 import Results from './components/Results';
 import ById from './components/ById';
+import BySearch from './components/BySearch';
 
 class App extends Component {
   constructor(props) {
@@ -17,7 +18,10 @@ class App extends Component {
       create: '',
       idToDelete: null,
       idToUpdate: null,
-      update: ''
+      update: '',
+      bySearch: false,
+      search: '',
+      searchResults: [],
     }
 
     this.setGminders = this.setGminders.bind(this);
@@ -25,6 +29,7 @@ class App extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.showById = this.showById.bind(this);
     this.loadById = this.loadById.bind(this);
+    this.showBySearch = this.showBySearch.bind(this);
     this.handleCreateChange = this.handleCreateChange.bind(this);
     this.handleCreateClick = this.handleCreateClick.bind(this);
     this.handleDeleteClick = this.handleDeleteClick.bind(this);
@@ -32,6 +37,8 @@ class App extends Component {
     this.handleUpdateChange = this.handleUpdateChange.bind(this);
     this.handleUpdateIDChange = this.handleUpdateIDChange.bind(this);
     this.handleUpdateClick = this.handleUpdateClick.bind(this);
+    this.handleSearchClick = this.handleSearchClick.bind(this);
+    this.handleSearchChange = this.handleSearchChange.bind(this);
   }
 
   componentWillMount() {
@@ -104,12 +111,33 @@ class App extends Component {
     }
   }
 
+  handleSearchChange(event) {
+    this.setState({search: event.target.value})
+  }
+
+  handleSearchClick() {
+    if (this.state.search) {
+      Gminder.searchGminders(this.state.search).then(searchResults => {
+        this.setState({
+          searchResults: searchResults
+        });
+        this.showBySearch();
+      })
+    } else {
+      alert('Enter a search term');
+    }
+  }
+
   showResults() {
-    this.setState({results: true, byId: false})
+    this.setState({results: true, byId: false, bySearch: false})
   }
 
   showById() {
-    this.setState({results: false, byId: true})
+    this.setState({results: false, byId: true, bySearch: false})
+  }
+
+  showBySearch() {
+    this.setState({results: false, byId: false, bySearch: true})
   }
 
   render() {
@@ -149,7 +177,15 @@ class App extends Component {
       <button onClick={this.handleUpdateClick}>Update</button>
       NO
       <br/>
-      <br/> {
+      <br/>
+
+      <input onChange={this.handleSearchChange}/>
+      <button onClick={this.handleSearchClick}>Search</button>
+      YES (kind of)
+      <br/>
+      <br/>
+
+      {
         this.state.results
           ? <Results gminders={this.state.gminders}/>
           : null
@@ -157,6 +193,11 @@ class App extends Component {
       {
         this.state.byId
           ? <ById gminder={this.state.gminder}/>
+          : null
+      }
+      {
+        this.state.bySearch
+          ? <BySearch searchResults={this.state.searchResults}/>
           : null
       }
     </div>);

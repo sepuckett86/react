@@ -74,7 +74,19 @@ Gminder.updateGminder = (id, gminder) => {
       return new Promise(resolve => resolve(null));
     }
     return response.json().then(jsonResponse => {
-      return jsonResponse.article;
+      return jsonResponse;
+    });
+  });
+};
+
+Gminder.searchGminders = (search) => {
+  const url = `${baseUrl}/html/api/gminder/Search.php?s=${search}`;
+  return fetch(url).then(response => {
+    if (!response.ok) {
+      return new Promise(resolve => resolve([]));
+    }
+    return response.json().then(jsonResponse => {
+      return jsonResponse.records
     });
   });
 };
