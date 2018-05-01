@@ -2,7 +2,6 @@
 const baseUrl = 'http://192.168.33.10/';
 const Gminder = {};
 
-
 Gminder.getGminders = () => {
   const url = `${baseUrl}/html/api/gminder/Read.php`;
   return fetch(url).then(response => {
@@ -27,33 +26,23 @@ Gminder.getGminder = (id) => {
   });
 };
 
-Gminder.createGminder = (text) => {
+Gminder.createGminder = text => {
   const url = `${baseUrl}/html/api/gminder/Create.php`;
-  const getDate = () => {
-  let d = new Date();
-  let year = d.getFullYear();
-  let month = d.getMonth() + 1;
-  let day = d.getDate();
-  const fullDate = `${month}/${day}/${year}`;
-  return fullDate;
-}
   const fetchOptions = {
     method: 'POST',
-    body: JSON.stringify({ gminder:
-      {gminderID: "100",
-      userID: "27",
-      category: "custom",
+    body: JSON.stringify({
+      userID: 5,
+      category: "relieved",
       mainResponse: text,
-      author: null,
-      promptID: null,
-      reason: null,
-      source: null,
+      author: "none",
+      promptID: 8,
+      reason: "limerence",
+      source: "my mind",
       rating: "1",
-      recordedDate: "2018-02-12 04:02:52",
-      eventDate: null,
-      updatedDate: null,
-      who: null,
-      collection: null}
+      who: "me",
+      eventDate: "4/30/2018",
+      collection: "what is collection again?",
+      publicFlag: 0
     },)
   };
   return fetch(url, fetchOptions).then(response => {
@@ -62,6 +51,42 @@ Gminder.createGminder = (text) => {
     }
     return response.json().then(jsonResponse => {
       return jsonResponse;
+    });
+  });
+};
+
+Gminder.deleteGminder = id => {
+  const url = `${baseUrl}/html/api/gminder/Delete.php?gminderID=${id}`;
+  const fetchOptions = {
+    method: 'DELETE'
+  };
+  return fetch(url, fetchOptions);
+};
+
+Gminder.updateGminder = (id, gminder) => {
+  const url = `${baseUrl}/html/api/gminder/Update.php?gminderID=${id}`;
+  const fetchOptions = {
+    method: 'PUT',
+    body: JSON.stringify({gminder: {id, gminder}})
+  };
+  return fetch(url, fetchOptions).then(response => {
+    if (!response.ok) {
+      return new Promise(resolve => resolve(null));
+    }
+    return response.json().then(jsonResponse => {
+      return jsonResponse;
+    });
+  });
+};
+
+Gminder.searchGminders = (search) => {
+  const url = `${baseUrl}/html/api/gminder/Search.php?s=${search}`;
+  return fetch(url).then(response => {
+    if (!response.ok) {
+      return new Promise(resolve => resolve([]));
+    }
+    return response.json().then(jsonResponse => {
+      return jsonResponse.records
     });
   });
 };

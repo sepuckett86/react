@@ -9,7 +9,9 @@ class Results extends Component {
           <ul>
               {gminders.map((gminder) => {
                 return(
-                <li key={gminder.gminderID}>{gminder.mainResponse}</li>
+                <li key={gminder.gminderID}>
+                  {gminder.gminderID}{'\u00A0'}
+                  {gminder.mainResponse}</li>
                 )
             })}
             </ul>
