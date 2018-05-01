@@ -10,7 +10,7 @@ Clone repository. Navigate to `gmindertest` directory.
 
 `npm install`
 
-Edit line of code in `/gmindertest/src/util/Gminder.js` containing `const baseUrl`
+Edit line of code in `gmindertest/src/util/Gminder.js` and `gmindertest/src/util/Prompt.js` containing `const baseUrl`
 to reflect your local server ip address that is running the php backend.
 
 Within `gmindertest` directory, type
