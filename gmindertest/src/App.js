@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import './App.css';
 import Gminder from './util/Gminder';
+import Prompt from './util/Prompt';
+import Prompts from './components/Prompts';
 import Results from './components/Results';
 import ById from './components/ById';
 import BySearch from './components/BySearch';
@@ -22,14 +24,18 @@ class App extends Component {
       bySearch: false,
       search: '',
       searchResults: [],
+      prompts: false,
+      promptArray: [],
     }
 
     this.setGminders = this.setGminders.bind(this);
+    this.setPrompts = this.setPrompts.bind(this);
     this.showResults = this.showResults.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.showById = this.showById.bind(this);
     this.loadById = this.loadById.bind(this);
     this.showBySearch = this.showBySearch.bind(this);
+    this.showByPrompts = this.showByPrompts.bind(this);
     this.handleCreateChange = this.handleCreateChange.bind(this);
     this.handleCreateClick = this.handleCreateClick.bind(this);
     this.handleDeleteClick = this.handleDeleteClick.bind(this);
@@ -43,12 +49,19 @@ class App extends Component {
 
   componentWillMount() {
     this.setGminders();
+    this.setPrompts();
   }
 
   setGminders() {
     // .then is critical to wait first for promise resolve before setting state
     Gminder.getGminders().then(gminders => {
       this.setState({gminders: gminders})
+    })
+  }
+
+  setPrompts() {
+    Prompt.getPrompts().then(prompts => {
+      this.setState({promptArray: prompts})
     })
   }
 
@@ -129,15 +142,28 @@ class App extends Component {
   }
 
   showResults() {
-    this.setState({results: true, byId: false, bySearch: false})
+    this.setState({
+      results: true,
+      byId: false,
+      bySearch: false,
+      prompts: false})
   }
 
   showById() {
-    this.setState({results: false, byId: true, bySearch: false})
+    this.setState({
+      results: false, byId: true, bySearch: false, prompts: false})
   }
 
   showBySearch() {
-    this.setState({results: false, byId: false, bySearch: true})
+    this.setState({results: false, byId: false, bySearch: true, prompts: false})
+  }
+
+  showByPrompts() {
+    this.setState({
+      results: false,
+      byId: false,
+      bySearch: false,
+      prompts: true })
   }
 
   render() {
@@ -151,6 +177,10 @@ class App extends Component {
       </p>
 
       <button onClick={this.showResults}>Load Gminder List</button>
+      YES
+      <br/><br/>
+
+      <button onClick={this.showByPrompts}>Load Prompt List</button>
       YES
       <br/><br/>
 
@@ -198,6 +228,11 @@ class App extends Component {
       {
         this.state.bySearch
           ? <BySearch searchResults={this.state.searchResults}/>
+          : null
+      }
+      {
+        this.state.prompts
+          ? <Prompts prompts={this.state.promptArray}/>
           : null
       }
     </div>);
