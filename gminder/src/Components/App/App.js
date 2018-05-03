@@ -7,6 +7,7 @@ import Add from '../Add/Add';
 import More from '../More/More';
 import Button from '../Button/Button';
 
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -479,6 +480,7 @@ class App extends Component {
           {this.renderWhat()}
 
         </div>
+
 
       </div>
     );
