@@ -1,0 +1,40 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#28adbf+0,7600a5+100 */
+background: #28adbf; /* Old browsers */
+background: -moz-linear-gradient(-45deg, #28adbf 0%, #7600a5 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(-45deg, #28adbf 0%,#7600a5 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(135deg, #28adbf 0%,#7600a5 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#28adbf', endColorstr='#7600a5',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  color: white;
+  padding: 1px;
+}
+
+.App-title {
+  font-size: 3em;
+  font-family: 'Skranji', cursive;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+.image_container {
+
+  margin: 2%;
+
+}
+
+img {
+  max-height: 400px;
+  max-width: 100%;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
