@@ -78,8 +78,9 @@ class App extends Component {
         <button id="searchButton" onClick={this.handleClick}>Search</button>
         <br />
         <br />
-        <button id="next" onClick={this.handleClick}>Next</button>
         <button id="back" onClick={this.handleClick}>Back</button>
+        <button id="next" onClick={this.handleClick}>Next</button>
+
         { imageUrl !== undefined ?
           (<div className="image_container">
             <img src={imageUrl} alt="image_search"/>
