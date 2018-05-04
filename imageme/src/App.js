@@ -27,11 +27,10 @@ class App extends Component {
     if (event.target.id === "searchButton") {
 
       Pixabay.search(this.state.searchTerm).then(searchResults => {
-        this.setState({
-          searchResults: searchResults
-        });
-        console.log(searchResults)
         if (searchResults.hits[0] !== undefined) {
+          this.setState({
+            searchResults: searchResults
+          });
           this.setState({
             hits: 0
           });
@@ -74,6 +73,12 @@ class App extends Component {
     }
   }
 
+  // When return key is pressed in text box, trigger search click event
+  onReturn(event) {
+    if (event.keyCode === 13) {
+      document.getElementById('searchButton').click()}
+  }
+
   render() {
     let imageUrl = undefined;
     if (this.state.searchResults !== undefined && this.state.hits >= 0 ) {
@@ -89,7 +94,7 @@ class App extends Component {
           Enter a search, out pops an image. Using the <a href="https://pixabay.com/en/service/about/api/">Pixabay API</a>.
         </p>
 
-        <input id="searchInput" onChange={this.handleChange}/>
+        <input id="searchInput" onChange={this.handleChange} onKeyDown={this.onReturn}/>
         <button id="searchButton" onClick={this.handleClick}>Search</button>
         <br />
         <br />
