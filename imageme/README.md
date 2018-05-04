@@ -1,6 +1,7 @@
 Demo here: http://sepuckett86_imageme.surge.sh/
 
-To run yourself:
+To run yourself:<br>
+Install NodeJS<br>
 Clone repository
 
 Navigate to `imageme/src/util/keyTemplate.js`
