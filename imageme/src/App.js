@@ -30,12 +30,17 @@ class App extends Component {
         this.setState({
           searchResults: searchResults
         });
+        console.log(searchResults)
         if (searchResults.hits[0] !== undefined) {
           this.setState({
             hits: 0
           });
         } else {
           alert("No results for this search")
+          this.setState({
+            hits: 0,
+            searchResults: undefined
+          });
         }
 
       })
@@ -45,23 +50,33 @@ class App extends Component {
     if (event.target.id === "next") {
       let hits = this.state.hits;
       hits++;
-      this.setState({
-        hits: hits
-      })
-    }
-    if (event.target.id === "back") {
-      let hits = this.state.hits;
-        hits--;
+      if (hits < 20) {
         this.setState({
           hits: hits
         })
+      } else {
+        alert("That's it, folks!")
+      }
+
+    }
+    if (event.target.id === "back") {
+      if (this.state.hits > 0) {
+        let hits = this.state.hits;
+          hits--;
+          this.setState({
+            hits: hits
+          })
+      } else {
+        alert("You are at the beginning")
+      }
+
 
     }
   }
 
   render() {
     let imageUrl = undefined;
-    if (this.state.searchResults !== undefined && this.state.hits >= 0 && this.state.hits < this.state.searchResults.totalHits) {
+    if (this.state.searchResults !== undefined && this.state.hits >= 0 ) {
     imageUrl = this.state.searchResults.hits[this.state.hits].largeImageURL;
   }
     return (
