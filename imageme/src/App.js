@@ -27,15 +27,19 @@ class App extends Component {
     if (event.target.id === "searchButton") {
 
       Pixabay.search(this.state.searchTerm).then(searchResults => {
-        this.setState({
-          searchResults: searchResults
-        });
         if (searchResults.hits[0] !== undefined) {
+          this.setState({
+            searchResults: searchResults
+          });
           this.setState({
             hits: 0
           });
         } else {
           alert("No results for this search")
+          this.setState({
+            hits: 0,
+            searchResults: undefined
+          });
         }
 
       })
@@ -45,23 +49,39 @@ class App extends Component {
     if (event.target.id === "next") {
       let hits = this.state.hits;
       hits++;
-      this.setState({
-        hits: hits
-      })
-    }
-    if (event.target.id === "back") {
-      let hits = this.state.hits;
-        hits--;
+      if (hits < 20) {
         this.setState({
           hits: hits
         })
+      } else {
+        alert("That's it, folks!")
+      }
+
+    }
+    if (event.target.id === "back") {
+      if (this.state.hits > 0) {
+        let hits = this.state.hits;
+          hits--;
+          this.setState({
+            hits: hits
+          })
+      } else {
+        alert("You are at the beginning")
+      }
+
 
     }
   }
 
+  // When return key is pressed in text box, trigger search click event
+  onReturn(event) {
+    if (event.keyCode === 13) {
+      document.getElementById('searchButton').click()}
+  }
+
   render() {
     let imageUrl = undefined;
-    if (this.state.searchResults !== undefined && this.state.hits >= 0 && this.state.hits < this.state.searchResults.totalHits) {
+    if (this.state.searchResults !== undefined && this.state.hits >= 0 ) {
     imageUrl = this.state.searchResults.hits[this.state.hits].largeImageURL;
   }
     return (
@@ -74,7 +94,7 @@ class App extends Component {
           Enter a search, out pops an image. Using the <a href="https://pixabay.com/en/service/about/api/">Pixabay API</a>.
         </p>
 
-        <input id="searchInput" onChange={this.handleChange}/>
+        <input id="searchInput" onChange={this.handleChange} onKeyDown={this.onReturn}/>
         <button id="searchButton" onClick={this.handleClick}>Search</button>
         <br />
         <br />
