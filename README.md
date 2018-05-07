@@ -34,3 +34,8 @@ Uninstall local npm package
 Gets rid of error
 
 ```npm i ajv```
+
+Webpack
+
+```npm install --save-dev webpack-cli```
+
