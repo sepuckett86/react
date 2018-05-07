@@ -43,3 +43,8 @@ Express
 
 ```npm install express```
 
+Development dependencies
+
+```
+npm install --save-dev babel babel-core babel-loader babel-preset-es2015 babel-preset-react css-loader node-sass sass-loader style-loader mocha chai enzyme
+```
