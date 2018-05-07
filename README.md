@@ -28,3 +28,9 @@ Uninstall global npm package
 Uninstall local npm package
 
 ```npm uninstall --save <package>```
+
+## Useful packages
+
+Gets rid of error
+
+```npm i ajv```
