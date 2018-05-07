@@ -20,3 +20,11 @@ View globally installed npm packages and versions
 View locally installed npm packages and versions
 
 ```npm list --depth=0```
+
+Uninstall global npm package
+
+```npm uninstall -g <package>```
+
+Uninstall local npm package
+
+```npm uninstall --save <package>```
