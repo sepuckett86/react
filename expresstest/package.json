@@ -5,6 +5,7 @@
   "dependencies": {
     "ajv": "^6.4.0",
     "express": "^4.16.3",
+    "js-yaml": "^3.11.0",
     "nodemon": "^1.17.4",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
@@ -12,13 +13,11 @@
   },
   "scripts": {
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "mocha --compilers babel-core/register ./test/*test.js",
     "eject": "react-scripts eject",
     "start": "nodemon src/server/index.js",
-    "webpack": "./node_modules/.bin/webpack -w",
-    "test": "mocha --compilers babel-core/register ./test/*test.js"
+    "webpack": "./node_modules/.bin/webpack -w"
   },
-
   "devDependencies": {
     "babel": "^6.23.0",
     "babel-core": "^6.26.3",
