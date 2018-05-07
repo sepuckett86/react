@@ -3,3 +3,9 @@ This is my first attempt at using create-react-app with a server using:
 
 1) Webpack <br />
 2) Express
+
+## To use
+```
+npm run webpack
+npm start
+```
