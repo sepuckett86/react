@@ -29,7 +29,7 @@ Uninstall local npm package
 
 ```npm uninstall --save <package>```
 
-## Useful packages
+## Useful packages to use on top of create-react-app
 
 Gets rid of error
 
@@ -38,7 +38,7 @@ Gets rid of error
 Webpack
 
 ```
-npm install --save-dev webpack 
-npm install --save-dev webpack-cli
+npm install webpack@3.1.0
+
 ```
 
