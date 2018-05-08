@@ -32,12 +32,13 @@ npm, surge, create-react-app
 
 ## Local
 
-# Installed with create-react-app
+### Installed with create-react-app
 
-## react, react-dom, react-scripts
+react, react-dom, react-scripts
 
-# Installed separately
-## ajv
+### Installed separately
+
+#### ajv
 
 ```
 npm install --save ajv
@@ -46,7 +47,7 @@ npm install --save ajv
 This is necessary to remove an error.
 
 
-## React Router
+#### React Router
 
 ```
 npm install --save react-router-dom
