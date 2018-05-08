@@ -13,6 +13,15 @@ The idea is to include:
 --Webpack for packaging
 
 <br>
+
+## Explanation of files added
+
+To make sure browser styles are removed
+```
+setmeup/public/reset.class
+```
+
+
 ## Explanation of all packages and how they were installed
 ## Global
 
