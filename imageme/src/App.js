@@ -49,7 +49,7 @@ class App extends Component {
     if (event.target.id === "next") {
       let hits = this.state.hits;
       hits++;
-      if (hits < 20 && hits < this.state.searchResults.totalHits) {
+      if (hits < 200 && hits < this.state.searchResults.totalHits) {
         this.setState({
           hits: hits
         })
