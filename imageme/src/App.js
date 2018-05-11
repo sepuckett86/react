@@ -95,10 +95,12 @@ class App extends Component {
         </p>
 
         <input id="searchInput" onChange={this.handleChange} onKeyDown={this.onReturn}/>
+        &nbsp;
         <button id="searchButton" onClick={this.handleClick}>Search</button>
         <br />
         <br />
         <button id="back" onClick={this.handleClick}>Back</button>
+        &nbsp;
         <button id="next" onClick={this.handleClick}>Next</button>
 
         { imageUrl !== undefined ?
