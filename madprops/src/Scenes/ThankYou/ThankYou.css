@@ -1,0 +1,21 @@
+.form_container {
+  border: solid 2px #440270;
+  padding: 10px;
+  text-align: left;
+  border-radius: 10px;
+}
+
+.thanks_container {
+  border: solid 2px #440270;
+  padding: 10px;
+  text-align: left;
+  margin: 10px;
+  font-family: 'Source Sans Pro', sans-serif;
+  border-radius: 10px;
+
+}
+
+.thanks_container p {
+  font-family: 'Caveat', cursive;
+  font-size: 32px;
+}
