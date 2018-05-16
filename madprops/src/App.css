@@ -1,0 +1,39 @@
+.App {
+  text-align: center;
+  font-family: 'Lato', sans-serif;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#039aaa+0,03709b+44,00619e+100 */
+background: #039aaa; /* Old browsers */
+background: -moz-linear-gradient(45deg, #039aaa 0%, #03709b 44%, #00619e 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(45deg, #039aaa 0%,#03709b 44%,#00619e 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(45deg, #039aaa 0%,#03709b 44%,#00619e 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#039aaa', endColorstr='#00619e',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 3em;
+  /* font-family: 'Source Sans Pro', sans-serif; */
+  font-family: 'Lobster Two', cursive;
+  margin: 0px;
+   text-shadow: 2px 2px #440270;
+}
+
+.App-intro {
+  font-size: large;
+  font-family: 'Lato', sans-serif;
+  padding: 20px;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
