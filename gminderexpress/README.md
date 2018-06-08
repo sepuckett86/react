@@ -13,3 +13,4 @@ npm start
 To create a random quote generator app that uses:
 - Express backend
 - React frontend
+- Sqlite3 database
