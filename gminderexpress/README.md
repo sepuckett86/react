@@ -1,5 +1,5 @@
 ## App use
-Open two CLI windows.
+Open two CLI windows. <br><br>
 To start the development server on PORT 4000:
 ```
 node server.js
