@@ -245,18 +245,16 @@ class App extends Component {
   }
     // To hook up to express backend
 
-    state = {
-      response: ''
+    callGminder = async () => {
+      const response = await fetch('/api/gminder');
+      const body = await response.json();
+
+      if (response.status !== 200) throw Error(body.message);
+
+      return body;
     };
-
-    componentDidMount() {
-      this.callApi()
-        .then(res => this.setState({ response: res.express }))
-        .catch(err => console.log(err));
-    }
-
-    callApi = async () => {
-      const response = await fetch('/api/hello');
+    callPrompt = async () => {
+      const response = await fetch('/api/prompt');
       const body = await response.json();
 
       if (response.status !== 200) throw Error(body.message);
@@ -268,23 +266,32 @@ class App extends Component {
 
   // Critical function to know--this completes upon first page load before render
   componentWillMount() {
-    // Check if there is data in gminders
-    if (this.state.gminders.length !== 0){
-      let random = this.state.gminders[Math.floor(Math.random() * this.state.gminders.length)];
-      let previous = this.state.previous;
-      // Add new gminder to previous array
-      previous.push(random);
-    this.setState({
-      current: random,
-      previous: previous,
-      back: 0 });
-  }
-    // In case that gminders is empty
-    else if (this.state.gminders.length === 0) {
-      // Do nothing
-    } else {
-      console.log('Error, gminders not correct object')
-    }
+    // Get data from database
+    this.callGminder()
+      .then(res => this.setState({ gminders: res.express }))
+      .catch(err => console.log(err)).then(()=>{
+        this.callPrompt()
+        .then(res => this.setState({ prompts: res.express }))
+        .catch(err => console.log(err)).then(()=>{
+        // Check if there is data in gminders
+        if (this.state.gminders.length !== 0){
+          let random = this.state.gminders[Math.floor(Math.random() * this.state.gminders.length)];
+          let previous = this.state.previous;
+          // Add new gminder to previous array
+          previous.push(random);
+        this.setState({
+          current: random,
+          previous: previous,
+          back: 0 });
+      }
+        // In case that gminders is empty
+        else if (this.state.gminders.length === 0) {
+          // Do nothing
+        } else {
+          console.log('Error, gminders not correct object')
+        }
+      });
+    })
     }
 
 // These methods update database information
@@ -498,10 +505,10 @@ class App extends Component {
 
         <div className="container gminder">
           {/* Test hook up to express backend --> */}
-          {console.log(this.state.response)}
           {console.log(this.state.gminders)}
 
           {this.renderWhat()}
+
 
         </div>
 

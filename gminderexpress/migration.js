@@ -9,7 +9,20 @@ db.run('DROP TABLE IF EXISTS Gminder',
         throw error;
       }
 });
-db.run('CREATE TABLE Gminder (id INTEGER PRIMARY KEY, userID INTEGER NOT NULL, category TEXT NOT NULL, mainResponse TEXT NOT NULL, author TEXT, promptID INTEGER, reason TEXT, source TEXT, who TEXT, rating INTEGER DEFAULT 0, recordedDate TEXT, eventDate TEXT, updatedDate TEXT, collection TEXT, publicFlag INTEGER)',
+db.run('DROP TABLE IF EXISTS Prompt',
+  error => {
+  if (error) {
+        throw error;
+      }
+});
+db.run('CREATE TABLE Gminder (id INTEGER PRIMARY KEY, userID INTEGER NOT NULL, category TEXT NOT NULL, mainResponse TEXT NOT NULL, author TEXT, promptID INTEGER, reason TEXT, source TEXT, who TEXT, rating INTEGER DEFAULT 0, recordedDate TEXT, eventDate TEXT, updatedDate TEXT, collection TEXT, publicFlag INTEGER, FOREIGN KEY(promptID) REFERENCES Prompt(id))',
+  error => {
+  if (error) {
+    throw error;
+  }
+});
+
+db.run('CREATE TABLE Prompt (id INTEGER PRIMARY KEY, collection TEXT, promptText TEXT NOT NULL)',
   error => {
   if (error) {
     throw error;

@@ -7,14 +7,14 @@ class Stars extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      stars : Number(this.props.gminder.stars)
+      stars : Number(this.props.gminder.rating)
     }
     this.handleClick = this.handleClick.bind(this);
   }
 
 /* const stars must be updated to reflect database value */
   makeStarArray() {
-    let stars = this.props.gminder.stars;
+    let stars = this.props.gminder.rating;
     let myArray = [];
     for(let i = stars; i > 0; i--) {
       myArray.push('fas fa-star');

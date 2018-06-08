@@ -19,13 +19,13 @@ class Prompt extends React.Component {
                   />
               </div>
             <div className="col alignR">
-              <p>Added {this.props.gminder.date} from Prompt Collection: {this.props.gminder.collection}</p>
+              <p>Added {this.props.gminder.recordedDate} from Prompt Collection: {this.props.gminder.collection}</p>
             </div>
             </div>
 
             <div className="media prompt">
               <div className="media-body">
-                <p className="lato">{this.props.gminder.prompt}</p>
+                <p className="lato">{this.props.prompt}</p>
               </div>
             </div>
             <br />
@@ -33,7 +33,7 @@ class Prompt extends React.Component {
             <div className="media answer">
             <div className="media-body">
             <br />
-            <h4 className="lato">{this.props.gminder.answer}</h4><br />
+            <h4 className="lato">{this.props.gminder.mainResponse}</h4><br />
             </div>
             </div>
             <br />

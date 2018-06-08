@@ -1,6 +1,15 @@
 const sqlite3 = require('sqlite3');
 const db = new sqlite3.Database('./db.sqlite');
 db.serialize(() => {
+  db.run(`INSERT INTO Prompt (collection, promptText)
+          VALUES ($collection, $promptText)`, {
+            $collection: 'Favorites',
+            $promptText: 'What is a song that made you smile in the past month?'
+          }, (err) => {
+            if (err) {
+              throw err;
+            }
+          });
   db.run(`INSERT INTO Gminder (userID, category, mainResponse, author, promptID, reason, source, who, rating, recordedDate, eventDate, updatedDate, collection, publicFlag)
           VALUES ($userID, $category, $mainResponse, $author, $promptID, $reason, $source, $who, $rating, $recordedDate, $eventDate, $updatedDate, $collection, $publicFlag)`,
           {
@@ -23,11 +32,41 @@ db.serialize(() => {
               throw err;
             }
           });
-          
+
+  db.run(`INSERT INTO Gminder (userID, category, mainResponse, author, promptID, reason, source, who, rating, recordedDate, eventDate, updatedDate, collection, publicFlag)
+          VALUES ($userID, $category, $mainResponse, $author, $promptID, $reason, $source, $who, $rating, $recordedDate, $eventDate, $updatedDate, $collection, $publicFlag)`,
+          {
+            $userID: 1,
+            $category: 'quote',
+            $mainResponse: 'May your beer be laid under an enchantment of surpassing excellence for seven years!',
+            $author: 'J.R.R. Tolkien',
+            $promptID: null,
+            $reason: 'One of the best read-out-loud moments in the book.',
+            $source: 'The Fellowship of the Ring',
+            $who: 'Gandalf',
+            $rating: 5,
+            $recordedDate: 'June 8, 2018',
+            $eventDate: null,
+            $updatedDate: 'June 8, 2018',
+            $collection: 'Happy',
+            $publicFlag: 0,
+          }, (err) => {
+            if (err) {
+              throw err;
+            }
+          });
+
   db.all('SELECT * FROM Gminder', (err, rows) => {
     if (err) {
       throw err;
     }
     console.log(`Finished seeding. There are ${rows.length} rows into the Gminder table.`);
   });
+  db.all('SELECT * FROM Prompt', (err, rows) => {
+    if (err) {
+      throw err;
+    }
+    console.log(`There are ${rows.length} rows into the Prompt table.`);
+  });
+
 });

@@ -25,8 +25,14 @@ class Quote extends React.Component {
       			<div className="media-body">
       			<br />
       			<h4 className="lato" id="quote-random_0">
-      				"{this.props.gminder.answer}"</h4>
-              <p className="lato" id="quote-who-source-author">--{this.props.gminder.author}</p>
+      				"{this.props.gminder.mainResponse}"</h4>
+              <p className="lato" id="quote-who-source-author">--
+                {this.props.gminder.who ? this.props.gminder.who : null}
+                {this.props.gminder.who ? ", " : null}
+                {this.props.gminder.source ? "from " : null}
+                {this.props.gminder.source ? this.props.gminder.source : null}
+                {this.props.gminder.author ? " by " : null}
+                {this.props.gminder.author}</p>
       				<br />
       			</div>
       			</div>
