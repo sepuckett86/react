@@ -1,6 +1,6 @@
 import React from 'react';
 import './Quote.css';
-import Stars from '../Stars/Stars';
+import Stars from '../../../../Components/Stars/Stars';
 
 class Quote extends React.Component {
   render() {
