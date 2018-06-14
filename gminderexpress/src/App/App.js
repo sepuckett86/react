@@ -424,52 +424,16 @@ class App extends Component {
       <div className="App">
       <Router>
         <div>
-          <header>
-            <nav className="navbar navbar-dark navbar-expand-sm">
-              <a className="navbar-brand" href="index.php">goodminder</a>
-              <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon"></span>
-              </button>
-
-              <div className="collapse navbar-collapse" id="navbarNav">
+          <header className="App-header">
+            <nav className="navbar navbar-dark navbar-expand-sm justify-content-between">
+              <a className="navbar-brand" id='intro' href="/intro"><img src={logo} className="App-logo" alt="logo"/>Gminder</a>
+              <div className="navbar-expand" id="navbarNav">
                 <ul className="navbar-nav ml-auto">
-
-                  <li className="nav-item active dropdown">
-                    <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <span className="sr-only">(current)</span>
-                    </a>
-                    <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                      <a className="dropdown-item" href="#">User Home</a>
-                      <a className="dropdown-item" href="#">Settings</a>
-                      <hr/>
-                      <a className="dropdown-item" href="#">About</a>
-                      <a className="dropdown-item" href="#">Examples</a>
-                      <hr/>
-                      <a className="dropdown-item" href="#">Log out</a>
-                    </div>
-                  </li>
-                  <li className="nav-item">
-                    <button type="button" className="btn btn-goodminder" data-toggle="popover" title="Goodminder Points" data-content="Earn points by daily log-in and writing entries. These will come in handy later :) ">Points
-                      <span className="badge badge-light">40</span>
+                  <li className="nav-item dropdown">
+                    <button className="nav-link btn btn-clean menu dropdown-toggle" type="button" id="dropdownMenuButton"
+                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        UserID
                     </button>
-                  </li>
-                </ul>
-              </div>
-            </nav>
-            <nav className="main-navbar navbar navbar-dark navbar-expand-lg">
-              <div className="container justify-content-center">
-                <ul className="nav navbar-nav flex-fill flex-nowrap"></ul>
-                <ul className="nav navbar-nav flex-fill justify-content-center">
-                  <li className="nav-item">
-                    <a className="navbar-brand" id='intro' href="/intro"><img src={logo} className="App-logo" alt="logo"/>Gminder</a>
-                  </li>
-                </ul>
-                <ul className="nav navbar-nav flex-fill justify-content-end">
-
-                  <li className="nav-item active dropdown">
-                    <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <span className="sr-only">(current)</span>
-                    </a>
                     <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                       <a className="dropdown-item" href="/">User Home</a>
                       <a className="dropdown-item" href="/settings">Settings</a>
@@ -480,10 +444,15 @@ class App extends Component {
                       <a className="dropdown-item" href="/logout">Log out</a>
                     </div>
                   </li>
+                  <li className="nav-item">
+                    <button type="button" className="btn btn-goodminder" data-toggle="popover" title="Gminder Points" data-content="Earn points by daily log-in and writing entries. These will come in handy later :) ">
+                      {' '}<span className="badge badge-light">40</span>
+                    </button>
+                  </li>
                 </ul>
               </div>
             </nav>
-            <br/>
+
           </header>
 
           <Route exact={true} path="/" component={Home}/>
