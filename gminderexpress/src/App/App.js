@@ -306,7 +306,7 @@ class App extends Component {
           <Route path="/about" component={About}/>
           <Route path="/intro" component={Intro}/>
           <Route path="/settings" component={Settings}/>
-          <Route path="/example" component={Examples}/>
+          <Route path="/examples" component={Examples}/>
         </div>
       </Router>
 
