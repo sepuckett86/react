@@ -1,12 +1,13 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
 // React Router
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import Home from '../../Scenes/Home/Home';
 import About from '../../Scenes/About/About';
 import Intro from '../../Scenes/Intro/Intro';
+import Settings from '../../Scenes/Settings/Settings';
+import Examples from '../../Scenes/Examples/Examples';
 //
-
 
 import './App.css';
 import logo from './logo.png';
@@ -15,7 +16,6 @@ import Box from '../Box/Box';
 import Add from '../Add/Add';
 import More from '../More/More';
 import Button from '../Button/Button';
-
 
 class App extends Component {
   constructor(props) {
@@ -33,8 +33,7 @@ class App extends Component {
           author: null,
           stars: '4'
 
-        },
-        {
+        }, {
           id: '2',
           category: 'quote',
           collection: 'Happy',
@@ -44,8 +43,7 @@ class App extends Component {
           reason: 'One of the best read-out-loud moments in the book',
           author: 'Gandalf, from The Fellowship of the Ring by J.R.R. Tolkien',
           stars: '5'
-        },
-        {
+        }, {
           id: '3',
           category: 'custom',
           collection: 'Affirmations',
@@ -55,8 +53,7 @@ class App extends Component {
           reason: null,
           author: null,
           stars: '2'
-        },
-        {
+        }, {
           id: '4',
           category: 'quote',
           collection: 'Happy',
@@ -70,8 +67,7 @@ class App extends Component {
           reason: "A nice story",
           author: "A letter in a book by Will Durant, On the Meaning of Life",
           stars: '4'
-        },
-        {
+        }, {
           id: '5',
           category: 'quote',
           collection: 'Food for a Hungry Brain',
@@ -82,8 +78,7 @@ class App extends Component {
           author: 'Halldor Laxness, from Independent People',
           stars: '3'
 
-        },
-        {
+        }, {
           id: '6',
           category: 'quote',
           collection: 'Food for a Hungry Brain',
@@ -94,8 +89,7 @@ class App extends Component {
           author: 'Albert Camus, from The Plague',
           stars: '5'
 
-        },
-        {
+        }, {
           id: '7',
           category: 'quote',
           collection: 'Food for a Hungry Brain',
@@ -106,8 +100,7 @@ class App extends Component {
           author: 'Jung Chang, from Wild Swans: Three Daughters of China',
           stars: '5'
 
-        },
-        {
+        }, {
           id: '8',
           category: 'quote',
           collection: '',
@@ -118,8 +111,7 @@ class App extends Component {
           author: 'Christopher Alexander, The Timeless Way of Building',
           stars: '0'
 
-        },
-        {
+        }, {
           id: '9',
           category: 'quote',
           collection: 'Amusing',
@@ -130,8 +122,7 @@ class App extends Component {
           author: 'H. P. Lovecraft',
           stars: '3'
 
-        },
-        {
+        }, {
           id: '10',
           category: 'quote',
           collection: 'Amusing',
@@ -142,8 +133,7 @@ class App extends Component {
           author: 'Ed Greenwood, Elminster: Making of a Mage',
           stars: '4'
 
-        },
-        {
+        }, {
           id: '11',
           category: 'quote',
           collection: 'Amusing',
@@ -154,8 +144,7 @@ class App extends Component {
           author: 'Courtney Milan, The Brothers Sinister',
           stars: '0'
 
-        },
-        {
+        }, {
           id: '12',
           category: 'quote',
           collection: 'Amusing',
@@ -166,8 +155,7 @@ class App extends Component {
           author: 'Courtney Milan, character Sebastian from The Duchess War',
           stars: '3'
 
-        },
-        {
+        }, {
           id: '13',
           category: 'quote',
           collection: 'Food for a Hungry Brain',
@@ -178,8 +166,7 @@ class App extends Component {
           author: 'Daphne du Maurier, My Cousin Rachel',
           stars: '5'
 
-        },
-        {
+        }, {
           id: '14',
           category: 'quote',
           collection: 'Word Salad',
@@ -190,8 +177,7 @@ class App extends Component {
           author: 'H. P. Lovecraft, The Call of Cthulhu',
           stars: '1'
 
-        },
-        {
+        }, {
           id: '15',
           category: 'quote',
           collection: 'Food for a Hungry Brain',
@@ -202,45 +188,35 @@ class App extends Component {
           author: 'Frank Herbert, Children of Dune',
           stars: '2'
 
-        },
-
+        }
       ],
       prompts: [
         {
           id: 'prompt1',
           collection: 'Happy',
-          prompt: 'Share a fun moment',
-
-        },
-        {
+          prompt: 'Share a fun moment'
+        }, {
           id: 'prompt2',
           collection: 'Happy',
-          prompt: 'Explain why you are smiling',
-
-        },
-        {
+          prompt: 'Explain why you are smiling'
+        }, {
           id: 'prompt3',
           collection: 'Happenings',
-          prompt: 'Share a time when you were proud of yourself',
-
-        },
-        {
+          prompt: 'Share a time when you were proud of yourself'
+        }, {
           id: 'prompt4',
           collection: 'Favorites',
-          prompt: 'What is a song that made you smile in the past month?',
-
-        },
-        {
+          prompt: 'What is a song that made you smile in the past month?'
+        }, {
           id: 'prompt5',
           collection: 'Favorites',
-          prompt: 'Who is your favorite person? Why?',
-
+          prompt: 'Who is your favorite person? Why?'
         }
       ],
       display: 'box',
       current: 'empty',
       previous: [],
-      back: 0,
+      back: 0
     }
     this.componentWillMount = this.componentWillMount.bind(this);
     this.nextClick = this.nextClick.bind(this);
@@ -252,58 +228,50 @@ class App extends Component {
     this.setStars = this.setStars.bind(this);
     this.newGminder = this.newGminder.bind(this);
   }
-    // To hook up to express backend
+  // To hook up to express backend
 
-    callGminder = async () => {
-      const response = await fetch('/api/gminder');
-      const body = await response.json();
+  callGminder = async () => {
+    const response = await fetch('/api/gminder');
+    const body = await response.json();
 
-      if (response.status !== 200) throw Error(body.message);
+    if (response.status !== 200)
+      throw Error(body.message);
 
-      return body;
-    };
-    callPrompt = async () => {
-      const response = await fetch('/api/prompt');
-      const body = await response.json();
+    return body;
+  };
+  callPrompt = async () => {
+    const response = await fetch('/api/prompt');
+    const body = await response.json();
 
-      if (response.status !== 200) throw Error(body.message);
+    if (response.status !== 200)
+      throw Error(body.message);
 
-      return body;
-    };
+    return body;
+  };
   // end express hook up
-
 
   // Critical function to know--this completes upon first page load before render
   componentWillMount() {
     // Get data from database
-    this.callGminder()
-      .then(res => this.setState({ gminders: res.express }))
-      .catch(err => console.log(err)).then(()=>{
-        this.callPrompt()
-        .then(res => this.setState({ prompts: res.express }))
-        .catch(err => console.log(err)).then(()=>{
+    this.callGminder().then(res => this.setState({gminders: res.express})).catch(err => console.log(err)).then(() => {
+      this.callPrompt().then(res => this.setState({prompts: res.express})).catch(err => console.log(err)).then(() => {
         // Check if there is data in gminders
-        if (this.state.gminders.length !== 0){
+        if (this.state.gminders.length !== 0) {
           let random = this.state.gminders[Math.floor(Math.random() * this.state.gminders.length)];
           let previous = this.state.previous;
           // Add new gminder to previous array
           previous.push(random);
-        this.setState({
-          current: random,
-          previous: previous,
-          back: 0 });
-      }
-        // In case that gminders is empty
-        else if (this.state.gminders.length === 0) {
+          this.setState({current: random, previous: previous, back: 0})// In case that gminders is empty);
+        } else if (this.state.gminders.length === 0) {
           // Do nothing
         } else {
           console.log('Error, gminders not correct object')
         }
       });
     })
-    }
+  }
 
-// These methods update database information
+  // These methods update database information
 
   // Changes the stars for one gminder in this.state.gminders
   setStars(starNum, id) {
@@ -313,79 +281,68 @@ class App extends Component {
         gminder.stars = starNum;
       }
     })
-    this.setState({
-      gminders: gmindersArr
-    })
+    this.setState({gminders: gmindersArr})
   }
 
   newGminder(gminder) {
     let gminders = this.state.gminders;
     gminders.push(gminder);
-    this.setState({
-      gminders: gminders
-    })
+    this.setState({gminders: gminders})
   }
 
-// Button methods
+  // Button methods
 
   // Sets a new random gminder as state and accounts for back/forward ability
   nextClick() {
     // Check that there we haven't gone back yet
     if (this.state.back === 0) {
       // Check that there are gminders in database
-      if (this.state.gminders.length !== 0){
+      if (this.state.gminders.length !== 0) {
         // If we've gone through everything, clear history.
         if (this.state.previous.length === this.state.gminders.length) {
           alert("You've gone through all of your gminders. Reload to reset.")
-        }
+        } else {
+          let a = true;
+          let brake = 20;
+          while (a === true && brake > 0) {
+            let unique = true;
+            let previous = this.state.previous;
+            // Pick random gminder and save it
+            let random = this.state.gminders[Math.floor(Math.random() * this.state.gminders.length)];
 
-        else {
-        let a = true;
-        let brake = 20;
-        while (a === true && brake > 0) {
-          let unique = true;
-          let previous = this.state.previous;
-        // Pick random gminder and save it
-          let random = this.state.gminders[Math.floor(Math.random() * this.state.gminders.length)];
+            // Make sure we haven't already seen this one
 
-        // Make sure we haven't already seen this one
+            for (let i = 0; i < previous.length; i++)
+              if (previous[i] === random) {
+                unique = false;
 
-          for (let i = 0; i < previous.length; i++)
-            if (previous[i] === random) {
-              unique = false;
-
-            } else {
+              }
+            else {
               // Do nothing
             }
 
-          if (unique === true) {
-            let previous = this.state.previous;
-            previous.push(random);
-            this.setState({
-              current: random,
-              previous: previous
-            })
-            a = false;
-          }
-          brake--
-        } // End while loop
-          }
+            if (unique === true) {
+              let previous = this.state.previous;
+              previous.push(random);
+              this.setState({current: random, previous: previous})
+              a = false;
+            }
+            brake--
+          } // End while loop
         }
-        }
-        // If no gminders in database
-        if (this.state.gminders.length === 0) {
-        console.log('There are no gminders');
+      }
+    }
+    // If no gminders in database
+    if (this.state.gminders.length === 0) {
+      console.log('There are no gminders');
 
-        }
+    }
 
-      // If we have gone back and are going forward again
-      if (this.state.back !== 0) {
-        let next = this.state.previous[this.state.previous.length - this.state.back];
-        let back = this.state.back - 1;
-        this.setState({
-          back: back,
-          current: next,
-        })
+    // If we have gone back and are going forward again
+    if (this.state.back !== 0) {
+      let next = this.state.previous[this.state.previous.length - this.state.back];
+      let back = this.state.back - 1;
+      this.setState({back: back, current: next})
     }
   }
 
@@ -396,206 +353,157 @@ class App extends Component {
     }
     // If at beginning of previous array
     if (this.state.previous.length === this.state.back + 1) {
-      alert("Nothing there. Go forward :)");
-    }
-    // If not at beginning and have something to go back to
-    else if (this.state.previous.length > 1) {
+      alert("Nothing there. Go forward :)")// If not at beginning and have something to go back to);
+    } else if (this.state.previous.length > 1) {
       let current = this.state.previous[this.state.previous.length - 2 - this.state.back];
       let back = this.state.back + 1;
-      this.setState({
-        current: current,
-        back: back
-      })
+      this.setState({current: current, back: back})
     }
   }
 
   addClick() {
-    if(this.state.display !== 'add') {
-      this.setState({
-      display: 'add'
-      })
+    if (this.state.display !== 'add') {
+      this.setState({display: 'add'})
     }
   }
 
   moreClick() {
-    if(this.state.display !== 'more') {
-      this.setState({
-      display: 'more'
-      })
+    if (this.state.display !== 'more') {
+      this.setState({display: 'more'})
     }
   }
 
   boxClick() {
-    if(this.state.display !== 'box') {
-      this.setState({
-      display: 'box'
-      })
+    if (this.state.display !== 'box') {
+      this.setState({display: 'box'})
 
     }
   }
 
   noneClick() {
-    if(this.state.display !== 'none') {
-      this.setState({
-      display: 'none'
-      })
+    if (this.state.display !== 'none') {
+      this.setState({display: 'none'})
     }
   }
 
   renderWhat() {
-    if(this.state.display === 'box') {
+    if (this.state.display === 'box') {
       if (this.state.current !== 'empty') {
-      return <Box
-        nextClick={this.nextClick}
-        backClick={this.backClick}
-        addClick={this.addClick}
-        moreClick={this.moreClick}
-        display={this.state.current}
-        starFun={this.setStars}
-        gms={this.state.gminders}
-        />
-      }
-      else if(this.state.gminders.length !== 0) {
-        return <Box
-          nextClick={this.nextClick}
-          backClick={this.backClick}
-          addClick={this.addClick}
-          moreClick={this.moreClick}
-          display={this.state.gminders[0]}
-          starFun={this.setStars}
-          gms={this.state.gminders}
-          />
+        return <Box nextClick={this.nextClick} backClick={this.backClick} addClick={this.addClick} moreClick={this.moreClick} display={this.state.current} starFun={this.setStars} gms={this.state.gminders}/>
+      } else if (this.state.gminders.length !== 0) {
+        return <Box nextClick={this.nextClick} backClick={this.backClick} addClick={this.addClick} moreClick={this.moreClick} display={this.state.gminders[0]} starFun={this.setStars} gms={this.state.gminders}/>
       }
     }
 
-    if(this.state.display === 'add') {
-      return <Add
-              boxClick={this.boxClick}
-              newGminder={this.newGminder}
-              prompts={this.state.prompts}
-            />
+    if (this.state.display === 'add') {
+      return <Add boxClick={this.boxClick} newGminder={this.newGminder} prompts={this.state.prompts}/>
     }
-    if(this.state.display === 'more') {
-      return <More
-              boxClick={this.boxClick}
-              gms={this.state.gminders}
-              newGminder={this.newGminder}
-              prompts={this.state.prompts}
-              noneClick={this.noneClick}
-            />
+    if (this.state.display === 'more') {
+      return <More boxClick={this.boxClick} gms={this.state.gminders} newGminder={this.newGminder} prompts={this.state.prompts} noneClick={this.noneClick}/>
     }
 
-    if(this.state.display === 'none') {
+    if (this.state.display === 'none') {
       return <div></div>
     }
 
     if (this.state.gminders.length === 0) {
       return (<div>
         <div className="box">
-        <p>Looks like you don't have any gminders yet! Click below to add content.
-            </p>
+          <p>Looks like you don't have any gminders yet! Click below to add content.
+          </p>
 
-          </div>
-          <br />
-          <Button
-          name="Get Started"
-          onClick={this.addClick}
-          />
-        </div>)
+        </div>
+        <br/>
+        <Button name="Get Started" onClick={this.addClick}/>
+      </div>)
+    }
   }
-}
 
   render() {
     return (
       <div className="App">
+      <Router>
+        <div>
+          <header>
+            <nav className="navbar navbar-dark navbar-expand-sm">
+              <a className="navbar-brand" href="index.php">goodminder</a>
+              <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"></span>
+              </button>
 
-          <Router>
-            <div>
-              <header>
-                <nav className="navbar navbar-dark navbar-expand-sm">
-                <a className="navbar-brand" href="index.php">goodminder</a>
-                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                  <span className="navbar-toggler-icon"></span>
-                </button>
+              <div className="collapse navbar-collapse" id="navbarNav">
+                <ul className="navbar-nav ml-auto">
 
-                <div className="collapse navbar-collapse" id="navbarNav">
-                  <ul className="navbar-nav ml-auto">
+                  <li className="nav-item active dropdown">
+                    <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <span className="sr-only">(current)</span>
+                    </a>
+                    <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                      <a className="dropdown-item" href="#">User Home</a>
+                      <a className="dropdown-item" href="#">Settings</a>
+                      <hr/>
+                      <a className="dropdown-item" href="#">About</a>
+                      <a className="dropdown-item" href="#">Examples</a>
+                      <hr/>
+                      <a className="dropdown-item" href="#">Log out</a>
+                    </div>
+                  </li>
+                  <li className="nav-item">
+                    <button type="button" className="btn btn-goodminder" data-toggle="popover" title="Goodminder Points" data-content="Earn points by daily log-in and writing entries. These will come in handy later :) ">Points
+                      <span className="badge badge-light">40</span>
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+            <nav className="main-navbar navbar navbar-dark navbar-expand-lg">
+              <div className="container justify-content-center">
+                <ul className="nav navbar-nav flex-fill flex-nowrap"></ul>
+                <ul className="nav navbar-nav flex-fill justify-content-center">
+                  <li className="nav-item">
+                    <a className="navbar-brand" id='intro' href="/intro"><img src={logo} className="App-logo" alt="logo"/>Gminder</a>
+                  </li>
+                </ul>
+                <ul className="nav navbar-nav flex-fill justify-content-end">
 
-              				<li className="nav-item active dropdown">
-              					<a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              						<span className="sr-only">(current)</span>
-              					</a>
-              					<div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              						<a className="dropdown-item" href="#">User Home</a>
-              						<a className="dropdown-item" href="#">Settings</a>
-              						<hr />
-              						<a className="dropdown-item" href="#">About</a>
-              						<a className="dropdown-item" href="#">Examples</a>
-              						<hr />
-              						<a className="dropdown-item" href="#">Log out</a>
-              					</div>
-              				</li>
-              				<li className="nav-item">
-              					<button type="button" className="btn btn-goodminder" data-toggle="popover" title="Goodminder Points" data-content="Earn points by daily log-in and writing entries. These will come in handy later :) ">Points <span className="badge badge-light">40</span></button>
-              				</li>
-
-
-
-
-                  </ul>
-                </div>
-                </nav>
-        <nav className="main-navbar navbar navbar-dark navbar-expand-lg">
-
-          <div className="container justify-content-center">
-        <ul className="nav navbar-nav flex-fill flex-nowrap">
-
-        </ul>
-        <ul className="nav navbar-nav flex-fill justify-content-center">
-            <li className="nav-item"><a className="navbar-brand" id='intro' href="/intro"><img src={logo} className="App-logo" alt="logo" />Gminder</a></li>
-        </ul>
-        <ul className="nav navbar-nav flex-fill justify-content-end">
-
-                <li className="nav-item active dropdown">
-                  <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span className="sr-only">(current)</span>
-                  </a>
-                  <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a className="dropdown-item" href="/">User Home</a>
-                    <a className="dropdown-item" href="/settings">Settings</a>
-                    <hr />
-                    <a className="dropdown-item" href="/about">About</a>
-                    <a className="dropdown-item" href="/example">Examples</a>
-                    <hr />
-                    <a className="dropdown-item" href="/logout">Log out</a>
-                  </div>
-                </li>
-        </ul>
-    </div>
-        </nav>
-        <br />
+                  <li className="nav-item active dropdown">
+                    <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <span className="sr-only">(current)</span>
+                    </a>
+                    <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                      <a className="dropdown-item" href="/">User Home</a>
+                      <a className="dropdown-item" href="/settings">Settings</a>
+                      <hr/>
+                      <a className="dropdown-item" href="/about">About</a>
+                      <a className="dropdown-item" href="/examples">Examples</a>
+                      <hr/>
+                      <a className="dropdown-item" href="/logout">Log out</a>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+            <br/>
           </header>
 
-        <Route exact={true} path="/" component={Home}/>
-        <Route path="/about" component={About}/>
-        <Route path="/intro" component={Intro}/>
-
-      </div>
-    </Router>
-
-
-        <div className="container gminder">
-          {/* Test hook up to express backend --> */}
-          {console.log(this.state.gminders)}
-
-          {this.renderWhat()}
-
+          <Route exact={true} path="/" component={Home}/>
+          <Route path="/about" component={About}/>
+          <Route path="/intro" component={Intro}/>
+          <Route path="/settings" component={Settings}/>
+          <Route path="/example" component={Examples}/>
 
         </div>
+      </Router>
 
+      <div className="container gminder">
+        {/* Test hook up to express backend --> */}
+        {console.log(this.state.gminders)}
+
+        {this.renderWhat()}
 
       </div>
-    );
+
+    </div>);
   }
 }
 

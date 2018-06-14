@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 
-class Examples extends Component {
+class Settings extends Component {
 
   render() {
     return (
         <div>
-          <h2>Examples</h2>
+          <h2>Settings</h2>
           <p>This is my about page</p>
         </div>
 
@@ -13,4 +13,4 @@ class Examples extends Component {
   }
 }
 
-export default Examples;
+export default Settings;
