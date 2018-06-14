@@ -9,6 +9,9 @@ import Settings from '../Scenes/Settings/Settings';
 import Examples from '../Scenes/Examples/Examples';
 //
 
+// Utils
+import Gminder from '../Utils/Gminder'
+//
 import './App.css';
 import logo from './logo.png';
 
@@ -215,6 +218,7 @@ class App extends Component {
       ],
       display: 'box',
       current: 'empty',
+      currentPrompt: 'empty',
       previous: [],
       back: 0
     }
@@ -253,8 +257,8 @@ class App extends Component {
   // Critical function to know--this completes upon first page load before render
   componentWillMount() {
     // Get data from database
-    this.callGminder().then(res => this.setState({gminders: res.express})).catch(err => console.log(err)).then(() => {
-      this.callPrompt().then(res => this.setState({prompts: res.express})).catch(err => console.log(err)).then(() => {
+    Gminder.getGminders().then(res => this.setState({gminders: res.express})).catch(err => console.log(err)).then(() => {
+      Gminder.getPrompts().then(res => this.setState({prompts: res.express})).catch(err => console.log(err)).then(() => {
         // Check if there is data in gminders
         if (this.state.gminders.length !== 0) {
           let random = this.state.gminders[Math.floor(Math.random() * this.state.gminders.length)];
@@ -465,10 +469,6 @@ class App extends Component {
       </Router>
 
       <div className="container gminder">
-        {/* Test hook up to express backend --> */}
-        {console.log(this.state.gminders)}
-        {console.log(this.state.prompts)}
-
         {this.renderWhat()}
 
       </div>

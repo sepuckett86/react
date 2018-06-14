@@ -21,8 +21,6 @@ class Prompt extends React.Component {
     for (let i = 0; i < this.props.prompts.length; i++) {
       if (this.props.prompts[i].id === this.props.gminder.promptID) {
         return this.props.prompts[i].promptText;
-      } else {
-        return 'No prompt matching gminder promptID';
       }
     }
   }
