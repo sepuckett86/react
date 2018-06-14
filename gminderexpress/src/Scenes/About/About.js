@@ -25,9 +25,9 @@ class About extends Component {
             <b>Goodminder: Specifically you.</b>
           </p>
           <p>How many times have you laughed or smiled, only to forget that happy event days later? Goodminder is a similar to a journal, yet it has a focus. Prompts help you think of things worth recording in your life. You can also save quotes or custom text that is meaningful to you. Having a bad day? Log into Goodminder and read a randomly chosen memory -- a
-            <b>reminder</b>
+            <b> reminder </b>
             of the
-            <b>good</b>
+            <b> good </b>
             in your life.</p>
           <br/>
           <hr/>
@@ -46,8 +46,8 @@ class About extends Component {
 
           <p>
             <a href="https://github.com/sepuckett86">sepuckett86</a>
-            and
-            <a href="https://github.com/codegold79">codegold79</a>
+            {' '} and {' '}
+             <a href="https://github.com/codegold79">codegold79</a>
           </p>
           <p>
             We are two friends who met in college and majored in something other than computer science. We both currenty share a passion for learning coding and web development.
@@ -109,7 +109,7 @@ class About extends Component {
           <p>
             <button className="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapseExample">
               Show goodminder fonts
-            </button>
+            </button>{' '}
             <button className="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapseExample">
               Show something else
             </button>
@@ -147,7 +147,7 @@ class About extends Component {
           <h1>Support Us!</h1>
           <p>The more support we get, the more we will work on this site to improve it.</p>
           <p>If you'd like to donate, please contact us
-            <a href="/">here</a>. Thanks a lot!</p>
+            {' '}<a href="/">here</a>. Thanks a lot!</p>
 
           <p>
             <button className="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapseExample">

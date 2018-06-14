@@ -5,27 +5,57 @@ import Quote from './Components/Quote/Quote';
 import Custom from './Components/Custom/Custom';
 import Button from '../../Components/Button/Button';
 
+// connect to backend
+import Gminder from '../../../../Utils/Gminder'
+
 class Random extends Component {
   constructor(props) {
     super(props);
     this.state = {
       gminders: '',
-      prompts: '',
-      gminderOnDisplay: {
+      prompts: [{
+        id: 1,
+        promptText: 'What is a song that made you smile in the past month?',
+        collection: 'Favorites'
+      }],
+      current: {
         id: '1',
+        promptID: 1,
         category: 'prompt',
         collection: 'Favorites',
         date: '3-3-18',
         prompt: 'What is a song that made you smile in the past month?',
-        answer: 'Legend of Kyrandia Emerald Room Song by Frank Klepacki',
+        mainResponse: 'Legend of Kyrandia Emerald Room Song by Frank Klepacki',
         reason: 'After wandering through endless caves in the game with repetitive music, the music changes for only one scene to a complex, long, cool song. It reminds me of all that is great about old school adventure games.',
         author: null,
         stars: '4'
 
-      }
+      },
+      previous: [],
+      back: 0
     }
     this.nextClick = this.nextClick.bind(this);
     this.backClick = this.backClick.bind(this);
+  }
+
+  componentWillMount() {
+    // Get data from database
+    Gminder.getGminders().then(res => this.setState({gminders: res.express})).catch(err => console.log(err)).then(() => {
+      Gminder.getPrompts().then(res => this.setState({prompts: res.express})).catch(err => console.log(err)).then(() => {
+        // Check if there is data in gminders
+        if (this.state.gminders.length !== 0) {
+          let random = this.state.gminders[Math.floor(Math.random() * this.state.gminders.length)];
+          let previous = this.state.previous;
+          // Add new gminder to previous array
+          previous.push(random);
+          this.setState({current: random, previous: previous, back: 0})// In case that gminders is empty);
+        } else if (this.state.gminders.length === 0) {
+          // Do nothing
+        } else {
+          console.log('Error, gminders not correct object')
+        }
+      });
+    })
   }
   // Button methods
 
@@ -99,7 +129,7 @@ class Random extends Component {
   }
 
   chooseDisplay() {
-    let gminder = this.state.gminderOnDisplay;
+    let gminder = this.state.current;
     let prompts = this.state.prompts;
     if(gminder.category === 'prompt') {
       return <Prompt
@@ -131,11 +161,11 @@ class Random extends Component {
             <div className="backfill">
               <div>
               <span className="">
-                <button className="button-span-2" onClick={this.props.backClick}><i className="fas fa-arrow-left"></i> </button>
+                <button className="button-span-2" onClick={this.backClick}><i className="fas fa-arrow-left"></i> </button>
               </span>
               {'\u00A0'}
               <span className="">
-              <button className="button-span-2" onClick={this.props.nextClick}> <i className="fas fa-arrow-right"></i></button>
+              <button className="button-span-2" onClick={this.nextClick}> <i className="fas fa-arrow-right"></i></button>
               </span>
               </div>
 
@@ -192,12 +222,12 @@ class Random extends Component {
           <div className="d-none d-sm-block">
             <div>
             <span>
-              <button className="btn button-span-3" onClick={this.props.backClick}><i className="fas fa-arrow-left"></i> </button>
+              <button className="btn button-span-3" onClick={this.backClick}><i className="fas fa-arrow-left"></i> </button>
             </span>
             {/* Spaces */}
             {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
             <span>
-            <button className="btn button-span-3" onClick={this.props.nextClick}> <i className="fas fa-arrow-right"></i></button>
+            <button className="btn button-span-3" onClick={this.nextClick}> <i className="fas fa-arrow-right"></i></button>
             </span>
             </div>
 

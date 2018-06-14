@@ -1,5 +1,7 @@
 const Gminder = {};
 
+
+
 Gminder.getGminders = () => {
   return fetch('/api/gminder').then(response => {
     if (!response.ok) {
