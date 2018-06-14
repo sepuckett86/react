@@ -61,7 +61,7 @@ class Prompt extends React.Component {
           <div className="media answer media-small">
           <div className="media-body">
           <br />
-          <h4 className="lato">{this.props.gminder.answer}</h4><br />
+          <h4 className="lato">{this.props.gminder.mainResponse}</h4><br />
           </div>
           </div>
           <br />
