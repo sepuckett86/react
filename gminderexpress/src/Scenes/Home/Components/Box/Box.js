@@ -1,18 +1,20 @@
 import React from 'react';
 import './Box.css';
 
-import Prompt from '../Prompt/Prompt';
-import Quote from '../Quote/Quote';
-import Custom from '../Custom/Custom';
-import Button from '../Button/Button';
+import Prompt from './Components/Prompt/Prompt';
+import Quote from './Components/Quote/Quote';
+import Custom from './Components/Custom/Custom';
+import Button from './Components/Button/Button';
 
 class Box extends React.Component {
 
   chooseDisplay() {
     let gminder = this.props.display;
+    let prompts = this.props.prompts;
     if(gminder.category === 'prompt') {
       return <Prompt
         gminder={gminder}
+        prompts={prompts}
         starFun={this.props.starFun}
         />
     }

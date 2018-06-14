@@ -1,7 +1,7 @@
 import React from 'react';
 import './More.css';
-import Button from '../Button/Button';
-import AddPrompt from '../AddPrompt/AddPrompt';
+import Button from '../../Components/Button/Button';
+
 
 
 //Add CSVDownload to import if want to use it
@@ -79,17 +79,6 @@ class More extends React.Component {
   render() {
     return(
       <div>
-        { this.state.display === 'add' ?
-      ( <div className="box">
-        <AddPrompt
-        changeType={this.changeType}
-        newGminder={this.props.newGminder}
-        prompts={this.props.prompts}
-        boxClick={this.props.boxClick}
-        random="no"
-        prompt={this.state.prompt}/>
-      </div>)
-         : null}
 
         { this.state.display === 'gminderTable' ?
       (<div className="box">

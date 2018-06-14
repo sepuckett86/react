@@ -1,14 +1,35 @@
 import React from 'react';
 import './Prompt.css';
-import Stars from '../Stars/Stars';
-
+import Stars from '../../../../Components/Stars/Stars';
 
 class Prompt extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      prompt: ""
+    }
+
+    this.componentWillMount = this.componentWillMount.bind(this);
+  }
+
+  componentWillMount() {
+    let prompt = this.getPromptWithId();
+    this.setState({prompt: prompt})
+  }
+
+  getPromptWithId() {
+    for (let i = 0; i < this.props.prompts.length; i++) {
+      if (this.props.prompts[i].id === this.props.gminder.promptID) {
+        return this.props.prompts[i].promptText;
+      }
+    }
+  }
+
+
   render() {
+    const prompt = this.state.prompt;
     return(
       <div id="prompt">
-
-
         {/* For large screen */}
         <div className="d-none d-sm-block">
             <div className="row">
@@ -25,7 +46,7 @@ class Prompt extends React.Component {
 
             <div className="media prompt">
               <div className="media-body">
-                <p className="lato">{this.props.prompt}</p>
+                <p className="lato">{this.state.prompt}</p>
               </div>
             </div>
             <br />
@@ -53,7 +74,7 @@ class Prompt extends React.Component {
 
           <div className="media prompt media-small">
             <div className="media-body">
-              <p className="lato">{this.props.gminder.prompt}</p>
+              <p className="lato">{prompt}</p>
             </div>
           </div>
           <br />
@@ -61,7 +82,7 @@ class Prompt extends React.Component {
           <div className="media answer media-small">
           <div className="media-body">
           <br />
-          <h4 className="lato">{this.props.gminder.answer}</h4><br />
+          <h4 className="lato">{this.props.gminder.mainResponse}</h4><br />
           </div>
           </div>
           <br />

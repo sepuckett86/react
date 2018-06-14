@@ -1,10 +1,27 @@
-// To run app, delete the import of clientID and orgURL and
-// define clientID and orgURL as the Okta values you are given from Susan
-// const clientID = '';
-// const orgURL = '';
+const Gminder = {};
 
-import Keys from './Keys';
-const clientID = Keys.clientID;
-const orgURL = Keys.orgURL;
 
-// Do not edit below this line
+
+Gminder.getGminders = () => {
+  return fetch('/api/gminder').then(response => {
+    if (!response.ok) {
+      return new Promise(resolve => resolve([]));
+    }
+    return response.json().then(jsonResponse => {
+      return jsonResponse
+    });
+  });
+};
+
+Gminder.getPrompts = () => {
+  return fetch('/api/prompt').then(response => {
+    if (!response.ok) {
+      return new Promise(resolve => resolve([]));
+    }
+    return response.json().then(jsonResponse => {
+      return jsonResponse
+    });
+  });
+};
+
+export default Gminder;

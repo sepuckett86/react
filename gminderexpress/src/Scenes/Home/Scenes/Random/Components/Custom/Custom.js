@@ -1,6 +1,6 @@
 import React from 'react';
 import './Custom.css';
-import Stars from '../Stars/Stars';
+import Stars from '../../../../Components/Stars/Stars';
 
 class Custom extends React.Component {
   render() {

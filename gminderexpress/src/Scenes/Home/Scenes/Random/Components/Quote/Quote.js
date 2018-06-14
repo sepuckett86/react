@@ -1,6 +1,6 @@
 import React from 'react';
 import './Quote.css';
-import Stars from '../Stars/Stars';
+import Stars from '../../../../Components/Stars/Stars';
 
 class Quote extends React.Component {
   render() {
@@ -54,7 +54,7 @@ class Quote extends React.Component {
               <div className="media-body">
               <br />
               <h4 className="lato" id="quote-random_0">
-                "{this.props.gminder.answer}"</h4>
+                "{this.props.gminder.mainResponse}"</h4>
                  <p className="lato" id="quote-who-source-author">--{this.props.gminder.author}</p>
                 <br />
               </div>
