@@ -1,9 +1,9 @@
 import React from 'react';
 import './Add.css';
-import Button from '../Button/Button';
-import AddCustom from '../AddCustom/AddCustom';
-import AddPrompt from '../AddPrompt/AddPrompt';
-import AddQuote from '../AddQuote/AddQuote';
+import Button from '../../Components/Button/Button';
+import AddCustom from './Components/AddCustom/AddCustom';
+import AddPrompt from './Components/AddPrompt/AddPrompt';
+import AddQuote from './Components/AddQuote/AddQuote';
 
 class Add extends React.Component {
   constructor(props) {
