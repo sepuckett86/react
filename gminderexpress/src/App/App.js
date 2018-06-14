@@ -389,9 +389,9 @@ class App extends Component {
   renderWhat() {
     if (this.state.display === 'box') {
       if (this.state.current !== 'empty') {
-        return <Box nextClick={this.nextClick} backClick={this.backClick} addClick={this.addClick} moreClick={this.moreClick} display={this.state.current} starFun={this.setStars} gms={this.state.gminders}/>
+        return <Box nextClick={this.nextClick} backClick={this.backClick} addClick={this.addClick} moreClick={this.moreClick} display={this.state.current} starFun={this.setStars} gms={this.state.gminders} prompts={this.state.prompts}/>
       } else if (this.state.gminders.length !== 0) {
-        return <Box nextClick={this.nextClick} backClick={this.backClick} addClick={this.addClick} moreClick={this.moreClick} display={this.state.gminders[0]} starFun={this.setStars} gms={this.state.gminders}/>
+        return <Box nextClick={this.nextClick} backClick={this.backClick} addClick={this.addClick} moreClick={this.moreClick} display={this.state.gminders[0]} starFun={this.setStars} gms={this.state.gminders} prompts={this.state.prompts}/>
       }
     }
 
@@ -467,6 +467,7 @@ class App extends Component {
       <div className="container gminder">
         {/* Test hook up to express backend --> */}
         {console.log(this.state.gminders)}
+        {console.log(this.state.prompts)}
 
         {this.renderWhat()}
 

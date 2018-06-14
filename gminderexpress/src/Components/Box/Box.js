@@ -10,9 +10,11 @@ class Box extends React.Component {
 
   chooseDisplay() {
     let gminder = this.props.display;
+    let prompts = this.props.prompts;
     if(gminder.category === 'prompt') {
       return <Prompt
         gminder={gminder}
+        prompts={prompts}
         starFun={this.props.starFun}
         />
     }
@@ -44,7 +46,6 @@ class Box extends React.Component {
         <div className="d-sm-none">
           <div className="backfill">
             <div>
-            
             <span className="">
               <button className="button-span-2" onClick={this.props.backClick}><i className="fas fa-arrow-left"></i> </button>
             </span>
