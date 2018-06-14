@@ -2,20 +2,20 @@ import React, {Component} from 'react';
 
 // React Router
 import {BrowserRouter as Router, Route} from "react-router-dom";
-import Home from '../../Scenes/Home/Home';
-import About from '../../Scenes/About/About';
-import Intro from '../../Scenes/Intro/Intro';
-import Settings from '../../Scenes/Settings/Settings';
-import Examples from '../../Scenes/Examples/Examples';
+import Home from '../Scenes/Home/Home';
+import About from '../Scenes/About/About';
+import Intro from '../Scenes/Intro/Intro';
+import Settings from '../Scenes/Settings/Settings';
+import Examples from '../Scenes/Examples/Examples';
 //
 
 import './App.css';
 import logo from './logo.png';
 
-import Box from '../Box/Box';
-import Add from '../Add/Add';
-import More from '../More/More';
-import Button from '../Button/Button';
+import Box from '../Components/Box/Box';
+import Add from '../Components/Add/Add';
+import More from '../Components/More/More';
+import Button from '../Components/Button/Button';
 
 class App extends Component {
   constructor(props) {
