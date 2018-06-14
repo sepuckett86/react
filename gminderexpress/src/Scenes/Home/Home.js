@@ -64,8 +64,15 @@ class Home extends Component {
     if (this.state.display === 'add') {
       return <Add boxClick={this.boxClick} newGminder={this.newGminder} prompts={this.state.prompts}/>
     }
+
     if (this.state.display === 'more') {
       return <More boxClick={this.boxClick} gms={this.state.gminders} newGminder={this.newGminder} prompts={this.state.prompts} noneClick={this.noneClick}/>
+    }
+    if (this.state.display === 'edit') {
+      return <Edit boxClick={this.boxClick} newGminder={this.newGminder} prompts={this.state.prompts}/>
+    }
+    if (this.state.display === 'print') {
+      return <Print boxClick={this.boxClick} newGminder={this.newGminder} prompts={this.state.prompts}/>
     }
 
     if (this.state.display === 'none') {

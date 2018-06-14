@@ -355,7 +355,7 @@ button:focus {outline:0;}
 
 
 /* Parallax */
-.bgimg-1, .bgimg-2, .bgimg-3 {
+.parallax{
     position: relative;
     opacity: 1;
     background-attachment: fixed;
@@ -368,11 +368,6 @@ button:focus {outline:0;}
 .bgimg-1 {
     background-image: url(http://res.cloudinary.com/sepuckett86/image/upload/v1513095416/IMG_7240_q9dadh.jpg);
 		min-height: 300px;
-}
-
-.bgimg-2 {
-    background-image: url(http://res.cloudinary.com/sepuckett86/image/upload/v1513176676/IMG_7166_hlep5j.jpg);
-    min-height: 300px;
 }
 
 .bgimg-3 {

@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
+import './About.css';
 
 class About extends Component {
 
   render() {
     return (<main>
-      <div className="bgimg-2">
+      <div className="bgimg-2 parallax">
         <div className="caption">
           <span className="border comfortaa">About</span>
         </div>
@@ -146,7 +147,7 @@ class About extends Component {
           <h1>Support Us!</h1>
           <p>The more support we get, the more we will work on this site to improve it.</p>
           <p>If you'd like to donate, please contact us
-            <a href="#">here</a>. Thanks a lot!</p>
+            <a href="/">here</a>. Thanks a lot!</p>
 
           <p>
             <button className="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapseExample">
