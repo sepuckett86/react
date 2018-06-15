@@ -7,6 +7,7 @@ import About from '../Scenes/About/About';
 import Intro from '../Scenes/Intro/Intro';
 import Settings from '../Scenes/Settings/Settings';
 import Examples from '../Scenes/Examples/Examples';
+import Faq from '../Scenes/Faq/Faq'
 //
 
 import './App.css';
@@ -214,12 +215,7 @@ class App extends Component {
       previous: [],
       back: 0
     }
-
   }
-
-
-
-
 
 
   render() {
@@ -229,7 +225,7 @@ class App extends Component {
         <div>
           <header className="App-header">
             <nav className="navbar navbar-dark navbar-expand-sm justify-content-between">
-              <a className="navbar-brand" id='intro' href="/intro"><img src={logo} className="App-logo" alt="logo"/>Gminder</a>
+              <a className="navbar-brand" id='intro' href="/intro"><img src={logo} className="App-logo" alt="logo"/>Goodminder</a>
               <div className="navbar-expand" id="navbarNav">
                 <ul className="navbar-nav ml-auto">
                   <li className="nav-item dropdown">
@@ -238,12 +234,13 @@ class App extends Component {
                         UserID
                     </button>
                     <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                      <a className="dropdown-item" href="/">User Home</a>
+                      <a className="dropdown-item" href="/"><b>Home</b></a>
                       <a className="dropdown-item" href="/settings">Settings</a>
-                      <hr/>
+                      <div className="dropdown-divider"></div>
                       <a className="dropdown-item" href="/about">About</a>
                       <a className="dropdown-item" href="/examples">Examples</a>
-                      <hr/>
+                      <a className="dropdown-item" href="/faq">FAQ</a>
+                      <div className="dropdown-divider"></div>
                       <a className="dropdown-item" href="/logout">Log out</a>
                     </div>
                   </li>
@@ -263,6 +260,7 @@ class App extends Component {
           <Route path="/intro" component={Intro}/>
           <Route path="/settings" component={Settings}/>
           <Route path="/examples" component={Examples}/>
+          <Route path="/faq" component={Faq}/>
         </div>
       </Router>
 

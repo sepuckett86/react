@@ -13,23 +13,8 @@ class Random extends Component {
     super(props);
     this.state = {
       gminders: '',
-      prompts: [{
-        id: 1,
-        promptText: 'What is a song that made you smile in the past month?',
-        collection: 'Favorites'
-      }],
+      prompts: [],
       current: {
-        id: '1',
-        promptID: 1,
-        category: 'prompt',
-        collection: 'Favorites',
-        date: '3-3-18',
-        prompt: 'What is a song that made you smile in the past month?',
-        mainResponse: 'Legend of Kyrandia Emerald Room Song by Frank Klepacki',
-        reason: 'After wandering through endless caves in the game with repetitive music, the music changes for only one scene to a complex, long, cool song. It reminds me of all that is great about old school adventure games.',
-        author: null,
-        stars: '4'
-
       },
       previous: [],
       back: 0
