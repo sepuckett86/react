@@ -49,7 +49,7 @@ class Add extends React.Component {
       return(<div>
         <ul className="nav nav-pills nav-justified" id="myTab" role="tablist">
         <li className="nav-item">
-          <a className="nav-link btn-add-active" id="prompt-tab" onClick={this.handleClick} href="#prompt" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">Prompt</a>
+          <a className="nav-link btn-add-active" id="prompt-tab" onClick={this.handleClick} data-toggle="modal" href="#prompt">Prompt</a>
         </li>
         <li className="nav-item">
           <a className="nav-link btn-add" id="quote-tab" onClick={this.handleClick} href="#quote" data-toggle="tab" role="tab" aria-controls="quote" aria-selected="false">Quote</a>
@@ -60,9 +60,11 @@ class Add extends React.Component {
       </ul>
         <AddPrompt
               changeType={this.changeType}
+              changeDisplay={this.props.changeDisplay}
               prompts={this.props.prompts}
               randomClick={this.props.randomClick}
               setPrompt={this.props.setPrompt}
+              setCollection={this.props.setCollection}
               random="yes" />
             </div>)
     }
@@ -73,7 +75,7 @@ class Add extends React.Component {
           <a className="nav-link btn-add" id="prompt-tab" onClick={this.handleClick} href="#prompt" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">Prompt</a>
         </li>
         <li className="nav-item">
-          <a className="nav-link btn-add-active" id="quote-tab" onClick={this.handleClick} href="#quote" data-toggle="tab" role="tab" aria-controls="quote" aria-selected="false">Quote</a>
+          <a className="nav-link btn-add-active" id="quote-tab" onClick={this.handleClick} href="#quote" data-toggle="modal" role="tab" aria-controls="quote" aria-selected="false">Quote</a>
         </li>
         <li className="nav-item">
           <a className="nav-link btn-add" id="custom-tab" onClick={this.handleClick} href="#custom" data-toggle="tab" role="tab" aria-controls="custom" aria-selected="false">Custom</a>
@@ -94,7 +96,7 @@ class Add extends React.Component {
           <a className="nav-link btn-add" id="quote-tab" onClick={this.handleClick} href="#quote" data-toggle="tab" role="tab" aria-controls="quote" aria-selected="false">Quote</a>
         </li>
         <li className="nav-item">
-          <a className="nav-link btn-add-active" id="custom-tab" onClick={this.handleClick} href="#custom" data-toggle="tab" role="tab" aria-controls="custom" aria-selected="false">Custom</a>
+          <a className="nav-link btn-add-active" id="custom-tab" onClick={this.handleClick} href="#custom" data-toggle="modal" role="tab" aria-controls="custom" aria-selected="false">Custom</a>
         </li>
       </ul>
           <AddCustom

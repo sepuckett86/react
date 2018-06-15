@@ -65,7 +65,8 @@ class AddPrompt extends React.Component {
       this.props.boxClick();
     }
     if (event.target.id === "collection") {
-      this.props.setPrompt(this.state.prompt)
+      this.props.setCollection(this.state.prompt.collection);
+      this.props.changeDisplay('manager');
     }
   }
 

@@ -261,8 +261,9 @@ class Random extends Component {
             </div>
             <div className="col col-sm-6">
               <Button
+                id='more'
                 name="More"
-                onClick={this.props.moreClick}
+                onClick={this.props.changeDisplay}
                 />
             </div>
           </div>

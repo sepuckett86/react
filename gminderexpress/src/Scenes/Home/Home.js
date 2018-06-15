@@ -19,18 +19,15 @@ class Home extends Component {
       currentGminder: {},
       currentPrompt: {},
       gminders: [],
-      prompts: []
+      prompts: [],
+      collection: null,
     }
 
-
-    this.addClick = this.addClick.bind(this);
-    this.moreClick = this.moreClick.bind(this);
-    this.noneClick = this.noneClick.bind(this);
-    this.randomClick = this.randomClick.bind(this);
     this.setGminder = this.setGminder.bind(this);
     this.setPrompt = this.setPrompt.bind(this);
     this.setGminders = this.setGminders.bind(this);
     this.setPrompts = this.setPrompts.bind(this);
+    this.setCollection = this.setCollection.bind(this);
     this.changeDisplay = this.changeDisplay.bind(this);
   }
 
@@ -40,30 +37,25 @@ class Home extends Component {
         this.setState({display: 'add'})
       }
     }
-  }
-
-  addClick() {
-    if (this.state.display !== 'add') {
-      this.setState({display: 'add'})
+    if (display === 'more') {
+      if (this.state.display !== 'more') {
+        this.setState({display: 'more'})
+      }
     }
-  }
-
-  moreClick() {
-    if (this.state.display !== 'more') {
-      this.setState({display: 'more'})
+    if (display === 'random') {
+      if (this.state.display !== 'random') {
+        this.setState({display: 'random'})
+      }
     }
-  }
-
-  randomClick() {
-    if (this.state.display !== 'random') {
-      this.setState({display: 'random'})
-
+    if (display === 'none') {
+      if (this.state.display !== 'none') {
+        this.setState({display: 'none'})
+      }
     }
-  }
-
-  noneClick() {
-    if (this.state.display !== 'none') {
-      this.setState({display: 'none'})
+    if (display === 'manager') {
+      if (this.state.display !== 'manager') {
+        this.setState({display: 'manager'})
+      }
     }
   }
 
@@ -86,16 +78,16 @@ class Home extends Component {
   setPrompts(prompts) {
     this.setState({prompts: prompts})
   }
+
+  setCollection(collection) {
+    this.setState({collection: collection})
+  }
   //
 
   renderWhat() {
     if (this.state.display === 'random') {
       if (this.state.current !== 'empty') {
         return <Random
-          nextClick={this.nextClick}
-          backClick={this.backClick}
-          addClick={this.addClick}
-          moreClick={this.moreClick}
           changeDisplay={this.changeDisplay}
           gminder={this.state.currentGminder}
           prompt={this.state.currentPrompt}
@@ -111,28 +103,37 @@ class Home extends Component {
 
     if (this.state.display === 'add') {
       return <Add
+        changeDisplay={this.changeDisplay}
         randomClick={this.randomClick}
         prompt={this.state.currentPrompt}
         setPrompt={this.setPrompt}
+        setCollection={this.setCollection}
       />
     }
 
     if (this.state.display === 'more') {
       return <More
-        randomClick={this.randomClick}
+        changeDisplay={this.changeDisplay}
         noneClick={this.noneClick}/>
     }
     if (this.state.display === 'edit') {
       return <Edit
-        randomClick={this.randomClick}
+        changeDisplay={this.changeDisplay}
         gminder={this.state.currentGminder}
         prompt={this.state.currentPrompt}/>
     }
     if (this.state.display === 'print') {
       return <Print
-        randomClick={this.randomClick}
+        changeDisplay={this.changeDisplay}
         gminder={this.state.currentGminder}
         prompt={this.state.currentPrompt}/>
+    }
+    if (this.state.display === 'manager') {
+      return <Manager
+        changeDisplay={this.changeDisplay}
+        gminder={this.state.currentGminder}
+        prompt={this.state.currentPrompt}
+        collection={this.state.collection}/>
     }
 
     if (this.state.display === 'none') {

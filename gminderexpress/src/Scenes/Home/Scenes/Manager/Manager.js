@@ -3,6 +3,10 @@ import React from 'react';
 import Button from '../../Components/Button/Button';
 import Gminders from './Components/Gminders/Gminders';
 import Prompts from './Components/Prompts/Prompts';
+import ButtonModal from '../../Components/ButtonModal/ButtonModal'
+
+// Utils
+import Gminder from '../../../../Utils/Gminder'
 
 //Add CSVDownload to import if want to use it
 import {CSVLink} from 'react-csv';
@@ -14,6 +18,7 @@ class Manager extends React.Component {
     super(props);
     this.state = {
       display: 'none',
+      prompts: [],
       csvData: [],
     };
 
@@ -22,6 +27,22 @@ class Manager extends React.Component {
 
   }
 
+  componentWillMount() {
+    if (this.props.collection) {
+      // Get data from database
+        Gminder.getPrompts().then(res => this.setState({prompts: res.express})).catch(err =>
+          console.log(err)).then(() => {
+          // Check if there is data in prompts
+          if (this.state.prompts.length !== 0) {
+            let random = this.state.prompts[Math.floor(Math.random() * this.state.prompts.length)];
+            this.setState({ prompt: random });
+          } else if (this.state.random === "no") {
+            this.setState({ prompt: this.props.prompt})
+          }
+        });
+      this.setState({display: 'promptTable'})
+    }
+  }
   handleClick(event) {
   if(event.target.getAttribute('value') === 'respond') {
     let prompt = event.target.getAttribute('prompt');
@@ -53,7 +74,7 @@ class Manager extends React.Component {
 
   makeCSVArrayPrompts() {
     let myArray = [['ID', 'Collection', 'Prompt']];
-    this.props.prompts.forEach(prompt => {
+    this.state.prompts.forEach(prompt => {
       let innerArray = [prompt.id, prompt.collection, prompt.prompt];
       myArray.push(innerArray);
     })
@@ -80,6 +101,7 @@ class Manager extends React.Component {
   render() {
     return(
       <div>
+        <br />
 
         { this.state.display === 'gminderTable' ?
       (<div className="box">
@@ -124,7 +146,7 @@ class Manager extends React.Component {
     </div>)
         : null }
 
-        { this.state.display === 'promptTable' ?
+        { this.state.display === 'promptTable' && !this.props.collection ?
         (<div className="box">
         <div id="prompts">
           <table className="table table-striped">
@@ -139,12 +161,12 @@ class Manager extends React.Component {
             </thead>
             <tbody>
           {
-            this.props.prompts.map((prompt, i) => {
+            this.state.prompts.map((prompt, i) => {
               return (
                   <tr key={this.generateKey(i)}>
                     <th scope="row">{prompt.id}</th>
                     <td>{prompt.collection}</td>
-                    <td>{prompt.prompt}</td>
+                    <td>{prompt.promptText}</td>
                     <td>
                     <button onClick={this.handleClick} prompt={prompt} value="respond">Respond</button>
                     </td>
@@ -158,7 +180,47 @@ class Manager extends React.Component {
         </div>
         </div>)
         : null }
+        { this.state.display === 'promptTable' && this.props.collection ?
+        (<div className="box">
+        <div id="prompts">
+          <table className="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Collection</th>
+                <th scope="col">Prompt</th>
+                <th scope="col">Respond</th>
+                <th scope="col">Delete</th>
 
+              </tr>
+            </thead>
+            <tbody>
+          {
+            this.state.prompts.map((prompt, i) => {
+              if(prompt.collection === this.props.collection) {
+                return (
+                    <tr key={this.generateKey(i)}>
+                      <th scope="row">{prompt.id}</th>
+                      <td>{prompt.collection}</td>
+                      <td>{prompt.promptText}</td>
+                      <td>
+                      <button onClick={this.handleClick} prompt={prompt} value="respond">Respond</button>
+                      </td>
+                      <td>
+                      <ButtonModal id='delete' name="Delete"/>
+                      </td>
+                    </tr>
+                )
+              }
+
+            })
+          }
+        </tbody>
+        </table>
+        <CSVLink data={this.makeCSVArrayPrompts()} >Download CSV of all data</CSVLink>
+        </div>
+        </div>)
+        : null }
 
         <br />
 
