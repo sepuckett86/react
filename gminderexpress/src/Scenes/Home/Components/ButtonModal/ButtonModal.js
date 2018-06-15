@@ -13,27 +13,16 @@ class ButtonModal extends React.Component {
   }
 
   changeDatabase() {
-    this.props.util
+    this.props.changeDatabase
   }
 
   render() {
     return (<div>
-      {/* Small Screen */}
-      <div className="d-sm-none">
-        {/* Button trigger modal */}
-        <button type="button" className="btn button-span" data-toggle="modal" data-target="#exampleModal">
-          {this.props.name}
-        </button>
 
-      </div>
-      {/* Large Screen */}
-      <div className="d-none d-sm-block">
         {/* Button trigger modal */}
         <button type="button" className="btn btn-modal" data-toggle="modal" data-target="#exampleModal">
           {this.props.name}
         </button>
-
-      </div>
 
       {/* Modal */}
       <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

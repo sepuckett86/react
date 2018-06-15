@@ -189,14 +189,14 @@ class Random extends Component {
               <Button
                 id='add'
                 name="Add"
-                onClick={this.props.handleClick}
+                onClick={this.props.changeDisplay}
                 />
             </div>
             <div className="col col-12 col-sm-4">
               <Button
                 id='more'
                 name="More"
-                onClick={this.props.moreClick}
+                onClick={this.props.changeDisplay}
                 />
             </div>
           </div>
@@ -208,14 +208,16 @@ class Random extends Component {
             <div className="row">
             <div className="col col-12 col-sm-4">
               <Button
+                id='add'
                 name="Add"
-                onClick={this.props.addClick}
+                onClick={this.props.changeDisplay}
                 />
             </div>
             <div className="col col-12 col-sm-4">
               <Button
+                id='more'
                 name="More"
-                onClick={this.props.moreClick}
+                onClick={this.props.changeDisplay}
                 />
             </div>
           </div>

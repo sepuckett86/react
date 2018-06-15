@@ -1,9 +1,12 @@
+// Note: modal cannot be inside responsive design display or it will not work for all screen sizes
+
 import React from 'react';
 import './Add.css';
 import Button from '../../Components/Button/Button';
 import AddCustom from './Components/AddCustom/AddCustom';
 import AddPrompt from './Components/AddPrompt/AddPrompt';
 import AddQuote from './Components/AddQuote/AddQuote';
+import ButtonModal from '../../Components/ButtonModal/ButtonModal'
 
 class Add extends React.Component {
   constructor(props) {
@@ -128,7 +131,7 @@ class Add extends React.Component {
       <div>
 
         {/* For small screen (phone) */}
-        <div className="d-sm-none">
+        <div className="d-sm-none d-block">
 
     	         <p>Choose an entry type</p>
                <div className="alignL">
@@ -140,7 +143,7 @@ class Add extends React.Component {
            <div className="col">
         <Button
           name="Back"
-          onClick={this.props.randomClick}
+          onClick={this.props.changeDisplay}
           />
         <br />
       </div>
@@ -153,6 +156,7 @@ class Add extends React.Component {
           {/* For large screen */}
         <div className="d-none d-sm-block">
           <br />
+                  <ButtonModal id='look' name='Hi'/>
           <div className="box">
     	         <p>Choose an entry type</p>
                {this.chooseType()}
@@ -162,8 +166,9 @@ class Add extends React.Component {
          <div className="row">
            <div className="col">
         <Button
+          id='random'
           name="Back"
-          onClick={this.props.randomClick}
+          onClick={this.props.changeDisplay}
           />
         <br />
       </div>
@@ -171,6 +176,8 @@ class Add extends React.Component {
     </div>
     <br />
         </div>
+
+
 
 
 

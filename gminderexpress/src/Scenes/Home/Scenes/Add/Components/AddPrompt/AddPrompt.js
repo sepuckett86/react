@@ -1,4 +1,5 @@
 import React from 'react';
+import ButtonModal from '../../../../Components/ButtonModal/ButtonModal'
 
 // Utils
 import Gminder from '../../../../../../Utils/Gminder'
@@ -19,7 +20,7 @@ class AddPrompt extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.changePrompt = this.changePrompt.bind(this);
     this.changePromptSame = this.changePromptSame.bind(this);
-    this.newGm = this.newGm.bind(this);
+    this.newGminder = this.newGminder.bind(this);
   }
 
   componentWillMount() {
@@ -62,7 +63,6 @@ class AddPrompt extends React.Component {
     }
     if (event.target.id === "temp-submit") {
       this.newGm();
-      this.props.boxClick();
     }
     if (event.target.id === "collection") {
       this.props.setCollection(this.state.prompt.collection);
@@ -93,22 +93,26 @@ class AddPrompt extends React.Component {
     return `${ new Date().getTime() }`;
   }
 
-
-  newGm() {
+  newGminder() {
     const date = this.getDate();
-    const id = this.generateId();
-    const newG = {
-      id: id,
+    const newGminder = {
+      userID: 1,
       category: 'prompt',
-      collection: 'Favorites',
-      date: date,
-      prompt: this.state.prompt.prompt,
-      answer: this.state.inputAnswer,
-      reason: this.state.inputReason,
+      mainResponse: this.state.inputAnswer,
       author: null,
-      stars: '0'
+      promptID: this.state.prompt.id,
+      reason: this.state.inputReason,
+      source: null,
+      who: null,
+      rating: 0,
+      recordedDate: date,
+      eventDate: null,
+      updatedDate: date,
+      collection: this.state.prompt.collection,
+      publicFlag: 0,
     }
-    this.props.newGminder(newG);
+    // access Database
+    Gminder.addGminder(newGminder)
   }
 
   render() {
@@ -142,7 +146,7 @@ class AddPrompt extends React.Component {
               </div>
 
           </form>
-          <button className="btn btn-add" id="temp-submit" onClick={this.handleClick}>Save</button>
+            <ButtonModal id='delete' name="Delete"/>
 
       </div>
     )

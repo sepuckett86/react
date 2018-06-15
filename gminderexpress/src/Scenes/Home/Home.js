@@ -148,7 +148,7 @@ class Home extends Component {
 
         </div>
         <br/>
-        <Button name="Get Started" onClick={this.addClick}/>
+        <Button id='random' name="Get Started" onClick={this.changeDisplay}/>
       </div>)
     }
   }
