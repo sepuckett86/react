@@ -48,7 +48,12 @@ class Random extends Component {
           let previous = this.state.previous;
           // Add new gminder to previous array
           previous.push(random);
-          this.setState({current: random, previous: previous, back: 0})// In case that gminders is empty);
+          this.setState({current: random, previous: previous, back: 0})
+          this.props.setGminder(random);
+          if(random.promptID) {
+            this.props.setPrompt(random.promptID);
+          }
+          // In case that gminders is empty);
         } else if (this.state.gminders.length === 0) {
           // Do nothing
         } else {
@@ -182,12 +187,14 @@ class Random extends Component {
 
             <div className="col col-12 col-sm-4">
               <Button
+                id='add'
                 name="Add"
-                onClick={this.props.addClick}
+                onClick={this.props.handleClick}
                 />
             </div>
             <div className="col col-12 col-sm-4">
               <Button
+                id='more'
                 name="More"
                 onClick={this.props.moreClick}
                 />
@@ -247,8 +254,9 @@ class Random extends Component {
             <div className="row">
             <div className="col col-sm-6">
               <Button
+                id='add'
                 name="Add"
-                onClick={this.props.addClick}
+                onClick={this.props.changeDisplay}
                 />
             </div>
             <div className="col col-sm-6">

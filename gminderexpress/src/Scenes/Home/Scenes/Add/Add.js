@@ -60,9 +60,9 @@ class Add extends React.Component {
       </ul>
         <AddPrompt
               changeType={this.changeType}
-              newGminder={this.props.newGminder}
               prompts={this.props.prompts}
-              boxClick={this.props.boxClick}
+              randomClick={this.props.randomClick}
+              setPrompt={this.props.setPrompt}
               random="yes" />
             </div>)
     }
@@ -81,8 +81,7 @@ class Add extends React.Component {
       </ul>
       <AddQuote
               changeType={this.changeType}
-              newGminder={this.props.newGminder}
-              boxClick={this.props.boxClick} />
+              randomClick={this.props.randomClick} />
             </div>)
     }
     if(this.state.type === 'custom') {
@@ -100,8 +99,7 @@ class Add extends React.Component {
       </ul>
           <AddCustom
               changeType={this.changeType}
-              newGminder={this.props.newGminder}
-              boxClick={this.props.boxClick}   />
+              randomClick={this.props.randomClick}   />
         </div>)
     }
   }
@@ -140,7 +138,7 @@ class Add extends React.Component {
            <div className="col">
         <Button
           name="Back"
-          onClick={this.props.boxClick}
+          onClick={this.props.randomClick}
           />
         <br />
       </div>
@@ -152,6 +150,7 @@ class Add extends React.Component {
 
           {/* For large screen */}
         <div className="d-none d-sm-block">
+          <br />
           <div className="box">
     	         <p>Choose an entry type</p>
                {this.chooseType()}
@@ -162,7 +161,7 @@ class Add extends React.Component {
            <div className="col">
         <Button
           name="Back"
-          onClick={this.props.boxClick}
+          onClick={this.props.randomClick}
           />
         <br />
       </div>

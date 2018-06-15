@@ -1,5 +1,8 @@
 import React from 'react';
 
+// Utils
+import Gminder from '../../../../../../Utils/Gminder'
+
 class AddPrompt extends React.Component {
   constructor(props) {
     super(props);
@@ -7,7 +10,9 @@ class AddPrompt extends React.Component {
     this.state = {
       prompt: 'empty',
       inputAnswer: '',
-      inputReason: ''
+      inputReason: '',
+      prompts: [],
+      random: 'no'
     }
 
     this.handleClick = this.handleClick.bind(this);
@@ -18,23 +23,28 @@ class AddPrompt extends React.Component {
   }
 
   componentWillMount() {
-    if (this.props.random === "yes") {
-    let random = this.props.prompts[Math.floor(Math.random() * this.props.prompts.length)];
-    this.setState({ prompt: random });
-  } else if (this.props.random === "no") {
-    this.setState({ prompt: this.props.prompt})
-  }
+    // Get data from database
+      Gminder.getPrompts().then(res => this.setState({prompts: res.express})).catch(err =>
+        console.log(err)).then(() => {
+        // Check if there is data in prompts
+        if (this.state.prompts.length !== 0) {
+          let random = this.state.prompts[Math.floor(Math.random() * this.state.prompts.length)];
+          this.setState({ prompt: random });
+        } else if (this.state.random === "no") {
+          this.setState({ prompt: this.props.prompt})
+        }
+      });
   }
 
 
   changePrompt() {
-    let random = this.props.prompts[Math.floor(Math.random() * this.props.prompts.length)];
+    let random = this.state.prompts[Math.floor(Math.random() * this.state.prompts.length)];
     this.setState({ prompt: random });
   }
 
   changePromptSame() {
     let collectionArray = [];
-    this.props.prompts.forEach(prompt => {
+    this.state.prompts.forEach(prompt => {
       if (prompt.collection === this.state.prompt.collection) {
         collectionArray.push(prompt);
       }
@@ -53,6 +63,9 @@ class AddPrompt extends React.Component {
     if (event.target.id === "temp-submit") {
       this.newGm();
       this.props.boxClick();
+    }
+    if (event.target.id === "collection") {
+      this.props.setPrompt(this.state.prompt)
     }
   }
 
@@ -103,12 +116,12 @@ class AddPrompt extends React.Component {
           <br />
           <div className="media answer media-small">
             <div className="media-body">
-              <h4 className="lato">{this.state.prompt.prompt}</h4>
+              <h4 className="lato">{this.state.prompt.promptText}</h4>
             </div>
 
             </div>
             <br />
-            <p className="paragraph-prompt" id={this.state.prompt.id}>From Prompt Collection: {this.state.prompt.collection}</p>
+            <p className="paragraph-prompt" id={this.state.prompt.id}>From Prompt Collection: </p><button id="collection" className="btn btn-add" onClick={this.handleClick}>{this.state.prompt.collection}</button>
             <p>Next prompt from:
              <button id="next-prompt-same" className="btn btn-add" onClick={this.handleClick}>Same collection</button>
              <button id="next-prompt-all" className="btn btn-add" onClick={this.handleClick}>All collections</button>
