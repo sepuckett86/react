@@ -15,8 +15,11 @@ gminderRouter.get('/', (req, res, next) => {
 })
 
 gminderRouter.post('/', (req, res, next) => {
+  if (!req.body.gminder) {
+    res.status(400).send();
+  };
   const sql = 'INSERT INTO Gminder (userID, category, mainResponse, author, promptID, reason, source, who, rating, recordedDate, eventDate, updatedDate, collection, publicFlag) ' +
-                          'VALUES ($userID, $category, $mainResponse, $author, $promptID, $reason, $source, $rating, $recordedDate, $eventDate, $updatedDate, $collection, $publicFlag)';
+                          'VALUES ($userID, $category, $mainResponse, $author, $promptID, $reason, $source, $who, $rating, $recordedDate, $eventDate, $updatedDate, $collection, $publicFlag)';
   db.run(sql, {
     $userID: req.body.gminder.userID,
     $category: req.body.gminder.category,
@@ -34,14 +37,15 @@ gminderRouter.post('/', (req, res, next) => {
     $publicFlag: req.body.gminder.publicFlag,
   }, function(error) {
     if (error) {
-      res.status(400).send();
+      console.log(error)
+      res.status(404).send();
     } else {
       const sql2 = 'SELECT * FROM Gminder WHERE Gminder.id = $id';
       db.get(sql2, {
         $id: this.lastID
       }, function(error, row) {
         if (error || !row) {
-          res.status(400).send();
+          res.status(404).send();
         } else {
           res.status(201).send({gminder: row});
         }
@@ -50,26 +54,5 @@ gminderRouter.post('/', (req, res, next) => {
   })
 })
 
-menusRouter.post('/', (req, res, next) => {
-  const sql = 'INSERT INTO Menu (title) VALUES ($title)';
-  db.run(sql, {
-    $title: req.body.menu.title
-  }, function(error) {
-    if (error) {
-      res.status(400).send();
-    } else {
-      const sql2 = 'SELECT * FROM Menu WHERE Menu.id = $id';
-      db.get(sql2, {
-        $id: this.lastID
-      }, function(error, row) {
-        if (error || !row) {
-          res.status(400).send();
-        } else {
-          res.status(201).send({menu: row});
-        }
-      })
-    }
-  })
-})
 
 module.exports = gminderRouter;

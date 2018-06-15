@@ -142,7 +142,7 @@ class Random extends Component {
   }
   render() {
     return (
-        <div>
+        <div className="container">
           {/*
             Responsive Design
             For small screen (phone)

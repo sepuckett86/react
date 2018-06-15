@@ -1,5 +1,4 @@
 import React from 'react';
-import ButtonModal from '../../../../Components/ButtonModal/ButtonModal'
 
 // Utils
 import Gminder from '../../../../../../Utils/Gminder'
@@ -68,6 +67,10 @@ class AddPrompt extends React.Component {
       this.props.setCollection(this.state.prompt.collection);
       this.props.changeDisplay('manager');
     }
+    if (event.target.id === "create-goodminder") {
+      const gminder = this.newGminder();
+      this.props.setGminderForDatabase(gminder);
+    }
   }
 
   handleChange(event) {
@@ -111,8 +114,8 @@ class AddPrompt extends React.Component {
       collection: this.state.prompt.collection,
       publicFlag: 0,
     }
-    // access Database
-    Gminder.addGminder(newGminder)
+    console.log(newGminder)
+    return newGminder;
   }
 
   render() {
@@ -126,9 +129,10 @@ class AddPrompt extends React.Component {
 
             </div>
             <br />
-            <p className="paragraph-prompt" id={this.state.prompt.id}>From Prompt Collection: </p><button id="collection" className="btn btn-add" onClick={this.handleClick}>{this.state.prompt.collection}</button>
-            <p>Next prompt from:
+            <p className="paragraph-prompt" id={this.state.prompt.id}>From Prompt Collection: {' '}<button id="collection" className="btn btn-add" onClick={this.handleClick}>{this.state.prompt.collection}</button></p>
+            <p>Next prompt from: {' '}
              <button id="next-prompt-same" className="btn btn-add" onClick={this.handleClick}>Same collection</button>
+            {' '}
              <button id="next-prompt-all" className="btn btn-add" onClick={this.handleClick}>All collections</button>
             </p>
               <br />
@@ -142,11 +146,13 @@ class AddPrompt extends React.Component {
                   <label>Reason</label>
                   <textarea className="form-control" value={this.state.inputReason} onChange={this.handleChange} id="prompt-reason" rows="3"></textarea>
                   <br />
-
               </div>
 
           </form>
-            <ButtonModal id='delete' name="Delete"/>
+          {/* Button trigger modal */}
+          <button id="create-goodminder" type="button" className="btn btn-modal" data-toggle="modal" onClick={this.handleClick} data-target="#exampleModal">
+            Create Goodminder
+          </button>
 
       </div>
     )

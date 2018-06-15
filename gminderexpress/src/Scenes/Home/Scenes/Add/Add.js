@@ -6,16 +6,21 @@ import Button from '../../Components/Button/Button';
 import AddCustom from './Components/AddCustom/AddCustom';
 import AddPrompt from './Components/AddPrompt/AddPrompt';
 import AddQuote from './Components/AddQuote/AddQuote';
-import ButtonModal from '../../Components/ButtonModal/ButtonModal'
+
+// Utils
+import Gminder from '../../../../Utils/Gminder'
 
 class Add extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      type: 'empty'
+      type: 'empty',
+      gminderForDatabase: {}
     }
 
     this.changeType = this.changeType.bind(this);
+    this.setGminderforDatabase = this.setGminderforDatabase.bind(this);
+    this.changeDatabase = this.changeDatabase.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
 
@@ -32,6 +37,15 @@ class Add extends React.Component {
       this.changeType('custom');
     }
   }
+
+  changeDatabase() {
+    Gminder.addGminder(this.state.gminderForDatabase);
+  }
+
+  setGminderforDatabase(gminder) {
+    this.setState({gminderForDatabase: gminder})
+  }
+
   chooseType() {
     if(this.state.type === 'empty') {
       return(<div>
@@ -68,6 +82,7 @@ class Add extends React.Component {
               randomClick={this.props.randomClick}
               setPrompt={this.props.setPrompt}
               setCollection={this.props.setCollection}
+              setGminderForDatabase={this.setGminderforDatabase}
               random="yes" />
             </div>)
     }
@@ -128,11 +143,31 @@ class Add extends React.Component {
   }
   render() {
     return(
-      <div>
+      <div className="container">
+        {console.log(this.state.gminderForDatabase)}
+        {/* Modal - Must be outside of responsive design displays */}
+        <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="exampleModalLabel">Create Goodminder</h5>
+                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div className="modal-body">
+                Make permanent change to database?
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={this.changeDatabase}>Confirm</button>
+              </div>
+            </div>
+          </div>
+        </div>
 
         {/* For small screen (phone) */}
         <div className="d-sm-none d-block">
-
     	         <p>Choose an entry type</p>
                <div className="alignL">
                {this.chooseType()}
@@ -156,7 +191,7 @@ class Add extends React.Component {
           {/* For large screen */}
         <div className="d-none d-sm-block">
           <br />
-                  <ButtonModal id='look' name='Hi'/>
+
           <div className="box">
     	         <p>Choose an entry type</p>
                {this.chooseType()}

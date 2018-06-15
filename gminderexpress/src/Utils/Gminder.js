@@ -24,8 +24,8 @@ Gminder.getPrompts = () => {
   });
 };
 
-Gminder.addGminder = (gminder) => {
-  const url = `${baseUrl}/gminder`;
+Gminder.addGminder = gminder => {
+  const url = '/api/gminder';
     return fetch(url,
           {
             method: 'POST',

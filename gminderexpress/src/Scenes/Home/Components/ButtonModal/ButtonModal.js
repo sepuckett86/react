@@ -13,7 +13,7 @@ class ButtonModal extends React.Component {
   }
 
   changeDatabase() {
-    this.props.changeDatabase
+    this.props.changeDatabase()
   }
 
   render() {

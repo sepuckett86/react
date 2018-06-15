@@ -154,7 +154,7 @@ class Home extends Component {
   }
   render() {
     return (
-      <div className="container gminder">
+      <div className="gminder">
         {this.renderWhat()}
       </div>
     )

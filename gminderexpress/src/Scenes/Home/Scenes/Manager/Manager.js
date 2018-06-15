@@ -1,8 +1,8 @@
 import React from 'react';
 
 import Button from '../../Components/Button/Button';
-import Gminders from './Components/Gminders/Gminders';
-import Prompts from './Components/Prompts/Prompts';
+// import Gminders from './Components/Gminders/Gminders';
+// import Prompts from './Components/Prompts/Prompts';
 import ButtonModal from '../../Components/ButtonModal/ButtonModal'
 
 // Utils
@@ -99,6 +99,15 @@ class Manager extends React.Component {
   }
 
   render() {
+    let promptFilter = [];
+    if (this.props.collection) {
+      const prompts = this.state.prompts;
+      prompts.forEach(prompt => {
+        if(prompt.collection === this.props.collection){
+          promptFilter.push(prompt);
+        }
+      })
+    }
     return(
       <div>
         <br />
@@ -180,7 +189,7 @@ class Manager extends React.Component {
         </div>
         </div>)
         : null }
-        { this.state.display === 'promptTable' && this.props.collection ?
+        { this.state.display === 'promptTable' && promptFilter.length > 0 ?
         (<div className="box">
         <div id="prompts">
           <table className="table table-striped">
@@ -196,8 +205,7 @@ class Manager extends React.Component {
             </thead>
             <tbody>
           {
-            this.state.prompts.map((prompt, i) => {
-              if(prompt.collection === this.props.collection) {
+            promptFilter.map((prompt, i) => {
                 return (
                     <tr key={this.generateKey(i)}>
                       <th scope="row">{prompt.id}</th>
@@ -211,7 +219,6 @@ class Manager extends React.Component {
                       </td>
                     </tr>
                 )
-              }
 
             })
           }

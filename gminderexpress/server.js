@@ -2,11 +2,13 @@ const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const sqlite3 = require('sqlite3');
 const db = new sqlite3.Database(process.env.TEST_DATABASE || './db.sqlite');
 
 app.use(morgan('dev'));
+app.use(cors());
 app.use(bodyParser.json());
 
 // Mount your existing apiRouter below at the '/api' path.
