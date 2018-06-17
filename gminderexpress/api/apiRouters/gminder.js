@@ -5,7 +5,8 @@ const sqlite3 = require('sqlite3');
 const db = new sqlite3.Database(process.env.TEST_DATABASE || './db.sqlite');
 
 gminderRouter.get('/', (req, res, next) => {
-  db.all('SELECT * FROM Gminder', function (error, rows) {
+  db.all('SELECT * FROM Gminder',
+  function (error, rows) {
     if (error) {
       res.status(404).send;
     } else {

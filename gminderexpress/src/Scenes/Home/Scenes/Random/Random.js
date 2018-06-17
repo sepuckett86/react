@@ -84,7 +84,7 @@ class Random extends Component {
               this.setState({current: random, previous: previous})
               a = false;
             }
-            brake--
+            brake--;
           } // End while loop
         }
       }

@@ -28,6 +28,33 @@ db.serialize(() => {
               throw err;
             }
           });
+  db.run(`INSERT INTO Prompt (collection, promptText)
+          VALUES ($collection, $promptText)`, {
+            $collection: 'Favorites',
+            $promptText: 'What is something you cooked recently that was new and tasty?'
+          }, (err) => {
+            if (err) {
+              throw err;
+            }
+          });
+  db.run(`INSERT INTO Prompt (collection, promptText)
+          VALUES ($collection, $promptText)`, {
+            $collection: 'Favorites',
+            $promptText: 'What is a simple activity that you enjoy doing? '
+          }, (err) => {
+            if (err) {
+              throw err;
+            }
+          });
+  db.run(`INSERT INTO Prompt (collection, promptText)
+          VALUES ($collection, $promptText)`, {
+            $collection: 'Favorites',
+            $promptText: 'What is the cutest thing you saw today?'
+          }, (err) => {
+            if (err) {
+              throw err;
+            }
+          });
   db.run(`INSERT INTO Gminder (userID, category, mainResponse, author, promptID, reason, source, who, rating, recordedDate, eventDate, updatedDate, collection, publicFlag)
           VALUES ($userID, $category, $mainResponse, $author, $promptID, $reason, $source, $who, $rating, $recordedDate, $eventDate, $updatedDate, $collection, $publicFlag)`,
           {

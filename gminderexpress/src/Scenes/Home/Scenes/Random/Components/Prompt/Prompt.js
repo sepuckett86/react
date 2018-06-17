@@ -5,16 +5,7 @@ import Stars from '../../../../Components/Stars/Stars';
 class Prompt extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      prompt: ""
-    }
 
-    this.componentWillMount = this.componentWillMount.bind(this);
-  }
-
-  componentWillMount() {
-    let prompt = this.getPromptWithId();
-    this.setState({prompt: prompt})
   }
 
   getPromptWithId() {
@@ -27,9 +18,11 @@ class Prompt extends React.Component {
 
 
   render() {
-    const prompt = this.state.prompt;
+    const prompt = this.getPromptWithId();
+
     return(
       <div id="prompt">
+
         {/* For large screen */}
         <div className="d-none d-sm-block">
             <div className="row">
@@ -46,7 +39,7 @@ class Prompt extends React.Component {
 
             <div className="media prompt">
               <div className="media-body">
-                <p className="lato">{this.state.prompt}</p>
+                <p className="lato">{prompt}</p>
               </div>
             </div>
             <br />
@@ -57,13 +50,17 @@ class Prompt extends React.Component {
             <h4 className="lato">{this.props.gminder.mainResponse}</h4><br />
             </div>
             </div>
-            <br />
 
+            { this.props.gminder.reason ?
+              <div>
+            <br />
             <div className="media reason">
             <div className="media-body lato">
             {this.props.gminder.reason}
             </div>
             </div>
+          </div>
+            : null}
 
         </div>
 
