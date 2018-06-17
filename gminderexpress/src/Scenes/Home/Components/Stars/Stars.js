@@ -1,6 +1,8 @@
 import React from 'react';
 import './Stars.css';
 
+// Note: this uses bootstrap modals and the actual modal is defined outside of responsive design.
+
 /* First goal: Generate correct number of Stars
     then onClick, change icon */
 class Stars extends React.Component {
@@ -27,6 +29,8 @@ class Stars extends React.Component {
 
   handleClick(event) {
     let stars = Number(event.currentTarget.id) + 1;
+    // check if user is serious with popup window w/button
+    // change database -- to do later
     if (stars === this.state.stars) {
       this.props.starFun(0, this.props.gminder.id);
       this.setState({
@@ -38,6 +42,19 @@ class Stars extends React.Component {
       stars: stars
     })}
   }
+
+  // Changes the stars for one gminder in this.state.gminders
+// setStars(starNum, id) {
+//   let gmindersArr = this.state.gminders;
+//   gmindersArr.forEach(gminder => {
+//     if (gminder.id === id) {
+//       gminder.stars = starNum;
+//     }
+//   })
+//   this.setState({
+//     gminders: gmindersArr
+//   })
+// }
 
   generateKey(index) {
     return `${ index }_${ new Date().getTime() }`;
@@ -51,6 +68,7 @@ class Stars extends React.Component {
           return (<span key={ this.generateKey(i) }>
             <button className='star-button' id={i} onClick={this.handleClick}>
               <i className={x}></i></button>
+
           </span>)
         })
       }

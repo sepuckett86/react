@@ -8,6 +8,8 @@ import Button from '../../Components/Button/Button';
 // connect to backend
 import Gminder from '../../../../Utils/Gminder'
 
+import './Random.css'
+
 class Random extends Component {
   constructor(props) {
     super(props);
@@ -140,92 +142,27 @@ class Random extends Component {
       return <p>Category Error</p>
     }
   }
+
+  starChange() {
+
+  }
+
   render() {
     return (
         <div className="container">
-          {/*
-            Responsive Design
-            For small screen (phone)
-          */}
-          <div className="d-sm-none">
-            <div className="backfill">
-              <div>
-              <span className="">
-                <button className="button-span-2" onClick={this.backClick}><i className="fas fa-arrow-left"></i> </button>
-              </span>
-              {'\u00A0'}
-              <span className="">
-              <button className="button-span-2" onClick={this.nextClick}> <i className="fas fa-arrow-right"></i></button>
-              </span>
-              </div>
 
-            {this.chooseDisplay()}
-
-            <hr />
-            </div>
-          <br />
-
-            {/* Check whether there is more than one gminder stored */}
-            { this.state.gminders.length > 1 ?
-              <div>
-                <div className="row">
-
-            <div className="col col-12 col-sm-4">
-              <Button
-                id='add'
-                name="Add"
-                onClick={this.props.changeDisplay}
-                />
-            </div>
-            <div className="col col-12 col-sm-4">
-              <Button
-                id='more'
-                name="More"
-                onClick={this.props.changeDisplay}
-                />
-            </div>
-          </div>
-          </div>
-            : null
-          }
-          { this.state.gminders.length === 1 ?
-            <div>
-            <div className="row">
-            <div className="col col-12 col-sm-4">
-              <Button
-                id='add'
-                name="Add"
-                onClick={this.props.changeDisplay}
-                />
-            </div>
-            <div className="col col-12 col-sm-4">
-              <Button
-                id='more'
-                name="More"
-                onClick={this.props.changeDisplay}
-                />
-            </div>
-          </div>
-          </div>
-            : null
-          }
-
-          </div>
-
-          {/* For large screen */}
-          <div className="d-none d-sm-block">
             <div>
             <span>
-              <button className="btn button-span-3" onClick={this.backClick}><i className="fas fa-arrow-left"></i> </button>
+              <button className="btn arrow-button" onClick={this.backClick}><i className="fas fa-arrow-left"></i> </button>
             </span>
             {/* Spaces */}
             {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
             <span>
-            <button className="btn button-span-3" onClick={this.nextClick}> <i className="fas fa-arrow-right"></i></button>
+            <button className="btn arrow-button" onClick={this.nextClick}> <i className="fas fa-arrow-right"></i></button>
             </span>
             </div>
 
-            <div className="box">
+            <div className="random-box">
 
         			{this.chooseDisplay()}
               <div className="alignR">
@@ -257,11 +194,11 @@ class Random extends Component {
           </div>
             : null
           }
-
+  <br />
           </div>
 
-          <br />
-        </div>
+
+
 
     );
   }

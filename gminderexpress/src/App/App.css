@@ -506,7 +506,7 @@ footer{
 // Extra small devices (portrait phones, less than 576px)
 // No media query since this is the default in Bootstrap*/
 
-
+/* Small screen */
 @media (min-width: 0px) {
   .container {
     position: relative;
@@ -522,16 +522,19 @@ footer{
   }
 }
 
-/* Small devices (landscape phones, 576px and up) */
+/* Regular screen and up */
 @media (min-width: 576px) {
   .container {
     position: relative;
     margin-left: auto;
     margin-right: auto;
   }
-  .App {background-color: transparent;
-        }
+  .App {
+    background-color: transparent;
+  }
 }
+
+
 /* Override container resizing to fit more of screen */
 @media (max-width: 768px) {
   .container {
@@ -549,20 +552,12 @@ footer{
 
 /* // Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
-  .container {
-    position: relative;
-    margin-left: auto;
-    margin-right: auto;
 
-  }
-  .gminder {background-color: transparent}
  }
 
 /* // Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
-  .container {
 
-  }
  }
 
 /* // Extra large devices (large desktops, 1200px and up) */
