@@ -14,4 +14,45 @@ gminderRouter.get('/', (req, res, next) => {
   })
 })
 
+gminderRouter.post('/', (req, res, next) => {
+  if (!req.body.gminder) {
+    res.status(400).send();
+  };
+  const sql = 'INSERT INTO Gminder (userID, category, mainResponse, author, promptID, reason, source, who, rating, recordedDate, eventDate, updatedDate, collection, publicFlag) ' +
+                          'VALUES ($userID, $category, $mainResponse, $author, $promptID, $reason, $source, $who, $rating, $recordedDate, $eventDate, $updatedDate, $collection, $publicFlag)';
+  db.run(sql, {
+    $userID: req.body.gminder.userID,
+    $category: req.body.gminder.category,
+    $mainResponse: req.body.gminder.mainResponse,
+    $author: req.body.gminder.author,
+    $promptID: req.body.gminder.promptID,
+    $reason: req.body.gminder.reason,
+    $source: req.body.gminder.source,
+    $who: req.body.gminder.who,
+    $rating: req.body.gminder.rating,
+    $recordedDate: req.body.gminder.recordedDate,
+    $eventDate: req.body.gminder.eventDate,
+    $updatedDate: req.body.gminder.updatedDate,
+    $collection: req.body.gminder.collection,
+    $publicFlag: req.body.gminder.publicFlag,
+  }, function(error) {
+    if (error) {
+      console.log(error)
+      res.status(404).send();
+    } else {
+      const sql2 = 'SELECT * FROM Gminder WHERE Gminder.id = $id';
+      db.get(sql2, {
+        $id: this.lastID
+      }, function(error, row) {
+        if (error || !row) {
+          res.status(404).send();
+        } else {
+          res.status(201).send({gminder: row});
+        }
+      })
+    }
+  })
+})
+
+
 module.exports = gminderRouter;

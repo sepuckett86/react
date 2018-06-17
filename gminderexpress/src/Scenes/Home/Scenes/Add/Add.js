@@ -1,3 +1,5 @@
+// Note: modal cannot be inside responsive design display or it will not work for all screen sizes
+
 import React from 'react';
 import './Add.css';
 import Button from '../../Components/Button/Button';
@@ -5,14 +7,20 @@ import AddCustom from './Components/AddCustom/AddCustom';
 import AddPrompt from './Components/AddPrompt/AddPrompt';
 import AddQuote from './Components/AddQuote/AddQuote';
 
+// Utils
+import Gminder from '../../../../Utils/Gminder'
+
 class Add extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      type: 'empty'
+      type: 'empty',
+      gminderForDatabase: {}
     }
 
     this.changeType = this.changeType.bind(this);
+    this.setGminderforDatabase = this.setGminderforDatabase.bind(this);
+    this.changeDatabase = this.changeDatabase.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
 
@@ -29,6 +37,15 @@ class Add extends React.Component {
       this.changeType('custom');
     }
   }
+
+  changeDatabase() {
+    Gminder.addGminder(this.state.gminderForDatabase);
+  }
+
+  setGminderforDatabase(gminder) {
+    this.setState({gminderForDatabase: gminder})
+  }
+
   chooseType() {
     if(this.state.type === 'empty') {
       return(<div>
@@ -49,7 +66,7 @@ class Add extends React.Component {
       return(<div>
         <ul className="nav nav-pills nav-justified" id="myTab" role="tablist">
         <li className="nav-item">
-          <a className="nav-link btn-add-active" id="prompt-tab" onClick={this.handleClick} href="#prompt" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">Prompt</a>
+          <a className="nav-link btn-add-active" id="prompt-tab" onClick={this.handleClick} data-toggle="modal" href="#prompt">Prompt</a>
         </li>
         <li className="nav-item">
           <a className="nav-link btn-add" id="quote-tab" onClick={this.handleClick} href="#quote" data-toggle="tab" role="tab" aria-controls="quote" aria-selected="false">Quote</a>
@@ -60,9 +77,12 @@ class Add extends React.Component {
       </ul>
         <AddPrompt
               changeType={this.changeType}
-              newGminder={this.props.newGminder}
+              changeDisplay={this.props.changeDisplay}
               prompts={this.props.prompts}
-              boxClick={this.props.boxClick}
+              randomClick={this.props.randomClick}
+              setPrompt={this.props.setPrompt}
+              setCollection={this.props.setCollection}
+              setGminderForDatabase={this.setGminderforDatabase}
               random="yes" />
             </div>)
     }
@@ -73,7 +93,7 @@ class Add extends React.Component {
           <a className="nav-link btn-add" id="prompt-tab" onClick={this.handleClick} href="#prompt" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">Prompt</a>
         </li>
         <li className="nav-item">
-          <a className="nav-link btn-add-active" id="quote-tab" onClick={this.handleClick} href="#quote" data-toggle="tab" role="tab" aria-controls="quote" aria-selected="false">Quote</a>
+          <a className="nav-link btn-add-active" id="quote-tab" onClick={this.handleClick} href="#quote" data-toggle="modal" role="tab" aria-controls="quote" aria-selected="false">Quote</a>
         </li>
         <li className="nav-item">
           <a className="nav-link btn-add" id="custom-tab" onClick={this.handleClick} href="#custom" data-toggle="tab" role="tab" aria-controls="custom" aria-selected="false">Custom</a>
@@ -81,8 +101,7 @@ class Add extends React.Component {
       </ul>
       <AddQuote
               changeType={this.changeType}
-              newGminder={this.props.newGminder}
-              boxClick={this.props.boxClick} />
+              randomClick={this.props.randomClick} />
             </div>)
     }
     if(this.state.type === 'custom') {
@@ -95,13 +114,12 @@ class Add extends React.Component {
           <a className="nav-link btn-add" id="quote-tab" onClick={this.handleClick} href="#quote" data-toggle="tab" role="tab" aria-controls="quote" aria-selected="false">Quote</a>
         </li>
         <li className="nav-item">
-          <a className="nav-link btn-add-active" id="custom-tab" onClick={this.handleClick} href="#custom" data-toggle="tab" role="tab" aria-controls="custom" aria-selected="false">Custom</a>
+          <a className="nav-link btn-add-active" id="custom-tab" onClick={this.handleClick} href="#custom" data-toggle="modal" role="tab" aria-controls="custom" aria-selected="false">Custom</a>
         </li>
       </ul>
           <AddCustom
               changeType={this.changeType}
-              newGminder={this.props.newGminder}
-              boxClick={this.props.boxClick}   />
+              randomClick={this.props.randomClick}   />
         </div>)
     }
   }
@@ -125,11 +143,31 @@ class Add extends React.Component {
   }
   render() {
     return(
-      <div>
+      <div className="container">
+        {console.log(this.state.gminderForDatabase)}
+        {/* Modal - Must be outside of responsive design displays */}
+        <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="exampleModalLabel">Create Goodminder</h5>
+                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div className="modal-body">
+                Make permanent change to database?
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={this.changeDatabase}>Confirm</button>
+              </div>
+            </div>
+          </div>
+        </div>
 
         {/* For small screen (phone) */}
-        <div className="d-sm-none">
-
+        <div className="d-sm-none d-block">
     	         <p>Choose an entry type</p>
                <div className="alignL">
                {this.chooseType()}
@@ -140,7 +178,7 @@ class Add extends React.Component {
            <div className="col">
         <Button
           name="Back"
-          onClick={this.props.boxClick}
+          onClick={this.props.changeDisplay}
           />
         <br />
       </div>
@@ -152,6 +190,8 @@ class Add extends React.Component {
 
           {/* For large screen */}
         <div className="d-none d-sm-block">
+          <br />
+
           <div className="box">
     	         <p>Choose an entry type</p>
                {this.chooseType()}
@@ -161,8 +201,9 @@ class Add extends React.Component {
          <div className="row">
            <div className="col">
         <Button
+          id='random'
           name="Back"
-          onClick={this.props.boxClick}
+          onClick={this.props.changeDisplay}
           />
         <br />
       </div>
@@ -170,6 +211,8 @@ class Add extends React.Component {
     </div>
     <br />
         </div>
+
+
 
 
 

@@ -13,23 +13,8 @@ class Random extends Component {
     super(props);
     this.state = {
       gminders: '',
-      prompts: [{
-        id: 1,
-        promptText: 'What is a song that made you smile in the past month?',
-        collection: 'Favorites'
-      }],
+      prompts: [],
       current: {
-        id: '1',
-        promptID: 1,
-        category: 'prompt',
-        collection: 'Favorites',
-        date: '3-3-18',
-        prompt: 'What is a song that made you smile in the past month?',
-        mainResponse: 'Legend of Kyrandia Emerald Room Song by Frank Klepacki',
-        reason: 'After wandering through endless caves in the game with repetitive music, the music changes for only one scene to a complex, long, cool song. It reminds me of all that is great about old school adventure games.',
-        author: null,
-        stars: '4'
-
       },
       previous: [],
       back: 0
@@ -48,7 +33,12 @@ class Random extends Component {
           let previous = this.state.previous;
           // Add new gminder to previous array
           previous.push(random);
-          this.setState({current: random, previous: previous, back: 0})// In case that gminders is empty);
+          this.setState({current: random, previous: previous, back: 0})
+          this.props.setGminder(random);
+          if(random.promptID) {
+            this.props.setPrompt(random.promptID);
+          }
+          // In case that gminders is empty);
         } else if (this.state.gminders.length === 0) {
           // Do nothing
         } else {
@@ -152,7 +142,7 @@ class Random extends Component {
   }
   render() {
     return (
-        <div>
+        <div className="container">
           {/*
             Responsive Design
             For small screen (phone)
@@ -182,14 +172,16 @@ class Random extends Component {
 
             <div className="col col-12 col-sm-4">
               <Button
+                id='add'
                 name="Add"
-                onClick={this.props.addClick}
+                onClick={this.props.changeDisplay}
                 />
             </div>
             <div className="col col-12 col-sm-4">
               <Button
+                id='more'
                 name="More"
-                onClick={this.props.moreClick}
+                onClick={this.props.changeDisplay}
                 />
             </div>
           </div>
@@ -201,14 +193,16 @@ class Random extends Component {
             <div className="row">
             <div className="col col-12 col-sm-4">
               <Button
+                id='add'
                 name="Add"
-                onClick={this.props.addClick}
+                onClick={this.props.changeDisplay}
                 />
             </div>
             <div className="col col-12 col-sm-4">
               <Button
+                id='more'
                 name="More"
-                onClick={this.props.moreClick}
+                onClick={this.props.changeDisplay}
                 />
             </div>
           </div>
@@ -247,14 +241,16 @@ class Random extends Component {
             <div className="row">
             <div className="col col-sm-6">
               <Button
+                id='add'
                 name="Add"
-                onClick={this.props.addClick}
+                onClick={this.props.changeDisplay}
                 />
             </div>
             <div className="col col-sm-6">
               <Button
+                id='more'
                 name="More"
-                onClick={this.props.moreClick}
+                onClick={this.props.changeDisplay}
                 />
             </div>
           </div>
