@@ -42,8 +42,12 @@ class Add extends React.Component {
     if (!this.state.gminderForDatabase.mainResponse){
       alert('Must enter main response')
     } else {
-      Gminder.addGminder(this.state.gminderForDatabase);
-      this.props.changeDisplay('random');
+      Gminder.addGminder(this.state.gminderForDatabase).then(() => {
+        // added 'then' to avoid changing to random before database change
+        // and not including new goodminder
+        this.props.changeDisplay('random');
+      });
+
     }
   }
 
