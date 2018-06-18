@@ -165,25 +165,24 @@ class Random extends Component {
             <div className="random-box">
 
         			{this.chooseDisplay()}
-              <div className="alignR">
-                <br />
+              <div className="edit-print">
+
               <a href="edit.php" className="button-clear"><i className="fas fa-edit"></i></a>
               <a href="print.php" className="button-clear"><i className="fas fa-print"></i></a>
             </div>
             </div>
             <br />
 
-          { this.state.gminders ?
             <div>
             <div className="row">
-            <div className="col col-sm-6">
+            <div className="add-more col col-12 col-sm-6">
               <Button
                 id='add'
                 name="Add"
                 onClick={this.props.changeDisplay}
                 />
             </div>
-            <div className="col col-sm-6">
+            <div className="add-more col col-12 col-sm-6">
               <Button
                 id='more'
                 name="More"
@@ -192,14 +191,8 @@ class Random extends Component {
             </div>
           </div>
           </div>
-            : null
-          }
-  <br />
+          <br />
           </div>
-
-
-
-
     );
   }
 }
