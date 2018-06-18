@@ -4,7 +4,29 @@ import Stars from '../../../../Components/Stars/Stars';
 import MediaQuery from 'react-responsive';
 
 class Quote extends React.Component {
+  makeCredit() {
+    const quote = this.props.gminder;
+    if (quote.who && quote.source && quote.author) {
+      return `-- ${quote.who}, from ${quote.source} by ${quote.author}`
+    }
+    if (!quote.who && quote.source && quote.author) {
+      return `-- From ${quote.source} by ${quote.author}`;
+    }
+    if (!quote.who && !quote.source && quote.author) {
+      return `-- ${quote.author}`;
+    }
+    if (!quote.who && !quote.source && !quote.author) {
+      return null;
+    }
+    if (quote.who && !quote.source && quote.author) {
+      return `-- ${quote.who}, from a work by ${quote.author}`;
+    }
+    if (quote.who && !quote.source && !quote.author) {
+      return `-- ${quote.who}`;
+    }
+  }
   render() {
+
     return(
         <div id="quote">
 
@@ -27,13 +49,8 @@ class Quote extends React.Component {
       			<br />
       			<h4 className="lato alignL" id="quote-random_0">
       				"{this.props.gminder.mainResponse}"</h4>
-              <p className="lato alignR" id="quote-who-source-author">--
-                {this.props.gminder.who ? this.props.gminder.who : null}
-                {this.props.gminder.who ? ", " : null}
-                {this.props.gminder.source ? "from " : null}
-                {this.props.gminder.source ? this.props.gminder.source : null}
-                {this.props.gminder.author ? " by " : null}
-                {this.props.gminder.author}</p>
+              <p className="lato alignR" id="quote-who-source-author">
+                {this.makeCredit()}</p>
       				<br />
       			</div>
       			</div>
