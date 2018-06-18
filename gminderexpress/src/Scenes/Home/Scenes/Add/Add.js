@@ -101,7 +101,9 @@ class Add extends React.Component {
       </ul>
       <AddQuote
               changeType={this.changeType}
-              randomClick={this.props.randomClick} />
+              randomClick={this.props.randomClick}
+              changeDisplay={this.props.changeDisplay}
+              setGminderForDatabase={this.setGminderforDatabase} />
             </div>)
     }
     if(this.state.type === 'custom') {
@@ -119,7 +121,9 @@ class Add extends React.Component {
       </ul>
           <AddCustom
               changeType={this.changeType}
-              randomClick={this.props.randomClick}   />
+              randomClick={this.props.randomClick}
+              changeDisplay={this.props.changeDisplay}
+              setGminderForDatabase={this.setGminderforDatabase}/>
         </div>)
     }
   }

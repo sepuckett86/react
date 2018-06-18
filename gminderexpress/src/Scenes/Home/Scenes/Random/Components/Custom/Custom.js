@@ -1,69 +1,50 @@
 import React from 'react';
 import './Custom.css';
 import Stars from '../../../../Components/Stars/Stars';
+import MediaQuery from 'react-responsive';
 
 class Custom extends React.Component {
   render() {
     return(
       <div id="custom">
 
-        {/* For large screen */}
-        <div className="d-none d-sm-block">
+        {/* MediaQuery for large screen */}
+          <MediaQuery query="(min-width: 576px)">
           <div className="row">
-            <div className="col">
+            <div className="col alignL">
               <Stars
-                starFun={this.props.starFun}
                 gminder={this.props.gminder}
                 />
             </div>
             <div className="col alignR">
-              <p>Added {this.props.gminder.date} from Custom Collection: {this.props.gminder.collection}</p>
+              <p>Added {this.props.gminder.recordedDate} from Custom Collection: {this.props.gminder.collection}</p>
             </div>
           </div>
-
+        </MediaQuery>
           <div className="media answer">
           <div className="media-body">
           <br />
           <h4 className="lato" id="quote-random_0">
-            {this.props.gminder.answer}</h4>
+            {this.props.gminder.mainResponse}</h4>
             <br />
           </div>
           </div>
 
-        </div>
 
 
-        {/* For small screen */}
-         <div className="d-sm-none">
-           <div className="row">
-             <div className="col">
 
-             </div>
-             <div className="col alignR">
 
-             </div>
-           </div>
-
-           <div className="media answer media-small">
-           <div className="media-body">
            <br />
-           <h4 className="lato" id="quote-random_0">
-             {this.props.gminder.answer}</h4>
-             <br />
-           </div>
-           </div>
-           <br />
+           {/* MediaQuery for small screen */}
+           <MediaQuery query="(max-width: 576px)">
            <Stars
-             starFun={this.props.starFun}
              gminder={this.props.gminder}
              />
              <br />
-             <p>{this.props.gminder.date} | {this.props.gminder.collection}</p>
-
+             <p>{this.props.gminder.recordedDate ? (this.props.gminder.recordedDate + ' | '): null}
+               {this.props.gminder.collection}</p>
+           </MediaQuery>
          </div>
-
-
-        </div>
 
     )
   }
