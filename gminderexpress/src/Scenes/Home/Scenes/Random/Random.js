@@ -49,6 +49,7 @@ class Random extends Component {
       });
     })
   }
+
   // Button methods
 
   // Sets a new random gminder as state and accounts for back/forward ability
@@ -127,24 +128,23 @@ class Random extends Component {
       return <Prompt
         gminder={gminder}
         prompts={prompts}
+
         />
     }
     if(gminder.category === 'quote') {
       return <Quote
         gminder={gminder}
+
         />
     }
     if(gminder.category === 'custom') {
       return <Custom
         gminder={gminder}
+
         />
     } else {
       return <p>Category Error</p>
     }
-  }
-
-  starChange() {
-
   }
 
   render() {

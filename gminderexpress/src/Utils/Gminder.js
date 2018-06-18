@@ -13,6 +13,17 @@ Gminder.getGminders = () => {
   });
 };
 
+Gminder.getGminder = (id) => {
+  return fetch(`/api/gminder/${id}`).then(response => {
+    if (!response.ok) {
+      return new Promise(resolve => resolve([]));
+    }
+    return response.json().then(jsonResponse => {
+      return jsonResponse
+    });
+  });
+};
+
 Gminder.getPrompts = () => {
   return fetch('/api/prompt').then(response => {
     if (!response.ok) {

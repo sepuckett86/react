@@ -15,6 +15,19 @@ gminderRouter.get('/', (req, res, next) => {
   })
 })
 
+gminderRouter.get('/:id', (req, res, next) => {
+  db.all('SELECT * FROM Gminder WHERE id = $id', {
+    $id: req.params.id
+  },
+  function (error, row) {
+    if (error) {
+      res.status(404).send;
+    } else {
+      res.status(200).send({ express: row})
+    }
+  })
+})
+
 gminderRouter.post('/', (req, res, next) => {
   if (!req.body.gminder) {
     res.status(400).send();
@@ -48,7 +61,7 @@ gminderRouter.post('/', (req, res, next) => {
         if (error || !row) {
           res.status(404).send();
         } else {
-          res.status(201).send({gminder: row});
+          res.status(201).send({express: row});
         }
       })
     }
@@ -103,7 +116,7 @@ gminderRouter.put('/:id', (req, res, next) => {
           if (error || !row) {
             res.status(400).send();
           } else {
-            res.status(200).send({gminder: row});
+            res.status(200).send({express: row});
           }
         })
       }

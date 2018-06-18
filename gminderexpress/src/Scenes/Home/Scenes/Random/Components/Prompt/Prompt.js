@@ -24,6 +24,7 @@ class Prompt extends React.Component {
               <div className="col alignL">
                 <Stars
                   gminder={this.props.gminder}
+                  
                   />
               </div>
             <div className="col alignR">
@@ -64,6 +65,7 @@ class Prompt extends React.Component {
           <Stars
             starFun={this.props.starFun}
             gminder={this.props.gminder}
+
             />
           <br />
             <p>{this.props.gminder.recordedDate ? (this.props.gminder.recordedDate + ' | '): null}

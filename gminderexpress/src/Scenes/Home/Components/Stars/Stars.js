@@ -4,15 +4,12 @@ import './Stars.css';
 // Util
 import Gminder from '../../../../Utils/Gminder'
 
-// Note: this uses bootstrap modals and the actual modal is defined outside of responsive design.
-
 /* First goal: Generate correct number of Stars
     then onClick, change icon */
 class Stars extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      stars : this.props.gminder.rating,
       numForDatabase: null
     }
     this.handleClick = this.handleClick.bind(this);
@@ -45,20 +42,21 @@ class Stars extends React.Component {
       let updatedGminder = this.props.gminder;
 
       // change database
-      if (stars === this.state.stars) {
+      if (stars === this.props.gminder.rating) {
         updatedGminder['rating'] = 0;
         this.changeDatabase(updatedGminder);
         this.setState({
-          stars: 0,
           numForDatabase: null
         })
+
       } else {
       updatedGminder['rating'] = stars;
       this.changeDatabase(updatedGminder);
       this.setState({
-        stars: stars,
         numForDatabase: null
-      })}
+      })
+
+    }
     }
   }
   changeDatabase(updatedGminder) {
@@ -73,8 +71,6 @@ class Stars extends React.Component {
     return(
 
       <div>
-        {console.log(this.state)}
-        {console.log(this.props.gminder)}
         {/* Modal */}
         <div className="modal fade" id="starsModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div className="modal-dialog" role="document">
@@ -95,6 +91,8 @@ class Stars extends React.Component {
             </div>
           </div>
         </div>
+      {/* End Modal */}
+
       {
         this.makeStarArray().map((x, i) => {
           return (<span key={ this.generateKey(i) }>
