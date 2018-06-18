@@ -175,14 +175,14 @@ class Random extends Component {
 
             <div>
             <div className="row">
-            <div className="add-more col col-12 col-sm-6">
+            <div className="col col-12 col-sm-6">
               <Button
                 id='add'
                 name="Add"
                 onClick={this.props.changeDisplay}
                 />
             </div>
-            <div className="add-more col col-12 col-sm-6">
+            <div className="col col-12 col-sm-6">
               <Button
                 id='more'
                 name="More"

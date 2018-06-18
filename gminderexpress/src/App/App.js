@@ -244,7 +244,7 @@ class App extends Component {
                       <a className="dropdown-item" href="/logout">Log out</a>
                     </div>
                   </li>
-                  <li className="nav-item">
+                  <li className="nav-item points">
                     <button type="button" className="btn btn-goodminder" data-toggle="popover" title="Gminder Points" data-content="Earn points by daily log-in and writing entries. These will come in handy later :) ">
                       {' '}<span className="badge badge-light">40</span>
                     </button>

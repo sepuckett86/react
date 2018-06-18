@@ -55,5 +55,61 @@ gminderRouter.post('/', (req, res, next) => {
   })
 })
 
+gminderRouter.put('/:id', (req, res, next) => {
+  const sql = 'UPDATE Gminder SET ' +
+  'userID = $userID, ' +
+  'category = $category, ' +
+  'mainResponse = $mainResponse, ' +
+  'author = $author, ' +
+  'promptID = $promptID, ' +
+  'reason = $reason, ' +
+  'source = $source, ' +
+  'who = $who, ' +
+  'rating = $rating, ' +
+  'recordedDate = $recordedDate, ' +
+  'eventDate = $eventDate, ' +
+  'updatedDate = $updatedDate, ' +
+  'collection = $collection, ' +
+  'publicFlag = $publicFlag ' +
+  'WHERE id = $id';
+  if (!req.body.gminder) {
+    return res.status(400).send();
+  } else {
+    db.run(sql, {
+      $userID: req.body.gminder.userID,
+      $category: req.body.gminder.category,
+      $mainResponse: req.body.gminder.mainResponse,
+      $author: req.body.gminder.author,
+      $promptID: req.body.gminder.promptID,
+      $reason: req.body.gminder.reason,
+      $source: req.body.gminder.source,
+      $who: req.body.gminder.who,
+      $rating: req.body.gminder.rating,
+      $recordedDate: req.body.gminder.recordedDate,
+      $eventDate: req.body.gminder.eventDate,
+      $updatedDate: req.body.gminder.updatedDate,
+      $collection: req.body.gminder.collection,
+      $publicFlag: req.body.gminder.publicFlag,
+      $id: req.params.id
+    }, function(error) {
+      if (error) {
+        console.log(error);
+        res.status(400).send();
+      } else {
+        const sql2 = 'SELECT * FROM Gminder WHERE id = $id';
+        db.get(sql2, {
+          $id: req.params.id
+        }, function(error, row) {
+          if (error || !row) {
+            res.status(400).send();
+          } else {
+            res.status(200).send({gminder: row});
+          }
+        })
+      }
+    })
+  }
+})
+
 
 module.exports = gminderRouter;

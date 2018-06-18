@@ -4,11 +4,6 @@ import Stars from '../../../../Components/Stars/Stars';
 import MediaQuery from 'react-responsive';
 
 class Prompt extends React.Component {
-  constructor(props) {
-    super(props);
-
-  }
-
   getPromptWithId() {
     for (let i = 0; i < this.props.prompts.length; i++) {
       if (this.props.prompts[i].id === this.props.gminder.promptID) {
@@ -16,7 +11,6 @@ class Prompt extends React.Component {
       }
     }
   }
-
 
   render() {
     const prompt = this.getPromptWithId();
@@ -29,7 +23,6 @@ class Prompt extends React.Component {
             <div className="row">
               <div className="col alignL">
                 <Stars
-                  starFun={this.props.starFun}
                   gminder={this.props.gminder}
                   />
               </div>

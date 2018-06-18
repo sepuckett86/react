@@ -1,6 +1,9 @@
 import React from 'react';
 import './Stars.css';
 
+// Util
+import Gminder from '../../../../Utils/Gminder'
+
 // Note: this uses bootstrap modals and the actual modal is defined outside of responsive design.
 
 /* First goal: Generate correct number of Stars
@@ -9,7 +12,8 @@ class Stars extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      stars : Number(this.props.gminder.rating)
+      stars : this.props.gminder.rating,
+      numForDatabase: null
     }
     this.handleClick = this.handleClick.bind(this);
   }
@@ -28,33 +32,38 @@ class Stars extends React.Component {
   }
 
   handleClick(event) {
-    let stars = Number(event.currentTarget.id) + 1;
-    // check if user is serious with popup window w/button
-    // change database -- to do later
-    if (stars === this.state.stars) {
-      this.props.starFun(0, this.props.gminder.id);
-      this.setState({
-        stars: 0
-      })
-    } else {
-    this.props.starFun(stars, this.props.gminder.id);
-    this.setState({
-      stars: stars
-    })}
-  }
+    // Handle first star click
+    // Note: currentTarget is necessary to record the number; target does not work
+    if (event.currentTarget.id !== 'starModal') {
+      const numForDatabase = Number(event.currentTarget.id) + 1;
+      this.setState({numForDatabase: numForDatabase})
+    }
+    // Handle modal 'Confirm' click
+    if (event.target.id === 'starModal') {
+      let stars = this.state.numForDatabase
+      // Create gminder to push
+      let updatedGminder = this.props.gminder;
 
-  // Changes the stars for one gminder in this.state.gminders
-// setStars(starNum, id) {
-//   let gmindersArr = this.state.gminders;
-//   gmindersArr.forEach(gminder => {
-//     if (gminder.id === id) {
-//       gminder.stars = starNum;
-//     }
-//   })
-//   this.setState({
-//     gminders: gmindersArr
-//   })
-// }
+      // change database
+      if (stars === this.state.stars) {
+        updatedGminder['rating'] = 0;
+        this.changeDatabase(updatedGminder);
+        this.setState({
+          stars: 0,
+          numForDatabase: null
+        })
+      } else {
+      updatedGminder['rating'] = stars;
+      this.changeDatabase(updatedGminder);
+      this.setState({
+        stars: stars,
+        numForDatabase: null
+      })}
+    }
+  }
+  changeDatabase(updatedGminder) {
+    Gminder.updateGminder(updatedGminder);
+  }
 
   generateKey(index) {
     return `${ index }_${ new Date().getTime() }`;
@@ -62,12 +71,37 @@ class Stars extends React.Component {
 
   render() {
     return(
+
       <div>
+        {console.log(this.state)}
+        {console.log(this.props.gminder)}
+        {/* Modal */}
+        <div className="modal fade" id="starsModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="exampleModalLabel">Edit star rating</h5>
+                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div className="modal-body">
+                Make permanent change to database?
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button id="starModal" type="button" data-dismiss="modal" className="btn btn-primary" onClick={this.handleClick}>Confirm</button>
+              </div>
+            </div>
+          </div>
+        </div>
       {
         this.makeStarArray().map((x, i) => {
           return (<span key={ this.generateKey(i) }>
-            <button className='star-button' id={i} onClick={this.handleClick}>
-              <i className={x}></i></button>
+            {/* Button trigger modal */}
+            <button id={i} type="button" onClick={this.handleClick} className="star-button" data-toggle="modal" data-target="#starsModal">
+            <i className={x}></i></button>
+
 
           </span>)
         })
