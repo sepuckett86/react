@@ -148,7 +148,7 @@ class Add extends React.Component {
   render() {
     return(
       <div className="container">
-        {console.log(this.state.gminderForDatabase)}
+        
         {/* Modal - Must be outside of responsive design displays */}
         <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div className="modal-dialog" role="document">

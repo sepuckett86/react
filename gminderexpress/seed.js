@@ -100,6 +100,51 @@ db.serialize(() => {
               throw err;
             }
           });
+  db.run(`INSERT INTO Gminder (userID, category, mainResponse, author, promptID, reason, source, who, rating, recordedDate, eventDate, updatedDate, collection, publicFlag)
+          VALUES ($userID, $category, $mainResponse, $author, $promptID, $reason, $source, $who, $rating, $recordedDate, $eventDate, $updatedDate, $collection, $publicFlag)`,
+          {
+            $userID: 1,
+            $category: 'custom',
+            $mainResponse: 'Smile at your thoughts :)',
+            $author: null,
+            $promptID: null,
+            $reason: null,
+            $source: null,
+            $who: null,
+            $rating: 4,
+            $recordedDate: 'June 8, 2018',
+            $eventDate: null,
+            $updatedDate: null,
+            $collection: 'Affirmations',
+            $publicFlag: 0,
+          }, (err) => {
+            if (err) {
+              throw err;
+            }
+          });
+  db.run(`INSERT INTO Gminder (userID, category, mainResponse, author, promptID, reason, source, who, rating, recordedDate, eventDate, updatedDate, collection, publicFlag)
+          VALUES ($userID, $category, $mainResponse, $author, $promptID, $reason, $source, $who, $rating, $recordedDate, $eventDate, $updatedDate, $collection, $publicFlag)`,
+          {
+            $userID: 1,
+            $category: 'prompt',
+            $mainResponse: 'My husband, Will.',
+            $author: null,
+            $promptID: 3,
+            $reason: 'I see him every day and he is such a positive influence on my life. <3',
+            $source: null,
+            $who: null,
+            $rating: 5,
+            $recordedDate: 'June 8, 2018',
+            $eventDate: null,
+            $updatedDate: null,
+            $collection: 'Favorites',
+            $publicFlag: 0,
+          }, (err) => {
+            if (err) {
+              throw err;
+            }
+          });
+
 
   db.all('SELECT * FROM Gminder', (err, rows) => {
     if (err) {
