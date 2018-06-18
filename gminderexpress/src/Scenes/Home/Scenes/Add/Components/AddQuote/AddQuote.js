@@ -7,8 +7,9 @@ class AddQuote extends React.Component {
       inputAnswer: '',
       inputReason: '',
       inputAuthor: '',
-      inputCollection: ''
-
+      inputCollection: '',
+      inputSource: '',
+      inputWho:''
     }
 
     this.handleClick = this.handleClick.bind(this);
@@ -16,9 +17,9 @@ class AddQuote extends React.Component {
   }
 
   handleClick(event) {
-    if (event.target.id === "btn-quote-submit") {
-      this.newGm();
-      this.props.boxClick();
+    if (event.target.id === "create-goodminder") {
+      const gminder = this.newGminder();
+      this.props.setGminderForDatabase(gminder);
     }
   }
 
@@ -35,8 +36,14 @@ class AddQuote extends React.Component {
     if (event.target.id === "quote-collection") {
       this.setState({inputCollection: event.target.value});
     }
-
+    if (event.target.id === "quote-source") {
+      this.setState({inputSource: event.target.value});
+    }
+    if (event.target.id === "quote-who") {
+      this.setState({inputWho: event.target.value});
+    }
   }
+
   getDate() {
     let d = new Date();
     let year = d.getFullYear();
@@ -46,25 +53,26 @@ class AddQuote extends React.Component {
     return fullDate;
   }
 
-  generateId() {
-    return `${ new Date().getTime() }`;
-  }
-
-  newGm() {
+  newGminder() {
     const date = this.getDate();
-    const id = this.generateId();
-    const newG = {
-      id: id,
+    const newGminder = {
+      userID: 1,
       category: 'quote',
-      collection: this.state.inputCollection,
-      date: date,
-      prompt: null,
-      answer: this.state.inputAnswer,
-      reason: this.state.inputReason,
+      mainResponse: this.state.inputAnswer,
       author: this.state.inputAuthor,
-      stars: '0'
+      promptID: null,
+      reason: this.state.inputReason,
+      source: this.state.inputSource,
+      who: this.state.inputWho,
+      rating: 0,
+      recordedDate: date,
+      eventDate: null,
+      updatedDate: null,
+      collection: this.state.inputCollection,
+      publicFlag: 0,
     }
-    this.props.newGminder(newG);
+    console.log(newGminder)
+    return newGminder;
   }
 
   render() {
@@ -74,25 +82,54 @@ class AddQuote extends React.Component {
           <form>
               <div className="form-group">
                   <label>Quote</label>
-                  <textarea id="quote-answer" value={this.state.inputAnswer} onChange={this.handleChange} className="form-control" rows="3" placeholder="Example: May your beer be laid under an enchantment of surpassing excellence for seven years!"></textarea>
+                  <textarea id="quote-answer" value={this.state.inputAnswer}
+                    onChange={this.handleChange} className="form-control" rows="3"
+                    placeholder="Example: May your beer be laid under an enchantment of surpassing excellence for seven years!">
+                    </textarea>
                   <br />
                   <div className="form-group">
+                      <label>Who Said It (Fictional Character)</label>
+                      <input type="text" value={this.state.inputWho}
+                        onChange={this.handleChange} className="form-control"
+                        id="quote-who"
+                        placeholder="Example: Gandalf"/>
+                  </div>
+                  <div className="form-group">
                       <label>Author</label>
-                      <input type="text" value={this.state.inputAuthor} onChange={this.handleChange} className="form-control" id="quote-author" placeholder="Example: Gandalf, from LOTR by J. R. R. Tolkien"/>
+                      <input type="text" value={this.state.inputAuthor}
+                        onChange={this.handleChange} className="form-control"
+                        id="quote-author"
+                        placeholder="Example: J. R. R. Tolkien"/>
+                  </div>
+                  <div className="form-group">
+                      <label>Source</label>
+                      <input type="text" value={this.state.inputSource}
+                        onChange={this.handleChange} className="form-control"
+                        id="quote-source"
+                        placeholder="Example: The Fellowship of the Ring"/>
                   </div>
                   <br />
                   <label>Reason</label>
-                  <textarea className="form-control" value={this.state.inputReason} onChange={this.handleChange} id="quote-reason" rows="3" placeholder="Example: When I was reading this out loud with my husband, we laughed like hyenas"></textarea>
+                  <textarea className="form-control"
+                    value={this.state.inputReason}
+                    onChange={this.handleChange}
+                    id="quote-reason" rows="3"
+                    placeholder="Example: When I was reading this out loud with my husband, we laughed like hyenas"></textarea>
                   <br />
                   <div className="form-group">
                       <label>Collection</label>
-                      <input type="text" value={this.state.inputCollection} onChange={this.handleChange} className="form-control" id="quote-collection" placeholder="Example: Funny"/>
+                      <input type="text" value={this.state.inputCollection}
+                        onChange={this.handleChange} className="form-control"
+                        id="quote-collection" placeholder="Example: Funny"/>
                   </div>
               </div>
               <br />
 
           </form>
-          <button id="btn-quote-submit" className="btn btn-add" onClick={this.handleClick}>Save</button>
+          {/* Button trigger modal */}
+          <button id="create-goodminder" type="button" className="btn btn-modal" data-toggle="modal" onClick={this.handleClick} data-target="#exampleModal">
+            Create Goodminder
+          </button>
       </div>
 
     )
