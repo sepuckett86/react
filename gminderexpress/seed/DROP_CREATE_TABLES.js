@@ -1,5 +1,5 @@
 const sqlite3 = require("sqlite3");
-const db = new sqlite3.Database('./db.sqlite');
+const db = new sqlite3.Database('../db.sqlite');
 
 // Begin db.serialize
 db.serialize(function() {
@@ -40,5 +40,7 @@ if (error) {
   throw error;
 }
 });
+
 });
 // End db.serialize
+console.log(`The following tables have been dropped and recreated: Prompt, Gminder, Social`);
