@@ -10,7 +10,6 @@ class AddCustom extends React.Component {
 
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.newGm = this.newGm.bind(this);
   }
 
   getDate() {
@@ -22,32 +21,32 @@ class AddCustom extends React.Component {
     return fullDate;
   }
 
-  generateId() {
-    return `${ new Date().getTime() }`;
-  }
-
-
-  newGm() {
+  newGminder() {
     const date = this.getDate();
-    const id = this.generateId();
-    const newG = {
-      id: id,
+    const newGminder = {
+      userID: 1,
       category: 'custom',
-      collection: this.state.inputCollection,
-      date: date,
-      prompt: null,
-      answer: this.state.inputAnswer,
-      reason: null,
+      mainResponse: this.state.inputAnswer,
       author: null,
-      stars: '0'
+      promptID: null,
+      reason: null,
+      source: null,
+      who: null,
+      rating: 0,
+      recordedDate: date,
+      eventDate: null,
+      updatedDate: null,
+      collection: this.state.inputCollection,
+      publicFlag: 0,
     }
-    this.props.newGminder(newG);
+    console.log(newGminder)
+    return newGminder;
   }
 
   handleClick(event) {
-    if (event.target.id === "temp-submit") {
-      this.newGm();
-      this.props.boxClick();
+    if (event.target.id === "create-goodminder") {
+      const gminder = this.newGminder();
+      this.props.setGminderForDatabase(gminder);
     }
 
   }
@@ -76,7 +75,10 @@ class AddCustom extends React.Component {
                   </div>
               </div>
           </form>
-          <button id="temp-submit" className="btn btn-add" onClick={this.handleClick}>Save</button>
+          {/* Button trigger modal */}
+          <button id="create-goodminder" type="button" className="btn btn-modal" data-toggle="modal" onClick={this.handleClick} data-target="#exampleModal">
+            Create Goodminder
+          </button>
       </div>
 
     )

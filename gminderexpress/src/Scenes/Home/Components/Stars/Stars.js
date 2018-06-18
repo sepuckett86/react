@@ -1,13 +1,16 @@
 import React from 'react';
 import './Stars.css';
 
+// Util
+import Gminder from '../../../../Utils/Gminder'
+
 /* First goal: Generate correct number of Stars
     then onClick, change icon */
 class Stars extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      stars : Number(this.props.gminder.rating)
+      numForDatabase: null
     }
     this.handleClick = this.handleClick.bind(this);
   }
@@ -26,17 +29,38 @@ class Stars extends React.Component {
   }
 
   handleClick(event) {
-    let stars = Number(event.currentTarget.id) + 1;
-    if (stars === this.state.stars) {
-      this.props.starFun(0, this.props.gminder.id);
+    // Handle first star click
+    // Note: currentTarget is necessary to record the number; target does not work
+    if (event.currentTarget.id !== 'starModal') {
+      const numForDatabase = Number(event.currentTarget.id) + 1;
+      this.setState({numForDatabase: numForDatabase})
+    }
+    // Handle modal 'Confirm' click
+    if (event.target.id === 'starModal') {
+      let stars = this.state.numForDatabase
+      // Create gminder to push
+      let updatedGminder = this.props.gminder;
+
+      // change database
+      if (stars === this.props.gminder.rating) {
+        updatedGminder['rating'] = 0;
+        this.changeDatabase(updatedGminder);
+        this.setState({
+          numForDatabase: null
+        })
+
+      } else {
+      updatedGminder['rating'] = stars;
+      this.changeDatabase(updatedGminder);
       this.setState({
-        stars: 0
+        numForDatabase: null
       })
-    } else {
-    this.props.starFun(stars, this.props.gminder.id);
-    this.setState({
-      stars: stars
-    })}
+
+    }
+    }
+  }
+  changeDatabase(updatedGminder) {
+    Gminder.updateGminder(updatedGminder);
   }
 
   generateKey(index) {
@@ -45,12 +69,38 @@ class Stars extends React.Component {
 
   render() {
     return(
+
       <div>
+        {/* Modal */}
+        <div className="modal fade" id="starsModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="exampleModalLabel">Edit star rating</h5>
+                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div className="modal-body">
+                Make permanent change to database?
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button id="starModal" type="button" data-dismiss="modal" className="btn btn-primary" onClick={this.handleClick}>Confirm</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      {/* End Modal */}
+
       {
         this.makeStarArray().map((x, i) => {
           return (<span key={ this.generateKey(i) }>
-            <button className='star-button' id={i} onClick={this.handleClick}>
-              <i className={x}></i></button>
+            {/* Button trigger modal */}
+            <button id={i} type="button" onClick={this.handleClick} className="star-button" data-toggle="modal" data-target="#starsModal">
+            <i className={x}></i></button>
+
+
           </span>)
         })
       }

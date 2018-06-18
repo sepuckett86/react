@@ -39,7 +39,12 @@ class Add extends React.Component {
   }
 
   changeDatabase() {
-    Gminder.addGminder(this.state.gminderForDatabase);
+    if (!this.state.gminderForDatabase.mainResponse){
+      alert('Must enter main response')
+    } else {
+      Gminder.addGminder(this.state.gminderForDatabase);
+      this.props.changeDisplay('random');
+    }
   }
 
   setGminderforDatabase(gminder) {
@@ -101,7 +106,9 @@ class Add extends React.Component {
       </ul>
       <AddQuote
               changeType={this.changeType}
-              randomClick={this.props.randomClick} />
+              randomClick={this.props.randomClick}
+              changeDisplay={this.props.changeDisplay}
+              setGminderForDatabase={this.setGminderforDatabase} />
             </div>)
     }
     if(this.state.type === 'custom') {
@@ -119,7 +126,9 @@ class Add extends React.Component {
       </ul>
           <AddCustom
               changeType={this.changeType}
-              randomClick={this.props.randomClick}   />
+              randomClick={this.props.randomClick}
+              changeDisplay={this.props.changeDisplay}
+              setGminderForDatabase={this.setGminderforDatabase}/>
         </div>)
     }
   }
@@ -144,7 +153,7 @@ class Add extends React.Component {
   render() {
     return(
       <div className="container">
-        {console.log(this.state.gminderForDatabase)}
+
         {/* Modal - Must be outside of responsive design displays */}
         <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div className="modal-dialog" role="document">

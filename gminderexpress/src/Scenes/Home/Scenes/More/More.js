@@ -162,19 +162,12 @@ class More extends React.Component {
         <br />
 
         <Button
-        name="Table of All Gminders"
-        onClick={this.changeDisplay}
-        id="gminderTable"
-        gms={this.props.gms}
+        name="Manage Database"
+        onClick={this.props.changeDisplay}
+        id="manager"
         />
-        <br />
-        <br />
-        <Button
-        name="Table of All Prompts"
-        id="promptTable"
-        onClick={this.changeDisplay}
-        />
-        <br />
+
+        
         <br />
         <Button
           id='random'

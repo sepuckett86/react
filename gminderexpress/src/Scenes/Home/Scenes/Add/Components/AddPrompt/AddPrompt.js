@@ -19,7 +19,6 @@ class AddPrompt extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.changePrompt = this.changePrompt.bind(this);
     this.changePromptSame = this.changePromptSame.bind(this);
-    this.newGminder = this.newGminder.bind(this);
   }
 
   componentWillMount() {
@@ -59,9 +58,6 @@ class AddPrompt extends React.Component {
     }
     if (event.target.id === "next-prompt-same") {
       this.changePromptSame();
-    }
-    if (event.target.id === "temp-submit") {
-      this.newGm();
     }
     if (event.target.id === "collection") {
       this.props.setCollection(this.state.prompt.collection);
@@ -110,7 +106,7 @@ class AddPrompt extends React.Component {
       rating: 0,
       recordedDate: date,
       eventDate: null,
-      updatedDate: date,
+      updatedDate: null,
       collection: this.state.prompt.collection,
       publicFlag: 0,
     }

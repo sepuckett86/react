@@ -8,6 +8,8 @@ import Button from '../../Components/Button/Button';
 // connect to backend
 import Gminder from '../../../../Utils/Gminder'
 
+import './Random.css'
+
 class Random extends Component {
   constructor(props) {
     super(props);
@@ -21,34 +23,49 @@ class Random extends Component {
     }
     this.nextClick = this.nextClick.bind(this);
     this.backClick = this.backClick.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentWillMount() {
-    // Get data from database
-    Gminder.getGminders().then(res => this.setState({gminders: res.express})).catch(err => console.log(err)).then(() => {
-      Gminder.getPrompts().then(res => this.setState({prompts: res.express})).catch(err => console.log(err)).then(() => {
-        // Check if there is data in gminders
-        if (this.state.gminders.length !== 0) {
-          let random = this.state.gminders[Math.floor(Math.random() * this.state.gminders.length)];
-          let previous = this.state.previous;
-          // Add new gminder to previous array
-          previous.push(random);
-          this.setState({current: random, previous: previous, back: 0})
-          this.props.setGminder(random);
-          if(random.promptID) {
-            this.props.setPrompt(random.promptID);
-          }
-          // In case that gminders is empty);
-        } else if (this.state.gminders.length === 0) {
-          // Do nothing
-        } else {
-          console.log('Error, gminders not correct object')
-        }
-      });
-    })
-  }
-  // Button methods
+      // Get data from database
+      Gminder.getGminders().then(res => this.setState({gminders: res.express})).catch(err => console.log(err)).then(() => {
+        Gminder.getPrompts().then(res => this.setState({prompts: res.express})).catch(err => console.log(err)).then(() => {
 
+          // Check if there is data in gminders
+          if (this.state.gminders.length !== 0) {
+            let random = this.state.gminders[Math.floor(Math.random() * this.state.gminders.length)];
+            let previous = this.state.previous;
+            // Add new gminder to previous array
+            previous.push(random);
+            this.setState({current: random, previous: previous, back: 0})
+            this.props.setGminder(random);
+            this.props.setPrompts(this.state.prompts);
+            if(random.promptID) {
+              this.props.setPrompt(random.promptID);
+            }
+            // In case that gminders is empty);
+          } else if (this.state.gminders.length === 0) {
+            // Do nothing
+          } else {
+            console.log('Error, gminders not correct object')
+          }
+        });
+      })
+    }
+
+  // Button methods
+  handleClick(event) {
+    // Note: currentTarget is required to prevent clicking on the icon doing nothing
+    // target alone does not work for this and only part of the button is clickable
+    if (event.currentTarget.id === 'edit-button') {
+      this.props.setGminder(this.state.current);
+      this.props.changeDisplay('edit');
+    }
+    if (event.currentTarget.id === 'print-button') {
+      this.props.setGminder(this.state.current);
+      this.props.changeDisplay('print');
+    }
+  }
   // Sets a new random gminder as state and accounts for back/forward ability
   nextClick() {
     // Check that there we haven't gone back yet
@@ -84,7 +101,7 @@ class Random extends Component {
               this.setState({current: random, previous: previous})
               a = false;
             }
-            brake--
+            brake--;
           } // End while loop
         }
       }
@@ -125,128 +142,62 @@ class Random extends Component {
       return <Prompt
         gminder={gminder}
         prompts={prompts}
+        setPrompt={this.props.setPrompt}
+
         />
     }
     if(gminder.category === 'quote') {
       return <Quote
         gminder={gminder}
+
         />
     }
     if(gminder.category === 'custom') {
       return <Custom
         gminder={gminder}
+
         />
     } else {
       return <p>Category Error</p>
     }
   }
+
   render() {
     return (
         <div className="container">
-          {/*
-            Responsive Design
-            For small screen (phone)
-          */}
-          <div className="d-sm-none">
-            <div className="backfill">
-              <div>
-              <span className="">
-                <button className="button-span-2" onClick={this.backClick}><i className="fas fa-arrow-left"></i> </button>
-              </span>
-              {'\u00A0'}
-              <span className="">
-              <button className="button-span-2" onClick={this.nextClick}> <i className="fas fa-arrow-right"></i></button>
-              </span>
-              </div>
 
-            {this.chooseDisplay()}
-
-            <hr />
-            </div>
-          <br />
-
-            {/* Check whether there is more than one gminder stored */}
-            { this.state.gminders.length > 1 ?
-              <div>
-                <div className="row">
-
-            <div className="col col-12 col-sm-4">
-              <Button
-                id='add'
-                name="Add"
-                onClick={this.props.changeDisplay}
-                />
-            </div>
-            <div className="col col-12 col-sm-4">
-              <Button
-                id='more'
-                name="More"
-                onClick={this.props.changeDisplay}
-                />
-            </div>
-          </div>
-          </div>
-            : null
-          }
-          { this.state.gminders.length === 1 ?
-            <div>
-            <div className="row">
-            <div className="col col-12 col-sm-4">
-              <Button
-                id='add'
-                name="Add"
-                onClick={this.props.changeDisplay}
-                />
-            </div>
-            <div className="col col-12 col-sm-4">
-              <Button
-                id='more'
-                name="More"
-                onClick={this.props.changeDisplay}
-                />
-            </div>
-          </div>
-          </div>
-            : null
-          }
-
-          </div>
-
-          {/* For large screen */}
-          <div className="d-none d-sm-block">
             <div>
             <span>
-              <button className="btn button-span-3" onClick={this.backClick}><i className="fas fa-arrow-left"></i> </button>
+              <button className="btn arrow-button" onClick={this.backClick}><i className="fas fa-arrow-left"></i> </button>
             </span>
             {/* Spaces */}
             {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
             <span>
-            <button className="btn button-span-3" onClick={this.nextClick}> <i className="fas fa-arrow-right"></i></button>
+            <button className="btn arrow-button" onClick={this.nextClick}> <i className="fas fa-arrow-right"></i></button>
             </span>
             </div>
 
-            <div className="box">
+            <div className="random-box">
 
         			{this.chooseDisplay()}
-              <div className="alignR">
-                <br />
-              <a href="edit.php" className="button-clear"><i className="fas fa-edit"></i></a>
-              <a href="print.php" className="button-clear"><i className="fas fa-print"></i></a>
+              <div className="edit-print">
+
+              <button id='edit-button' onClick={this.handleClick} className="btn button-transparent"><i className="fas fa-edit"></i></button>
+              <button id='print-button' onClick={this.handleClick} className="btn button-transparent"><i className="fas fa-print"></i></button>
             </div>
             </div>
             <br />
 
-          { this.state.gminders ?
             <div>
             <div className="row">
-            <div className="col col-sm-6">
+            <div className="col col-12 col-sm-6">
               <Button
                 id='add'
                 name="Add"
                 onClick={this.props.changeDisplay}
                 />
             </div>
-            <div className="col col-sm-6">
+            <div className="col col-12 col-sm-6">
               <Button
                 id='more'
                 name="More"
@@ -255,14 +206,8 @@ class Random extends Component {
             </div>
           </div>
           </div>
-            : null
-          }
-
-          </div>
-
           <br />
-        </div>
-
+          </div>
     );
   }
 }

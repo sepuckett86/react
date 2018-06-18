@@ -57,6 +57,16 @@ class Home extends Component {
         this.setState({display: 'manager'})
       }
     }
+    if (display === 'edit') {
+      if (this.state.display !== 'edit') {
+        this.setState({display: 'edit'})
+      }
+    }
+    if (display === 'print') {
+      if (this.state.display !== 'print') {
+        this.setState({display: 'print'})
+      }
+    }
   }
 
   // Functions to set state of home to log current gminder(s) and prompt(s),
@@ -126,7 +136,8 @@ class Home extends Component {
       return <Print
         changeDisplay={this.changeDisplay}
         gminder={this.state.currentGminder}
-        prompt={this.state.currentPrompt}/>
+        prompt={this.state.currentPrompt}
+        prompts={this.state.prompts}/>
     }
     if (this.state.display === 'manager') {
       return <Manager

@@ -1,32 +1,33 @@
 import React from 'react';
 import './Quote.css';
 import Stars from '../../../../Components/Stars/Stars';
+import MediaQuery from 'react-responsive';
 
 class Quote extends React.Component {
   render() {
     return(
         <div id="quote">
 
-          {/* For large screen */}
-          <div className="d-none d-sm-block">
+          {/* MediaQuery for large screen */}
+            <MediaQuery query="(min-width: 576px)">
             <div className="row">
-              <div className="col">
+              <div className="col alignL">
                 <Stars
-                  starFun={this.props.starFun}
                   gminder={this.props.gminder}
                   />
               </div>
               <div className="col alignR">
-                <p>Added {this.props.gminder.date} from Quote Collection: {this.props.gminder.collection}</p>
+                <p>Added {this.props.gminder.recordedDate} from Quote Collection: {this.props.gminder.collection}</p>
               </div>
             </div>
+            </MediaQuery>
 
       			<div className="media answer">
       			<div className="media-body">
       			<br />
-      			<h4 className="lato" id="quote-random_0">
+      			<h4 className="lato alignL" id="quote-random_0">
       				"{this.props.gminder.mainResponse}"</h4>
-              <p className="lato" id="quote-who-source-author">--
+              <p className="lato alignR" id="quote-who-source-author">--
                 {this.props.gminder.who ? this.props.gminder.who : null}
                 {this.props.gminder.who ? ", " : null}
                 {this.props.gminder.source ? "from " : null}
@@ -45,41 +46,19 @@ class Quote extends React.Component {
               </div>
             </div>)
               : null }
-          </div>
-
-          {/* For small screen */}
-           <div className="d-sm-none">
-
-              <div className="media answer media-small">
-              <div className="media-body">
-              <br />
-              <h4 className="lato" id="quote-random_0">
-                "{this.props.gminder.mainResponse}"</h4>
-                 <p className="lato" id="quote-who-source-author">--{this.props.gminder.author}</p>
-                <br />
-              </div>
-              </div>
-              <br />
-              {/* Determine if there is reason content */}
-              { this.props.gminder.reason !== null ?
-                (<div className="media reason media-small">
-                <div className="media-body lato" id="quote-reason">
-                  {this.props.gminder.reason}
-                </div>
-              </div>)
-                : null }
 
                 <br />
+                {/* MediaQuery for small screen */}
+                <MediaQuery query="(max-width: 576px)">
                 <Stars
                   starFun={this.props.starFun}
                   gminder={this.props.gminder}
                   />
                   <br />
-                <p>{this.props.gminder.date} | {this.props.gminder.collection}</p>
-             </div>
+                <p>{this.props.gminder.recordedDate ? (this.props.gminder.recordedDate + ' | '): null}
+                   {this.props.gminder.collection}</p>
 
-
-
+             </MediaQuery>
     			</div>
     )
   }
