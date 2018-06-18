@@ -90,7 +90,7 @@ class Print extends React.Component {
           <br /><br />
           <div className="row comfortaa">
             <div className="col alignL">
-            <p>Made with care<a href="#" className="button-clear"> </a></p>
+            <p>Made with care</p>
             </div>
             <div className="col">
             <p>Printed with <img src="favicon.png" alt="goodminderLogo" style={logoStyle}/>goodminder</p>

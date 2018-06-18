@@ -58,6 +58,7 @@ class Random extends Component {
     // Note: currentTarget is required to prevent clicking on the icon doing nothing
     // target alone does not work for this and only part of the button is clickable
     if (event.currentTarget.id === 'edit-button') {
+      this.props.setGminder(this.state.current);
       this.props.changeDisplay('edit');
     }
     if (event.currentTarget.id === 'print-button') {

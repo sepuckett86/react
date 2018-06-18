@@ -247,8 +247,9 @@ class Manager extends React.Component {
         <br />
         <br />
         <Button
+          id='random'
         name="Back"
-        onClick={this.props.boxClick}
+        onClick={this.props.changeDisplay}
         />
 
         <br />

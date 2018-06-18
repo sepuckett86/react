@@ -124,5 +124,29 @@ gminderRouter.put('/:id', (req, res, next) => {
   }
 })
 
+gminderRouter.delete('/:id', (req, res, next) => {
+  // Check for existence of menu-item
+  const sqlItem = 'SELECT * FROM Gminder WHERE id = $id';
+  db.get(sqlItem, {
+    $id: req.params.id
+  }, function(error, row) {
+    if (error || !row) {
+      res.status(404).send();
+    } else {
+      // Delete menu item
+      const sqlDelete = 'DELETE FROM Gminder WHERE id = $id';
+      db.run(sqlDelete, {
+        $id: req.params.id
+      }, function(error) {
+        if (error) {
+          res.status(404).send();
+        } else {
+          res.status(204).send();
+        }
+      })
+    }
+  })
+})
+
 
 module.exports = gminderRouter;

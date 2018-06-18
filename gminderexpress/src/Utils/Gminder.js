@@ -70,4 +70,12 @@ Gminder.updateGminder = (updatedGminder) => {
   })
 }
 
+Gminder.deleteGminder = id => {
+  const url = `api/gminder/${id}`;
+  const fetchOptions = {
+    method: 'DELETE'
+  };
+  return fetch(url, fetchOptions);
+};
+
 export default Gminder;
