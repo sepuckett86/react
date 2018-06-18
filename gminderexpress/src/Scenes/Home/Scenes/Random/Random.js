@@ -23,35 +23,48 @@ class Random extends Component {
     }
     this.nextClick = this.nextClick.bind(this);
     this.backClick = this.backClick.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentWillMount() {
-    // Get data from database
-    Gminder.getGminders().then(res => this.setState({gminders: res.express})).catch(err => console.log(err)).then(() => {
-      Gminder.getPrompts().then(res => this.setState({prompts: res.express})).catch(err => console.log(err)).then(() => {
-        // Check if there is data in gminders
-        if (this.state.gminders.length !== 0) {
-          let random = this.state.gminders[Math.floor(Math.random() * this.state.gminders.length)];
-          let previous = this.state.previous;
-          // Add new gminder to previous array
-          previous.push(random);
-          this.setState({current: random, previous: previous, back: 0})
-          this.props.setGminder(random);
-          if(random.promptID) {
-            this.props.setPrompt(random.promptID);
+      // Get data from database
+      Gminder.getGminders().then(res => this.setState({gminders: res.express})).catch(err => console.log(err)).then(() => {
+        Gminder.getPrompts().then(res => this.setState({prompts: res.express})).catch(err => console.log(err)).then(() => {
+
+          // Check if there is data in gminders
+          if (this.state.gminders.length !== 0) {
+            let random = this.state.gminders[Math.floor(Math.random() * this.state.gminders.length)];
+            let previous = this.state.previous;
+            // Add new gminder to previous array
+            previous.push(random);
+            this.setState({current: random, previous: previous, back: 0})
+            this.props.setGminder(random);
+            this.props.setPrompts(this.state.prompts);
+            if(random.promptID) {
+              this.props.setPrompt(random.promptID);
+            }
+            // In case that gminders is empty);
+          } else if (this.state.gminders.length === 0) {
+            // Do nothing
+          } else {
+            console.log('Error, gminders not correct object')
           }
-          // In case that gminders is empty);
-        } else if (this.state.gminders.length === 0) {
-          // Do nothing
-        } else {
-          console.log('Error, gminders not correct object')
-        }
-      });
-    })
-  }
+        });
+      })
+    }
 
   // Button methods
-
+  handleClick(event) {
+    // Note: currentTarget is required to prevent clicking on the icon doing nothing
+    // target alone does not work for this and only part of the button is clickable
+    if (event.currentTarget.id === 'edit-button') {
+      this.props.changeDisplay('edit');
+    }
+    if (event.currentTarget.id === 'print-button') {
+      this.props.setGminder(this.state.current);
+      this.props.changeDisplay('print');
+    }
+  }
   // Sets a new random gminder as state and accounts for back/forward ability
   nextClick() {
     // Check that there we haven't gone back yet
@@ -128,6 +141,7 @@ class Random extends Component {
       return <Prompt
         gminder={gminder}
         prompts={prompts}
+        setPrompt={this.props.setPrompt}
 
         />
     }
@@ -167,8 +181,8 @@ class Random extends Component {
         			{this.chooseDisplay()}
               <div className="edit-print">
 
-              <a href="edit.php" className="button-clear"><i className="fas fa-edit"></i></a>
-              <a href="print.php" className="button-clear"><i className="fas fa-print"></i></a>
+              <button id='edit-button' onClick={this.handleClick} className="btn button-transparent"><i className="fas fa-edit"></i></button>
+              <button id='print-button' onClick={this.handleClick} className="btn button-transparent"><i className="fas fa-print"></i></button>
             </div>
             </div>
             <br />

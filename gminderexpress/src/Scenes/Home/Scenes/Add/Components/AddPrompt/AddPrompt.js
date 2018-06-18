@@ -59,9 +59,6 @@ class AddPrompt extends React.Component {
     if (event.target.id === "next-prompt-same") {
       this.changePromptSame();
     }
-    if (event.target.id === "temp-submit") {
-      this.newGm();
-    }
     if (event.target.id === "collection") {
       this.props.setCollection(this.state.prompt.collection);
       this.props.changeDisplay('manager');

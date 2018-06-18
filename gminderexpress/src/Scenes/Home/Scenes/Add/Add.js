@@ -39,7 +39,12 @@ class Add extends React.Component {
   }
 
   changeDatabase() {
-    Gminder.addGminder(this.state.gminderForDatabase);
+    if (!this.state.gminderForDatabase.mainResponse){
+      alert('Must enter main response')
+    } else {
+      Gminder.addGminder(this.state.gminderForDatabase);
+      this.props.changeDisplay('random');
+    }
   }
 
   setGminderforDatabase(gminder) {
@@ -148,7 +153,7 @@ class Add extends React.Component {
   render() {
     return(
       <div className="container">
-        
+
         {/* Modal - Must be outside of responsive design displays */}
         <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div className="modal-dialog" role="document">

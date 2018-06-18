@@ -217,13 +217,13 @@ class App extends Component {
     }
   }
 
-
   render() {
     return (
       <div className="App">
+
       <Router>
         <div>
-          <header className="App-header">
+          <header id='header' className="App-header">
             <nav className="navbar navbar-dark navbar-expand-sm justify-content-between">
               <a className="navbar-brand" id='intro' href="/intro"><img src={logo} className="App-logo" alt="logo"/>Goodminder</a>
               <div className="navbar-expand" id="navbarNav">

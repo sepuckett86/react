@@ -14,17 +14,15 @@ class Prompt extends React.Component {
 
   render() {
     const prompt = this.getPromptWithId();
-
     return(
       <div id="prompt">
-
         {/* MediaQuery for large screen */}
           <MediaQuery query="(min-width: 576px)">
             <div className="row">
               <div className="col alignL">
                 <Stars
                   gminder={this.props.gminder}
-                  
+
                   />
               </div>
             <div className="col alignR">
