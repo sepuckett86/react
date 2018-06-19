@@ -30,7 +30,7 @@
 }
 
 .btn-outline-goodminder {
-  color: black;
+  color: #2b2b2b;
   background-image: none;
   background-color: transparent;
   border-color: #46B3B3;
@@ -61,44 +61,6 @@
 
 /* End btn-goodminder */
 
-.button-standard {
-    border: solid;
-  border-radius: 10px;
-    border-color: #46B3B3;
-    border-width: 2px;
-    color: black;
-    padding: 15px 32px;
-    text-align: center;
-	font-family: 'Comfortaa', cursive;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 24px;
-  background-color: rgba(255, 255, 255, 0.7);
-  
-
-}
-
-.button-span {
-  border: solid;
-  border-radius: 10px;
-  border-color: #46B3B3;
-  border-width: 2px;
-  color: black;
-  padding: 15px 15px;
-  margin: 0px;
-  width: 100%;
-  text-align: center;
-	font-family: 'Comfortaa', cursive;
-  text-decoration: none;
-  font-size: 20px;
-  background-color: rgba(255, 255, 255, 0.3);
-
-}
-
-.button-span:hover {
-    background-color: white;
-}
-
 
 
 .button-clear {
@@ -119,9 +81,48 @@
 	font-family: 'Comfortaa', cursive;
     text-decoration: none;
     display: inline-block;
-
 }
 
-.button-standard:hover {
+/* Small screen */
+@media (min-width: 0px) {
+  .btn-custom {
+    border: solid;
+    border-radius: 10px;
+    border-color: #46B3B3;
+    border-width: 2px;
+    color: #2b2b2b;
+    padding: 15px 15px;
+    margin-bottom: 2%;
+    width: 100%;
+    text-align: center;
+  	font-family: 'Comfortaa', cursive;
+    text-decoration: none;
+    font-size: 20px;
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+  .btn-custom:hover {
+    background-color: white;
+  }
+}
+
+/* Regular screen and up */
+@media (min-width: 576px) {
+  .btn-custom {
+    border: solid;
+    border-radius: 10px;
+    border-color: #46B3B3;
+    border-width: 2px;
+    color: #2b2b2b;
+    padding: 15px 32px;
+    text-align: center;
+  	font-family: 'Comfortaa', cursive;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 24px;
+    background-color: rgba(255, 255, 255, 0.7);
+    width: auto;
+  }
+  .btn-custom:hover {
     background-color: rgba(255, 255, 255, 0.9);
+  }
 }

@@ -15,14 +15,10 @@ class Button extends React.Component {
   render() {
     return (
       <div>
-      <div className="d-sm-none">
-        <button className="button-span btn" id={this.props.id} onClick={this.handleClick}>
+        <button className="btn-custom btn" id={this.props.id} onClick={this.handleClick}>
       {this.props.name}
-    </button></div>
-      <div className="d-none d-sm-block">
-        <button className="button-standard btn" id={this.props.id} onClick={this.handleClick}>
-      {this.props.name}
-    </button></div>
+    </button>
+
 </div>
 
       )

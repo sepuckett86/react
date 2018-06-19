@@ -165,7 +165,6 @@ class Random extends Component {
   render() {
     return (
         <div className="container">
-
             <div>
             <span>
               <button className="btn arrow-button" onClick={this.backClick}><i className="fas fa-arrow-left"></i> </button>
@@ -177,7 +176,7 @@ class Random extends Component {
             </span>
             </div>
 
-            <div className="random-box">
+            <div className="box">
 
         			{this.chooseDisplay()}
               <div className="edit-print">

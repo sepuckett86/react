@@ -1,7 +1,7 @@
 import React from 'react';
 import './More.css';
 import Button from '../../Components/Button/Button';
-
+import PDF from './Components/PDF/PDF'
 
 
 //Add CSVDownload to import if want to use it
@@ -78,7 +78,7 @@ class More extends React.Component {
 
   render() {
     return(
-      <div>
+      <div className="container">
 
         { this.state.display === 'gminderTable' ?
       (<div className="box">
@@ -167,7 +167,7 @@ class More extends React.Component {
         id="manager"
         />
 
-        
+
         <br />
         <Button
           id='random'
@@ -177,7 +177,7 @@ class More extends React.Component {
 
         <br />
         <br />
-
+        <PDF />
       </div>)
   }
 }
