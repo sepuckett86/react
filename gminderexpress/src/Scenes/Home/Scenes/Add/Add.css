@@ -8,39 +8,57 @@
   border-color: #46B3B3;
 }
 
-.btn-add-active {
-  color: #fff;
-  background-color: black;
-  background-image: none;
-  border-color: #01549b;
-  margin-left: 2px;
-  margin-right: 2px;
-  font-family: 'Comfortaa', cursive;
-}
-
-.btn-add {
-  color: #fff;
-  background-color: #46B3B3;
-  background-image: none;
-  margin-left: 2px;
-  margin-right: 2px;
-  font-family: 'Comfortaa', cursive;
-}
-
-.btn-add:hover{
-  color: #fff;
-  background-color: #399393;
-  border-color: #46B3B3;
-}
-
-.btn-add-active:hover {
-  color: #fff;
-  background-color: #399393;
-  background-image: none;
-  border-color: #01549b;
-
-}
 
 .alignL {
   text-align: left;
 }
+
+/* Flex-box buttons settings */
+
+.my-flex-parent {
+  display: flex;
+  background: transparent;
+}
+
+.my-flex-child {
+  border-radius: 10px;
+  width: 100%;
+  margin: 0px;
+  text-align: center;
+  color: #fff;
+  background-color: #46B3B3;
+  font-family: 'Comfortaa', cursive;
+  font-size: 18px;
+}
+.my-flex-child:hover {
+    color: #fff;
+    filter: brightness(70%);
+    background-image: none;
+
+}
+
+.my-flex-child-active {
+  border-radius: 10px;
+  width: 100%;
+  margin: 0px;
+  text-align: center;
+  color: #fff;
+  background-color: #2b2b2b;
+  font-family: 'Comfortaa', cursive;
+  font-size: 18px;
+}
+
+.my-flex-child-active:hover {
+  color: #fff;
+  filter: brightness(70%);
+  background-image: none;
+  border-color: #01549b;
+
+}
+
+.btn-center {
+  margin-left: 1%;
+  margin-right: 1%;
+}
+
+/* End Flex-box buttons settings */

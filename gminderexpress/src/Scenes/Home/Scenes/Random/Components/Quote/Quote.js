@@ -44,11 +44,12 @@ class Quote extends React.Component {
             </div>
             </MediaQuery>
 
-      			<div className="media answer">
+      			<div className="g-box">
       			<div className="media-body">
       			<br />
       			<h4 className="lato alignL" id="quote-random_0">
       				"{this.props.gminder.mainResponse}"</h4>
+              <br />
               <p className="lato alignR" id="quote-who-source-author">
                 {this.makeCredit()}</p>
       				<br />

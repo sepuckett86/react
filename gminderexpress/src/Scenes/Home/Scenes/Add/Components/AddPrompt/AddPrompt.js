@@ -23,22 +23,20 @@ class AddPrompt extends React.Component {
 
   componentWillMount() {
     // Get data from database
-      Gminder.getPrompts().then(res => this.setState({prompts: res.express})).catch(err =>
-        console.log(err)).then(() => {
-        // Check if there is data in prompts
-        if (this.state.prompts.length !== 0) {
-          let random = this.state.prompts[Math.floor(Math.random() * this.state.prompts.length)];
-          this.setState({ prompt: random });
-        } else if (this.state.random === "no") {
-          this.setState({ prompt: this.props.prompt})
-        }
-      });
+    Gminder.getPrompts().then(res => this.setState({prompts: res.express})).catch(err => console.log(err)).then(() => {
+      // Check if there is data in prompts
+      if (this.state.prompts.length !== 0) {
+        let random = this.state.prompts[Math.floor(Math.random() * this.state.prompts.length)];
+        this.setState({prompt: random});
+      } else if (this.state.random === "no") {
+        this.setState({prompt: this.props.prompt})
+      }
+    });
   }
-
 
   changePrompt() {
     let random = this.state.prompts[Math.floor(Math.random() * this.state.prompts.length)];
-    this.setState({ prompt: random });
+    this.setState({prompt: random});
   }
 
   changePromptSame() {
@@ -49,14 +47,14 @@ class AddPrompt extends React.Component {
       }
     })
     let random = collectionArray[Math.floor(Math.random() * collectionArray.length)];
-    this.setState({ prompt: random });
+    this.setState({prompt: random});
   }
 
   handleClick(event) {
-    if (event.target.id === "next-prompt-all") {
+    if (event.currentTarget.id === "next-prompt-all") {
       this.changePrompt();
     }
-    if (event.target.id === "next-prompt-same") {
+    if (event.currentTarget.id === "next-prompt-same") {
       this.changePromptSame();
     }
     if (event.target.id === "collection") {
@@ -89,7 +87,7 @@ class AddPrompt extends React.Component {
   }
 
   generateId() {
-    return `${ new Date().getTime() }`;
+    return `${new Date().getTime()}`;
   }
 
   newGminder() {
@@ -108,57 +106,58 @@ class AddPrompt extends React.Component {
       eventDate: null,
       updatedDate: null,
       collection: this.state.prompt.collection,
-      publicFlag: 0,
+      publicFlag: 0
     }
     console.log(newGminder)
     return newGminder;
   }
 
   render() {
-    return(
-      <div>
-          <br />
-          <div className="media answer media-small">
-            <div className="media-body">
-              <h4 className="lato">{this.state.prompt.promptText}</h4>
-            </div>
+    const style = {
+      fontSize: '24px',
+      color: '#2b2b2b', /* Blackish */
+    }
+    return (<div>
+      <br/>
+      <hr />
+      <p>Collection:
+        <button id="collection" className="button-transparent" onClick={this.handleClick}>{this.state.prompt.collection}</button>
+      </p>
+        <p>
+        Next prompt: <br />
+        <button id="next-prompt-same" className="btn btn-small" onClick={this.handleClick}>
+          <i class="fas fa-long-arrow-alt-right"></i>{' '}Same Collection</button>
+        {' '}
+        <button id="next-prompt-all" className="btn btn-small" onClick={this.handleClick}>
+          <i class="fas fa-random"></i>{' '}All Collections</button>
+        </p>
+        <hr />
+<form>
+  <div className="form-group">
+<label>Prompt</label>
+      <div className="g-box">
+        <div className="large">
 
-            </div>
-            <br />
-            <div className='row'>
-              <div className='col col-12 col-lg-6'>
-            <p className="paragraph-prompt" id={this.state.prompt.id}>From prompt collection: {' '}
-              <button id="collection" className="btn btn-add" onClick={this.handleClick}>{this.state.prompt.collection}</button>
-          </p>  </div>
-          <div className='col col-12 col-lg-6'>
-        <p>Next prompt from collection: {' '}
-             <button id="next-prompt-same" className="btn btn-add" onClick={this.handleClick}>Same</button>
-            {' '}
-             <button id="next-prompt-all" className="btn btn-add" onClick={this.handleClick}>All</button>
-           </p>
-            </div>
-          </div>
-              <br />
 
-
-          <form>
-                <div className="form-group">
-                  <label>Answer</label>
-                  <textarea className="form-control" value={this.state.inputAnswer} onChange={this.handleChange} id="prompt-answer" rows="3"></textarea>
-                  <br />
-                  <label>Reason</label>
-                  <textarea className="form-control" value={this.state.inputReason} onChange={this.handleChange} id="prompt-reason" rows="3"></textarea>
-                  <br />
-              </div>
-
-          </form>
-          {/* Button trigger modal */}
-          <button id="create-goodminder" type="button" className="btn btn-modal" data-toggle="modal" onClick={this.handleClick} data-target="#exampleModal">
-            Create Goodminder
-          </button>
-
+        <p className="lato" style={style}>{this.state.prompt.promptText}</p>
+        </div>
       </div>
-    )
+      <br />
+          <label>Answer</label>
+          <textarea className="form-control" value={this.state.inputAnswer} onChange={this.handleChange} id="prompt-answer" rows="3"></textarea>
+          <br/>
+          <label>Reason</label>
+          <textarea className="form-control" value={this.state.inputReason} onChange={this.handleChange} id="prompt-reason" rows="3"></textarea>
+          <br/>
+        </div>
+
+      </form>
+      {/* Button trigger modal */}
+      <button id="create-goodminder" type="button" className="btn btn-small" data-toggle="modal" onClick={this.handleClick} data-target="#exampleModal">
+        Create Goodminder
+      </button>
+
+    </div>)
   }
 }
 

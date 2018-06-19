@@ -31,14 +31,14 @@ class Prompt extends React.Component {
             </div>
           </MediaQuery>
 
-            <div className="media prompt">
+            <div className="g-box prompt">
               <div className="media-body">
                 <p className="lato">{prompt}</p>
               </div>
             </div>
             <br />
 
-            <div className="media answer">
+            <div className="g-box answer">
             <div className="media-body">
             <br />
             <h4 className="lato">{this.props.gminder.mainResponse}</h4><br />
@@ -48,7 +48,7 @@ class Prompt extends React.Component {
             { this.props.gminder.reason ?
               <div>
             <br />
-            <div className="media reason">
+            <div className="g-box reason">
             <div className="media-body lato">
             {this.props.gminder.reason}
             </div>

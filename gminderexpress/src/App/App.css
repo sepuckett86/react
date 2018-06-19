@@ -1,4 +1,14 @@
+/*
+Critical spacing is 2% in this app.
+border-radius: 10px;
+small-button-text is font-size: 18px;
+large-button-text is 20 or 24px based on screen-size
+black is #2b2b2b, which is not full black and easier on eyes
+ */
 
+.btn {
+	border-radius: 10px;
+}
 .alignR {
 	text-align: right;
 }
@@ -14,52 +24,20 @@
 	float: left;
 }
 
-
-.button-span-2 {
-  border: solid;
-  border-radius: 10px;
-  border-color: #46B3B3;
-  border-width: 2px;
-  color: black;
-  padding: 5px 10px;
-  margin-bottom: 10px;
-  margin-top: 10px;
-  width: 30%;
-  text-align: center;
-	font-family: 'Comfortaa', cursive;
-  text-decoration: none;
-  font-size: 24px;
-  background-color: rgba(255, 255, 255, 0.3);
-
+/* everything has space */
+body {
+	line-height: 1.6;
 }
 
-.button-span-2:hover {
-    background-color: rgba(255, 255, 255, 1);
+h1, h2, h3, h4, h5 {
+	line-height: 1.2;
 }
 
-.button-span-3 {
-  border: solid;
-  border-radius: 10px;
-  border-color: #46B3B3;
-  border-width: 2px;
-  color: black;
-  padding: 5px 10px;
-  margin: 10px;
-  margin-bottom: 15px;
-  margin-top: 15px;
-  width: 30%;
-  text-align: center;
-	font-family: 'Comfortaa', cursive;
-  text-decoration: none;
-  font-size: 24px;
-  background-color: rgba(255, 255, 255, 0.6);
+/* end space */
 
+p {
+	font-size: 18px;
 }
-
-.button-span-3:hover {
-    background-color: rgba(255, 255, 255, 0.9);
-}
-
 
 header{
   color: white;
@@ -93,30 +71,12 @@ header{
   background-color: rgba(255, 255, 255, 0.3);
 }
 
-.backfill {
-	font-size: 16px;
-	color: #5777C0;
-}
-.box {
-    background-color: rgba(255, 255, 255, 0.8);
-    border: 1px solid black;
-    padding: 25px;
-    border-radius: 10px;
-    -moz-box-shadow: 1px 2px 3px rgba(0,0,0,.5);
-    -webkit-box-shadow: 1px 2px 3px rgba(0,0,0,.5);
-    box-shadow: 1px 2px 3px rgba(0,0,0,.5);
-    font-size: 16px;
-    text-align: left;
-    color: #5777C0;
-
-}
-
 .box-clear {
     background-color: rgba(255, 255, 255, 0.7);
     padding: 25px;
     border-radius: 10px;
     font-size: 16px;
-    color: black;
+    color: #2b2b2b;
 }
 
 h1 {
@@ -138,13 +98,8 @@ h1 span img {
 	text-align: center;
 	font-family: 'Comfortaa', cursive;
 	color: white;
-	text-shadow: 2px 2px 2px black;
+	text-shadow: 2px 2px 2px #2b2b2b;
 	margin: 25px;
-}
-
-h2 {
-    font-size: 16px;
-    font-weight: normal;
 }
 
 
@@ -152,33 +107,26 @@ ol {
 	text-align: center;
 }
 
-h5 {
-  font-family: 'Barlow Semi Condensed', sans-serif;
-  font-size: 24px;
-}
 
 
 .barlow {
-    font-family: 'Barlow Semi Condensed', sans-serif;
+  font-family: 'Barlow Semi Condensed', sans-serif;
 }
 
 .marker {
 	font-family: 'Permanent Marker', cursive;
-	font-size: 45px;
 }
 
 .arial {
-    font-family: 'arial';
-	font-size: 12px;
+  font-family: 'arial';
 }
 
 .comfortaa {
-    font-family: 'Comfortaa', cursive;
+  font-family: 'Comfortaa', cursive;
 }
 
 .lato {
   font-family: 'Lato', sans-serif;
-
 }
 
 .right {
@@ -237,7 +185,7 @@ h5 {
 }
 
 .btn-outline-goodminder {
-  color: black;
+  color: #2b2b2b;
   background-image: none;
   background-color: transparent;
   border-color: #46B3B3;
@@ -273,7 +221,7 @@ h5 {
   border-radius: 10px;
     border-color: #46B3B3;
     border-width: 2px;
-    color: black;
+    color: #2b2b2b;
     padding: 15px 32px;
     text-align: center;
 	font-family: 'Comfortaa', cursive;
@@ -341,25 +289,42 @@ button:focus {outline:0;}
   border-color: #46B3B3;
 }
 
+.g-box {
+  padding: 10px;
+  border-radius: 10px;
+  position: relative;
+  border: solid;
+  border-color: #46B3B3;
+	color: #2b2b2b
+}
+
+.g-box .large {
+	font-size: 32px;
+}
+
+.g-box .small {
+	font-size: 16px;
+}
+
 .prompt {
-  color: black;
+  color: #2b2b2b;
   font-size: 24px;
 
 }
 
 .answer {
 
-  color: black;
+  color: #2b2b2b;
 }
 
 .reason {
 
-  color: black;
+  color: #2b2b2b;
 }
 
 .options {
   text-align: center;
-  color: black;
+  color: #2b2b2b;
 }
 
 
@@ -469,7 +434,7 @@ p {
 }
 
 .App-header {
-  background-color: #0d0d0d;
+  background-color: #2b2b2b;
   color: white;
 }
 
@@ -482,8 +447,27 @@ p {
   font-size: large;
 }
 
+
+.btn-small {
+  color: #fff;
+  background-color: #46B3B3;
+  background-image: none;
+  font-family: 'Comfortaa', cursive;
+	margin-top: 1%;
+	margin-bottom: 1%;
+	font-size: 18px;
+}
+
+.btn-small:hover{
+  color: #fff;
+  background-color: #399393;
+  border-color: #46B3B3;
+}
+
+
+
 footer{
-	color: black;
+	color: #2b2b2b;
 	font-family: 'Comfortaa', cursive;
   background-color: rgba(255, 255, 255, 0.8);
 	font-size: 14px;
@@ -504,13 +488,13 @@ footer{
     .full-text { display: none; }
 }
 
-/* As in bootstrap css */
+/* This is where the spacing for the entire app is dictated */
 .container {
   position: relative;
   margin-left: auto;
   margin-right: auto;
-  padding-right: 15px;
-  padding-left: 15px;
+  padding-right: 2%;
+  padding-left: 2%;
 }
 /* Import from Bootstrap website
 
@@ -531,6 +515,24 @@ footer{
     background-attachment: fixed;
     text-align: center;
   }
+	.box {
+      background-color: transparent;
+      border: 0px;
+      padding: 0px;
+      border-radius: 0px;
+      -moz-box-shadow: 0px 0px 0px rgba(0,0,0,0);
+      -webkit-box-shadow: 0px 0px 0px rgba(0,0,0,0);
+      box-shadow: 0px 0px 0px rgba(0,0,0,0);
+      font-size: 16px;
+      color: #5777C0;
+  }
+	.g-box {
+    background-color: rgba(255, 255, 255, 0.6);
+		padding: 5%;
+  }
+	.btn-small {
+	  width: 100%;
+	}
 }
 
 /* Regular screen and up */
@@ -543,6 +545,25 @@ footer{
   .App {
     background-color: transparent;
   }
+	.box {
+      background-color: rgba(255, 255, 255, 0.8);
+      border: 1px solid #2b2b2b;
+      padding: 25px;
+      border-radius: 10px;
+      -moz-box-shadow: 1px 2px 3px rgba(0,0,0,.5);
+      -webkit-box-shadow: 1px 2px 3px rgba(0,0,0,.5);
+      box-shadow: 1px 2px 3px rgba(0,0,0,.5);
+      font-size: 16px;
+      color: #5777C0;
+
+  }
+	.g-box {
+    background-color: transparent;
+		padding: 2%;
+  }
+	.btn-small {
+	  width: auto;
+	}
 }
 
 

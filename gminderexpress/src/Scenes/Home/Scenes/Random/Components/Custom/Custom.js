@@ -21,7 +21,7 @@ class Custom extends React.Component {
             </div>
           </div>
         </MediaQuery>
-          <div className="media answer">
+          <div className="g-box answer">
           <div className="media-body">
           <br />
           <h4 className="lato" id="quote-random_0">

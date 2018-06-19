@@ -58,32 +58,32 @@ class Add extends React.Component {
   chooseType() {
     if(this.state.type === 'empty') {
       return(<div>
-        <ul className="nav nav-pills nav-justified" id="myTab" role="tablist">
-        <li className="nav-item">
-          <a className="nav-link btn-add" id="prompt-tab" onClick={this.handleClick} href="#prompt" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">Prompt</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link btn-add" id="quote-tab" onClick={this.handleClick} href="#quote" data-toggle="tab" role="tab" aria-controls="quote" aria-selected="false">Quote</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link btn-add" id="custom-tab" onClick={this.handleClick} href="#custom" data-toggle="tab" role="tab" aria-controls="custom" aria-selected="false">Custom</a>
-        </li>
-      </ul>
+        <div className='my-flex-parent'>
+          <button id="prompt-tab" className='my-flex-child btn-left btn' onClick={this.handleClick}>
+            Prompt
+          </button>
+          <button id="quote-tab" className='my-flex-child btn-center btn' onClick={this.handleClick}>
+            Quote
+          </button>
+          <button id="custom-tab" className='my-flex-child btn-right btn' onClick={this.handleClick}>
+            Custom
+          </button>
+        </div>
       </div>)
     }
     if(this.state.type === 'prompt') {
       return(<div>
-        <ul className="nav nav-pills nav-justified" id="myTab" role="tablist">
-        <li className="nav-item">
-          <a className="nav-link btn-add-active" id="prompt-tab" onClick={this.handleClick} data-toggle="modal" href="#prompt">Prompt</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link btn-add" id="quote-tab" onClick={this.handleClick} href="#quote" data-toggle="tab" role="tab" aria-controls="quote" aria-selected="false">Quote</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link btn-add" id="custom-tab" onClick={this.handleClick} href="#custom" data-toggle="tab" role="tab" aria-controls="custom" aria-selected="false">Custom</a>
-        </li>
-      </ul>
+        <div className='my-flex-parent'>
+          <button id="prompt-tab" className='my-flex-child-active btn-left btn' onClick={this.handleClick}>
+            Prompt
+          </button>
+          <button id="quote-tab" className='my-flex-child btn-center btn' onClick={this.handleClick}>
+            Quote
+          </button>
+          <button id="custom-tab" className='my-flex-child btn-right btn' onClick={this.handleClick}>
+            Custom
+          </button>
+        </div>
         <AddPrompt
               changeType={this.changeType}
               changeDisplay={this.props.changeDisplay}
@@ -97,17 +97,17 @@ class Add extends React.Component {
     }
     if(this.state.type === 'quote') {
       return(<div>
-        <ul className="nav nav-pills nav-justified" id="myTab" role="tablist">
-        <li className="nav-item">
-          <a className="nav-link btn-add" id="prompt-tab" onClick={this.handleClick} href="#prompt" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">Prompt</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link btn-add-active" id="quote-tab" onClick={this.handleClick} href="#quote" data-toggle="modal" role="tab" aria-controls="quote" aria-selected="false">Quote</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link btn-add" id="custom-tab" onClick={this.handleClick} href="#custom" data-toggle="tab" role="tab" aria-controls="custom" aria-selected="false">Custom</a>
-        </li>
-      </ul>
+        <div className='my-flex-parent'>
+          <button id="prompt-tab" className='my-flex-child btn-left btn' onClick={this.handleClick}>
+            Prompt
+          </button>
+          <button id="quote-tab" className='my-flex-child-active btn-center btn' onClick={this.handleClick}>
+            Quote
+          </button>
+          <button id="custom-tab" className='my-flex-child btn-right btn' onClick={this.handleClick}>
+            Custom
+          </button>
+        </div>
       <AddQuote
               changeType={this.changeType}
               randomClick={this.props.randomClick}
@@ -117,17 +117,17 @@ class Add extends React.Component {
     }
     if(this.state.type === 'custom') {
       return(<div>
-        <ul className="nav nav-pills nav-justified" id="myTab" role="tablist">
-        <li className="nav-item">
-          <a className="nav-link btn-add" id="prompt-tab" onClick={this.handleClick} href="#prompt" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">Prompt</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link btn-add" id="quote-tab" onClick={this.handleClick} href="#quote" data-toggle="tab" role="tab" aria-controls="quote" aria-selected="false">Quote</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link btn-add-active" id="custom-tab" onClick={this.handleClick} href="#custom" data-toggle="modal" role="tab" aria-controls="custom" aria-selected="false">Custom</a>
-        </li>
-      </ul>
+        <div className='my-flex-parent'>
+          <button id="prompt-tab" className='my-flex-child btn-left btn' onClick={this.handleClick}>
+            Prompt
+          </button>
+          <button id="quote-tab" className='my-flex-child btn-center btn' onClick={this.handleClick}>
+            Quote
+          </button>
+          <button id="custom-tab" className='my-flex-child-active btn-right btn' onClick={this.handleClick}>
+            Custom
+          </button>
+        </div>
           <AddCustom
               changeType={this.changeType}
               randomClick={this.props.randomClick}
@@ -179,30 +179,7 @@ class Add extends React.Component {
           </div>
         </div>
 
-        {/* For small screen (phone) */}
-        <div className="d-sm-none d-block">
-    	         <p>Choose an entry type</p>
-               <div className="alignL">
-               {this.chooseType()}
-               </div>
 
-         <br />
-         <div className="row">
-           <div className="col">
-        <Button
-          name="Back"
-          onClick={this.props.changeDisplay}
-          />
-        <br />
-      </div>
-      <br />
-    </div>
-    <br />
-        </div>
-
-
-          {/* For large screen */}
-        <div className="d-none d-sm-block">
           <br />
 
           <div className="box">
@@ -219,7 +196,7 @@ class Add extends React.Component {
           onClick={this.props.changeDisplay}
           />
         <br />
-      </div>
+
       <br />
     </div>
     <br />

@@ -78,7 +78,7 @@ class More extends React.Component {
 
   render() {
     return(
-      <div>
+      <div className="container">
 
         { this.state.display === 'gminderTable' ?
       (<div className="box">
@@ -167,7 +167,7 @@ class More extends React.Component {
         id="manager"
         />
 
-        
+
         <br />
         <Button
           id='random'

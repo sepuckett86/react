@@ -1,4 +1,5 @@
 import React from 'react';
+import Table from './Components/Table/Table'
 
 import Button from '../../Components/Button/Button';
 // import Gminders from './Components/Gminders/Gminders';
@@ -109,9 +110,7 @@ class Manager extends React.Component {
       })
     }
     return(
-      <div>
-        <br />
-
+      <div className="container">
         { this.state.display === 'gminderTable' ?
       (<div className="box">
         <div id="gminders">
@@ -229,8 +228,8 @@ class Manager extends React.Component {
         </div>)
         : null }
 
-        <br />
 
+        <Table />
         <Button
         name="Table of All Gminders"
         onClick={this.changeDisplay}
