@@ -143,6 +143,7 @@ class AddPrompt extends React.Component {
       <button id="next-prompt-all" className="btn btn-small" onClick={this.handleClick}>
         <i class="fas fa-random"></i>{' '}All Collections</button>
       </p>
+      <br />
       <form>
         <div className="form-group">
           <p className="lato">Answer</p>

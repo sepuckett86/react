@@ -89,7 +89,7 @@ class AddQuote extends React.Component {
                     </textarea>
                   <br />
                   <div className="form-group">
-                      <label>Who Said It (Fictional Character)</label>
+                      <label>Who Said It (Perhaps a Fictional Character)</label>
                       <input type="text" value={this.state.inputWho}
                         onChange={this.handleChange} className="form-control"
                         id="quote-who"

@@ -1,7 +1,7 @@
 import React from 'react';
 import './More.css';
 import Button from '../../Components/Button/Button';
-
+import PDF from './Components/PDF/PDF'
 
 
 //Add CSVDownload to import if want to use it
@@ -177,7 +177,7 @@ class More extends React.Component {
 
         <br />
         <br />
-
+        <PDF />
       </div>)
   }
 }
