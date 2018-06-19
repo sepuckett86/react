@@ -14,6 +14,9 @@ class Prompt extends React.Component {
 
   render() {
     const prompt = this.getPromptWithId();
+    const style = {
+      fontSize: '20px'
+    }
     return(
       <div id="prompt">
         {/* MediaQuery for large screen */}
@@ -30,32 +33,33 @@ class Prompt extends React.Component {
             </div>
             </div>
           </MediaQuery>
+          <div className="lato">
+            <div className="g-box">
 
-            <div className="g-box prompt">
-              <div className="media-body">
-                <p className="lato">{prompt}</p>
-              </div>
+                <p className="lato" style={style}>{prompt}</p>
+
             </div>
             <br />
 
-            <div className="g-box answer">
-            <div className="media-body">
+            <div className="g-box">
+
             <br />
-            <h4 className="lato">{this.props.gminder.mainResponse}</h4><br />
-            </div>
+            <h4>{this.props.gminder.mainResponse}</h4><br />
+
             </div>
 
             { this.props.gminder.reason ?
               <div>
             <br />
-            <div className="g-box reason">
-            <div className="media-body lato">
+            <div className="g-box" style={style}>
+
             {this.props.gminder.reason}
+
             </div>
-            </div>
+
           </div>
             : null}
-
+</div>
             <br />
        {/* MediaQuery for small screen */}
        <MediaQuery query="(max-width: 576px)">

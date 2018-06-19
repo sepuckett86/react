@@ -78,7 +78,8 @@ class AddQuote extends React.Component {
   render() {
     return(
       <div>
-          <br />
+      <hr />
+
           <form>
               <div className="form-group">
                   <label>Quote</label>
@@ -127,7 +128,7 @@ class AddQuote extends React.Component {
 
           </form>
           {/* Button trigger modal */}
-          <button id="create-goodminder" type="button" className="btn btn-modal" data-toggle="modal" onClick={this.handleClick} data-target="#exampleModal">
+          <button id="create-goodminder" type="button" className="btn btn-small" data-toggle="modal" onClick={this.handleClick} data-target="#exampleModal">
             Create Goodminder
           </button>
       </div>

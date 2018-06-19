@@ -7,6 +7,8 @@ import AddCustom from './Components/AddCustom/AddCustom';
 import AddPrompt from './Components/AddPrompt/AddPrompt';
 import AddQuote from './Components/AddQuote/AddQuote';
 
+import MediaQuery from 'react-responsive';
+
 // Utils
 import Gminder from '../../../../Utils/Gminder'
 
@@ -187,6 +189,10 @@ class Add extends React.Component {
                {this.chooseType()}
           </div>
 
+          {/* MediaQuery for small screen */}
+          <MediaQuery query="(max-width: 576px)">
+            <hr />
+          </MediaQuery>
          <br />
          <div className="row">
            <div className="col">

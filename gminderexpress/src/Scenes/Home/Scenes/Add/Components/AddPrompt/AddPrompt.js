@@ -10,7 +10,7 @@ class AddPrompt extends React.Component {
     this.state = {
       prompt: 'empty',
       inputAnswer: '',
-      inputReason: '',
+      inputReason: null,
       prompts: [],
       random: 'no'
     }
@@ -118,23 +118,15 @@ class AddPrompt extends React.Component {
       color: '#2b2b2b', /* Blackish */
     }
     return (<div>
-      <br/>
+
       <hr />
-      <p>Collection:
+      {/* <p>Collection:
         <button id="collection" className="button-transparent" onClick={this.handleClick}>{this.state.prompt.collection}</button>
-      </p>
-        <p>
-        Next prompt: <br />
-        <button id="next-prompt-same" className="btn btn-small" onClick={this.handleClick}>
-          <i class="fas fa-long-arrow-alt-right"></i>{' '}Same Collection</button>
-        {' '}
-        <button id="next-prompt-all" className="btn btn-small" onClick={this.handleClick}>
-          <i class="fas fa-random"></i>{' '}All Collections</button>
-        </p>
-        <hr />
-<form>
-  <div className="form-group">
-<label>Prompt</label>
+      </p> */}
+
+
+
+<p className="lato">Prompt</p>
       <div className="g-box">
         <div className="large">
 
@@ -143,10 +135,20 @@ class AddPrompt extends React.Component {
         </div>
       </div>
       <br />
-          <label>Answer</label>
+      <p className="lato">
+      Next random prompt: <br />
+      <button id="next-prompt-same" className="btn btn-small" onClick={this.handleClick}>
+        <i class="fas fa-long-arrow-alt-right"></i>{' '}Collection: {this.state.prompt.collection}</button>
+      {' '}
+      <button id="next-prompt-all" className="btn btn-small" onClick={this.handleClick}>
+        <i class="fas fa-random"></i>{' '}All Collections</button>
+      </p>
+      <form>
+        <div className="form-group">
+          <p className="lato">Answer</p>
           <textarea className="form-control" value={this.state.inputAnswer} onChange={this.handleChange} id="prompt-answer" rows="3"></textarea>
           <br/>
-          <label>Reason</label>
+          <p className="lato">Reason</p>
           <textarea className="form-control" value={this.state.inputReason} onChange={this.handleChange} id="prompt-reason" rows="3"></textarea>
           <br/>
         </div>
