@@ -10,7 +10,7 @@ db.serialize(() => {
             $category: 'quote',
             $mainResponse: `This is the story: It was Spring. The warm sunshine and soft breezes were trying to lure students away from their classes.\
           Santayana was seated at his desk reading to his students. His listeners were sitting, or reclining, in various attitudes of inattention.\
-          Santayana’s voice trailed off, his eyes traveled over his students, and fixed themselves on a tree which grew outside the window.\
+          Santayanas voice trailed off, his eyes traveled over his students, and fixed themselves on a tree which grew outside the window.\
           Its leaves were small and tender, and of the green green of new leaves. Santayana closed the book. A short silence elapsed.\
           He rose, and said: "Gentlemen, it is Spring!" He took his hat and never returned.`,
             $author: 'Will Durant',
@@ -60,7 +60,7 @@ db.serialize(() => {
           {
             $userID: 1,
             $category: 'quote',
-            $mainResponse: '...a man should fight for the victims, but if he ceases caring for anything outside that, what’s the use of his fighting?',
+            $mainResponse: '...a man should fight for the victims, but if he ceases caring for anything outside that, whats the use of his fighting?',
             $author: 'Albert Camus',
             $promptID: null,
             $reason: null,

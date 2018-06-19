@@ -1,23 +1,24 @@
 import React from 'react';
+import Gminder from '../../../../../../Utils/Gminder'
 
 class PDF extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      gminders: ['This is the story: It was Spring. The warm sunshine and soft breezes were trying to lure students away from their classes.', "Two"],
-      gminder: [{
-        text: `This is the story: It was Spring. The warm sunshine and soft breezes were trying to lure students away from their classes.\
-      Santayana was seated at his desk reading to his students. His listeners were sitting, or reclining, in various attitudes of inattention.\
-      Santayana’s voice trailed off, his eyes traveled over his students, and fixed themselves on a tree which grew outside the window.\
-      Its leaves were small and tender, and of the green green of new leaves. Santayana closed the book. A short silence elapsed.\
-      He rose, and said: "Gentlemen, it is Spring!" He took his hat and never returned.`,
-      author: 'Will Durant'}, {
-        text: 'Booyah',
-        author: 'Me'
-      }]
+      gminders: [],
+      prompts: []
     }
     this.handleClick = this.handleClick.bind(this);
   }
+
+  componentWillMount() {
+    // Get data from database
+    Gminder.getGminders().then(res => this.setState({gminders: res.express})).catch(err => console.log(err)).then(() => {
+      Gminder.getPrompts().then(res => this.setState({prompts: res.express})).catch(err => console.log(err)).then(() => {
+        return;
+      })
+    })
+    }
 
   handleClick(e) {
     if (e.target.id === "make-PDF") {
@@ -26,28 +27,41 @@ class PDF extends React.Component {
   }
 
   makePDF() {
-    var jsPDF = require('jspdf');
-    // Units are cm
-    var size = 'small tradebook'
-    if (size == 'small tradebook') {
-      var doc = new jsPDF({
-      unit: 'cm',
-      format: [13, 20]
-    })
-    }
-    // Margins:
-    let margin = 1;
-    doc.setDrawColor(0, 255, 0)
-    	.setLineWidth(1 / 72)
-    	.line(margin, margin, margin, 20 - margin)
-    	.line(13 - margin, margin, 13 - margin, 20 - margin);
+    const jsPDF = require('jspdf');
+    // @TODO: Need to simplify this demo
 
-    for (let i = 0; i < this.state.gminders.length; i++) {
-      doc.text(1,1,this.state.gminders[i]);
-      if (i < this.state.gminders.length - 1) {
-        doc.addPage();
-      }
-    }
+var doc = new jsPDF('p', 'cm', [13,20])
+  var sizes = [15]
+  var fonts = [['Times', 'Roman']];
+  var font;
+  var size;
+  var lines;
+  var margin = 4; // inches on a 8.5 x 11 inch sheet.
+  var verticalOffset = margin;
+  var loremipsum = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus id eros turpis. Vivamus tempor urna vitae sapien mollis molestie. Vestibulum in lectus non enim bibendum laoreet at at libero. Etiam malesuada erat sed sem blandit in varius orci porttitor. Sed at sapien urna. Fusce augue ipsum, molestie et adipiscing at, varius quis enim. Morbi sed magna est, vel vestibulum urna. Sed tempor ipsum vel mi pretium at elementum urna tempor. Nulla faucibus consectetur felis, elementum venenatis mi mollis gravida. Aliquam mi ante, accumsan eu tempus vitae, viverra quis justo.\n\nProin feugiat augue in augue rhoncus eu cursus tellus laoreet. Pellentesque eu sapien at diam porttitor venenatis nec vitae velit. Donec ultrices volutpat lectus eget vehicula. Nam eu erat mi, in pulvinar eros. Mauris viverra porta orci, et vehicula lectus sagittis id. Nullam at magna vitae nunc fringilla posuere. Duis volutpat malesuada ornare. Nulla in eros metus. Vivamus a posuere libero.'
+
+for (let j = 0; j < this.state.gminders.length; j++) {
+for (var i in fonts) {
+  if (fonts.hasOwnProperty(i)) {
+    font = fonts[i]
+    size = sizes[i]
+    loremipsum = this.state.gminders[j].mainResponse;
+    lines = doc.setFont(font[0], font[1])
+					.setFontSize(size)
+					.splitTextToSize(loremipsum, 11)
+    // This code puts the text on the document.
+    // (horizontal, vertical, text)
+    doc.text(1, verticalOffset + size / 72, lines)
+
+  }
+}
+if (j < this.state.gminders.length - 1) {
+  // make new page if not last gminder
+  doc.addPage();
+}
+
+}
+
     doc.save('small_tradebook.pdf')
   }
   render() {
