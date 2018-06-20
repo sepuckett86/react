@@ -1,6 +1,23 @@
 import React from 'react';
 import Gminder from '../../../../../../Utils/Gminder'
 
+/*
+Blurb requirements
+
+Create the cover last after your final page count is known
+Use the correct dimensions for files
+Files must have an even number of pages
+Design your book with a single page on the right, followed by two-page spreads, and ending with a single page on the left
+Page counts for 5x8 and 6x9 books must be divisible by six
+Use only 100% black ink for text
+Do not use spot or registration color
+For advanced users, fine tune colors with our ICC profile
+Rasterize overly complex vectors (e.g. Illustrator or CAD art)
+For full-bleed printing, stretch images to the page's edge
+*/
+
+
+
 class PDF extends React.Component {
   constructor(props) {
     super(props);
