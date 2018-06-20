@@ -178,6 +178,7 @@ class More extends React.Component {
         <br />
         <br />
         <PDF />
+        <br />
       </div>)
   }
 }
