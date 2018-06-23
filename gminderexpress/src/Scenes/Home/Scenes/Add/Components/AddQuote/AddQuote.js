@@ -5,11 +5,11 @@ class AddQuote extends React.Component {
     super(props);
     this.state = {
       inputAnswer: '',
-      inputReason: null,
-      inputAuthor: null,
-      inputCollection: null,
-      inputSource: null,
-      inputWho: null
+      inputReason: '',
+      inputAuthor: '',
+      inputCollection: '',
+      inputSource: '',
+      inputWho: ''
     }
 
     this.handleClick = this.handleClick.bind(this);
