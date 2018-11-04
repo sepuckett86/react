@@ -1,0 +1,33 @@
+.gradient {
+
+}
+
+/* Start of enter */
+.gradientFade-enter {
+  opacity: 0.01;
+}
+
+/* End of enter and how long it takes */
+.gradientFade-enter-active {
+  opacity: 1;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0), #46B3B3);
+  transition: all 2s linear;
+}
+
+/* Required for background to remain */
+.gradientFade-enter-done {
+  opacity: 1;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0), #46B3B3);
+}
+
+/* Start of exit */
+.gradientFade-exit {
+  background: linear-gradient(to right, rgba(255, 255, 255, 0), #46B3B3);
+  opacity: 1;
+}
+
+/* End of exit and transition time */
+.gradientFade-exit-active {
+  opacity: 0.01;
+  transition: all 2s linear;
+}

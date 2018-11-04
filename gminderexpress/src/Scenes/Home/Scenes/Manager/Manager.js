@@ -28,7 +28,7 @@ class Manager extends React.Component {
 
   }
 
-  componentWillMount() {
+  componentDidMount() {
     if (this.props.collection) {
       // Get data from database
         Gminder.getPrompts().then(res => this.setState({prompts: res.express})).catch(err =>

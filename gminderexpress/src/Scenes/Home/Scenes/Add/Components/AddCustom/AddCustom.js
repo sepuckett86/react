@@ -5,7 +5,7 @@ class AddCustom extends React.Component {
     super(props);
     this.state = {
       inputAnswer : "",
-      inputCollection : null
+      inputCollection : ''
     }
 
     this.handleClick = this.handleClick.bind(this);

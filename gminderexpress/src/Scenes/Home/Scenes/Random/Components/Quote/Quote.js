@@ -10,7 +10,7 @@ class Quote extends React.Component {
       return `-- ${quote.who}, from ${quote.source} by ${quote.author}`
     }
     if (!quote.who && quote.source && quote.author) {
-      return `-- ${quote.source} by ${quote.author}`;
+      return `-- ${quote.author}, ${quote.source}`;
     }
     if (!quote.who && !quote.source && quote.author) {
       return `-- ${quote.author}`;

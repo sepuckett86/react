@@ -1,0 +1,28 @@
+.help-block {
+  transform-origin: center left;
+}
+/* Start of enter */
+.messageFade-enter {
+  opacity: 0.01;
+  transform: scale(0.2) translateY(50%);
+}
+
+/* End of enter and how long it takes */
+.messageFade-enter-active {
+  opacity: 1;
+  transform: scale(1) translateY(0%);
+  transition: all 300ms ease-out;
+}
+
+/* Start of exit */
+.messageFade-exit {
+  opacity: 1;
+  transform: scale(1) translateY(0%);
+}
+
+/* End of exit and transition time */
+.messageFade-exit-active {
+  opacity: 0.01;
+  transform: scale(0.5) translateY(50%);
+  transition: all 300ms ease-out;
+}

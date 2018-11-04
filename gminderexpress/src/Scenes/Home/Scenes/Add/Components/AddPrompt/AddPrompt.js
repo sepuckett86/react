@@ -10,7 +10,7 @@ class AddPrompt extends React.Component {
     this.state = {
       prompt: 'empty',
       inputAnswer: '',
-      inputReason: null,
+      inputReason: '',
       prompts: [],
       random: 'no'
     }
@@ -21,7 +21,7 @@ class AddPrompt extends React.Component {
     this.changePromptSame = this.changePromptSame.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     // Get data from database
     Gminder.getPrompts().then(res => this.setState({prompts: res.express})).catch(err => console.log(err)).then(() => {
       // Check if there is data in prompts
@@ -138,10 +138,10 @@ class AddPrompt extends React.Component {
       <p className="lato">
       Next random prompt: <br />
       <button id="next-prompt-same" className="btn btn-small" onClick={this.handleClick}>
-        <i class="fas fa-long-arrow-alt-right"></i>{' '}Collection: {this.state.prompt.collection}</button>
+        <i className="fas fa-long-arrow-alt-right"></i>{' '}Collection: {this.state.prompt.collection}</button>
       {' '}
       <button id="next-prompt-all" className="btn btn-small" onClick={this.handleClick}>
-        <i class="fas fa-random"></i>{' '}All Collections</button>
+        <i className="fas fa-random"></i>{' '}All Collections</button>
       </p>
       <br />
       <form>
