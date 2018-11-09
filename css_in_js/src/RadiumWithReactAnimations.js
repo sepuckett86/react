@@ -1,8 +1,6 @@
 import Radium, {StyleRoot} from 'radium';
 import React from 'react';
-import color from 'color';
-import PropTypes from 'prop-types';
-import { bounce, rollOut } from 'react-animations';
+import { styles } from './styles';
 
 // Taken from Radium Github example
 export default class RadiumWithReactAnimations extends React.Component {
@@ -11,13 +9,10 @@ export default class RadiumWithReactAnimations extends React.Component {
     this.state = {shouldAnimate: false};
     this.handleClick = this.handleClick.bind(this);
   }
-  static propTypes = {
-    kind: PropTypes.oneOf(['primary', 'warning']).isRequired
-  };
 
   handleClick(e) {
     this.setState({shouldAnimate: true}, () => {
-        setTimeout(() => this.setState({shouldAnimate: false}), 1000);
+        setTimeout(() => this.setState({shouldAnimate: false}), 2000);
       });
   }
 
@@ -28,6 +23,7 @@ export default class RadiumWithReactAnimations extends React.Component {
       return styles.empty
     }
   }
+
   render() {
     // Radium extends the style attribute to accept an array. It will merge
     // the styles in order. We use this feature here to apply the primary
@@ -36,19 +32,16 @@ export default class RadiumWithReactAnimations extends React.Component {
     // styles are applied (props, state, context, etc).
     return (
       <div>
+      <div style={styles.box}>
       <button
         name='action_button'
-        style={[
-          styles.base,
-          styles[this.props.kind]
-        ]}
+        style={styles.base}
         onClick={this.handleClick}>
         {this.props.children}
       </button>
-      <div style={styles.box}>
         <StyleRoot>
-          <div key='rollOut' name='rollOut' style={this.animate('rollOut')}><h1>Header</h1></div>
-          <div key='bounce' name='bounce' style={this.animate('bounce')}>bounce</div>
+          <div key='rollOut' style={this.animate('rollOut')}><h1>rollOut</h1></div>
+          <div key='bounce' style={this.animate('bounce')}><h1>bounce</h1></div>
         </StyleRoot>
       </div>
       </div>
@@ -57,48 +50,3 @@ export default class RadiumWithReactAnimations extends React.Component {
 }
 
 RadiumWithReactAnimations = Radium(RadiumWithReactAnimations);
-
-// You can create your style objects dynamically or share them for
-// every instance of the component.
-var styles = {
-  base: {
-    color: '#fff',
-
-    // Adding interactive state couldn't be easier! Add a special key to your
-    // style object (:hover, :focus, :active, or @media) with the additional rules.
-    ':hover': {
-      background: color('#0074d9').lighten(0.2)
-    }
-  },
-
-  primary: {
-    background: '#0074D9'
-  },
-
-  warning: {
-    background: '#FF4136'
-  },
-
-  box: {
-    borderStyle: 'solid',
-    margin: '2px',
-    padding: '100px',
-    height: '300px',
-    width: '300px',
-    textAlign: 'center'
-  },
-
-  empty: {
-
-  },
-
-  bounce: {
-      animation: 'x 1s',
-      animationName: Radium.keyframes(bounce, 'bounce')
-  },
-
-  rollOut: {
-      animation: 'x 1s',
-      animationName: Radium.keyframes(rollOut, 'rollOut')
-  }
-};
