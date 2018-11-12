@@ -42,12 +42,12 @@ export default class RadiumWithReactAnimations extends React.Component {
       {shouldAnimate: true}, () => {
         setTimeout(() => this.setState(
           {cardShowing: newCard}, () => {
-            this.setState({
-              shouldAnimate: false
-            })
-          }), 2000);
+            setTimeout(() => this.setState(
+              {shouldAnimate: false}), 1000)
+          }), 1500);
       });
   }
+
 
   animate(animation) {
     if (this.state.shouldAnimate) {
@@ -81,8 +81,7 @@ export default class RadiumWithReactAnimations extends React.Component {
           <div className="row">
             <div className="col">
               <StyleRoot>
-                <div key='rollOut' style={this.animate('rollOut')}>
-
+                <div key='fadeOut' style={this.animate('fadeOut')}>
                 {this.displayCard(this.state.cards[this.state.cardShowing])}
                 </div>
               </StyleRoot>
