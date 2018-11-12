@@ -1,6 +1,6 @@
 import color from 'color';
 import Radium from 'radium';
-import { bounce, rollOut } from 'react-animations';
+import { bounce, rollOut, rollIn } from 'react-animations';
 
 export const styles = {
   base: {
@@ -22,8 +22,6 @@ export const styles = {
     borderStyle: 'solid',
     margin: '2px',
     padding: '100px',
-    height: '300px',
-    width: '300px',
     textAlign: 'center'
   },
 
@@ -39,5 +37,10 @@ export const styles = {
   rollOut: {
       animation: 'x 2s',
       animationName: Radium.keyframes(rollOut, 'rollOut')
+  },
+
+  rollIn: {
+      animation: 'x 2s',
+      animationName: Radium.keyframes(rollIn, 'rollIn')
   }
 };
